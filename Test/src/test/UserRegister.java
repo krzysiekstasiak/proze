@@ -30,23 +30,30 @@ public class UserRegister extends javax.swing.JPanel {
 
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        NameTextField = new javax.swing.JTextField();
+        nameTextField = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
         jLabel7 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
-        SecondNameTextField = new javax.swing.JTextField();
+        secondNameTextField = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
-        LoginTextField = new javax.swing.JTextField();
+        loginTextField = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        firstPasswordTextField = new javax.swing.JTextField();
+        secondPasswordTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        firstMailTextField = new javax.swing.JTextField();
+        secondMailTextField = new javax.swing.JTextField();
+        okButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setLayout(new java.awt.GridLayout(0, 2));
+        setBorder(javax.swing.BorderFactory.createEmptyBorder(15, 15, 15, 15));
+        setLayout(new java.awt.GridLayout(0, 2, 15, 0));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Imię");
@@ -54,7 +61,7 @@ public class UserRegister extends javax.swing.JPanel {
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         add(jSeparator1);
-        add(NameTextField);
+        add(nameTextField);
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
         add(jSeparator4);
@@ -64,7 +71,7 @@ public class UserRegister extends javax.swing.JPanel {
 
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
         add(jSeparator5);
-        add(SecondNameTextField);
+        add(secondNameTextField);
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
         add(jSeparator2);
@@ -74,13 +81,7 @@ public class UserRegister extends javax.swing.JPanel {
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
         add(jSeparator6);
-
-        LoginTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LoginTextFieldActionPerformed(evt);
-            }
-        });
-        add(LoginTextField);
+        add(loginTextField);
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -91,23 +92,29 @@ public class UserRegister extends javax.swing.JPanel {
 
         jLabel6.setText("Powtórz hasło");
         add(jLabel6);
+        add(firstPasswordTextField);
+        add(secondPasswordTextField);
 
         jLabel3.setText("E-mail");
         add(jLabel3);
 
         jLabel8.setText("Powtórz e-mail");
         add(jLabel8);
-    }// </editor-fold>//GEN-END:initComponents
+        add(firstMailTextField);
+        add(secondMailTextField);
 
-    private void LoginTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LoginTextFieldActionPerformed
+        okButton.setText("Zarejestruj");
+        add(okButton);
+
+        cancelButton.setText("Anuluj");
+        add(cancelButton);
+    }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField LoginTextField;
-    private javax.swing.JTextField NameTextField;
-    private javax.swing.JTextField SecondNameTextField;
+    private javax.swing.JButton cancelButton;
+    private javax.swing.JTextField firstMailTextField;
+    private javax.swing.JTextField firstPasswordTextField;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -121,5 +128,11 @@ public class UserRegister extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JTextField loginTextField;
+    private javax.swing.JTextField nameTextField;
+    private javax.swing.JButton okButton;
+    private javax.swing.JTextField secondMailTextField;
+    private javax.swing.JTextField secondNameTextField;
+    private javax.swing.JTextField secondPasswordTextField;
     // End of variables declaration//GEN-END:variables
 }
