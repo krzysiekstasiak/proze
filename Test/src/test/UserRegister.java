@@ -30,24 +30,33 @@ public class UserRegister extends javax.swing.JPanel {
 
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        jPanel1 = new javax.swing.JPanel();
         nameTextField = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
         jLabel7 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
+        jPanel2 = new javax.swing.JPanel();
         secondNameTextField = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
+        jPanel3 = new javax.swing.JPanel();
         loginTextField = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
         firstPasswordTextField = new javax.swing.JTextField();
+        jPanel5 = new javax.swing.JPanel();
         secondPasswordTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
         firstMailTextField = new javax.swing.JTextField();
+        jPanel7 = new javax.swing.JPanel();
         secondMailTextField = new javax.swing.JTextField();
+        jSeparator7 = new javax.swing.JSeparator();
+        jSeparator8 = new javax.swing.JSeparator();
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
@@ -56,52 +65,128 @@ public class UserRegister extends javax.swing.JPanel {
         setLayout(new java.awt.GridLayout(0, 2, 15, 0));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Imię");
         add(jLabel2);
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         add(jSeparator1);
-        add(nameTextField);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        nameTextField.setMaximumSize(new java.awt.Dimension(6, 20));
+        nameTextField.setMinimumSize(new java.awt.Dimension(259, 25));
+        nameTextField.setPreferredSize(new java.awt.Dimension(150, 25));
+        jPanel1.add(nameTextField);
+
+        add(jPanel1);
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
         add(jSeparator4);
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Nazwisko");
         add(jLabel7);
 
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
         add(jSeparator5);
-        add(secondNameTextField);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        secondNameTextField.setMaximumSize(new java.awt.Dimension(6, 20));
+        secondNameTextField.setMinimumSize(new java.awt.Dimension(259, 25));
+        secondNameTextField.setPreferredSize(new java.awt.Dimension(150, 25));
+        jPanel2.add(secondNameTextField);
+
+        add(jPanel2);
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
         add(jSeparator2);
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Login");
         add(jLabel5);
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
         add(jSeparator6);
-        add(loginTextField);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        loginTextField.setMaximumSize(new java.awt.Dimension(6, 20));
+        loginTextField.setMinimumSize(new java.awt.Dimension(259, 25));
+        loginTextField.setPreferredSize(new java.awt.Dimension(150, 25));
+        jPanel3.add(loginTextField);
+
+        add(jPanel3);
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         add(jSeparator3);
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("Hasło");
         add(jLabel4);
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Powtórz hasło");
         add(jLabel6);
-        add(firstPasswordTextField);
-        add(secondPasswordTextField);
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        firstPasswordTextField.setMaximumSize(new java.awt.Dimension(6, 20));
+        firstPasswordTextField.setMinimumSize(new java.awt.Dimension(259, 25));
+        firstPasswordTextField.setPreferredSize(new java.awt.Dimension(150, 25));
+        jPanel4.add(firstPasswordTextField);
+
+        add(jPanel4);
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        secondPasswordTextField.setMaximumSize(new java.awt.Dimension(6, 20));
+        secondPasswordTextField.setMinimumSize(new java.awt.Dimension(259, 25));
+        secondPasswordTextField.setPreferredSize(new java.awt.Dimension(150, 25));
+        jPanel5.add(secondPasswordTextField);
+
+        add(jPanel5);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("E-mail");
         add(jLabel3);
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel8.setText("Powtórz e-mail");
         add(jLabel8);
-        add(firstMailTextField);
-        add(secondMailTextField);
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        firstMailTextField.setMaximumSize(new java.awt.Dimension(6, 20));
+        firstMailTextField.setMinimumSize(new java.awt.Dimension(259, 25));
+        firstMailTextField.setPreferredSize(new java.awt.Dimension(150, 25));
+        jPanel6.add(firstMailTextField);
+
+        add(jPanel6);
+
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel7.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        secondMailTextField.setMaximumSize(new java.awt.Dimension(6, 20));
+        secondMailTextField.setMinimumSize(new java.awt.Dimension(259, 25));
+        secondMailTextField.setPreferredSize(new java.awt.Dimension(150, 25));
+        jPanel7.add(secondMailTextField);
+
+        add(jPanel7);
+
+        jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
+        add(jSeparator7);
+
+        jSeparator8.setForeground(new java.awt.Color(255, 255, 255));
+        add(jSeparator8);
 
         okButton.setText("Zarejestruj");
         add(okButton);
@@ -122,12 +207,21 @@ public class UserRegister extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JTextField loginTextField;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JButton okButton;
