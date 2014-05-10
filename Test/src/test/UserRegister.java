@@ -28,19 +28,98 @@ public class UserRegister extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        jLabel2 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        NameTextField = new javax.swing.JTextField();
+        jSeparator4 = new javax.swing.JSeparator();
+        jLabel7 = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        SecondNameTextField = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel5 = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
+        LoginTextField = new javax.swing.JTextField();
+        jSeparator3 = new javax.swing.JSeparator();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new java.awt.GridLayout(0, 2));
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Imię");
+        add(jLabel2);
+
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+        add(jSeparator1);
+        add(NameTextField);
+
+        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
+        add(jSeparator4);
+
+        jLabel7.setText("Nazwisko");
+        add(jLabel7);
+
+        jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
+        add(jSeparator5);
+        add(SecondNameTextField);
+
+        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
+        add(jSeparator2);
+
+        jLabel5.setText("Login");
+        add(jLabel5);
+
+        jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
+        add(jSeparator6);
+
+        LoginTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoginTextFieldActionPerformed(evt);
+            }
+        });
+        add(LoginTextField);
+
+        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        add(jSeparator3);
+
+        jLabel4.setText("Hasło");
+        add(jLabel4);
+
+        jLabel6.setText("Powtórz hasło");
+        add(jLabel6);
+
+        jLabel3.setText("E-mail");
+        add(jLabel3);
+
+        jLabel8.setText("Powtórz e-mail");
+        add(jLabel8);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void LoginTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LoginTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField LoginTextField;
+    private javax.swing.JTextField NameTextField;
+    private javax.swing.JTextField SecondNameTextField;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     // End of variables declaration//GEN-END:variables
 }
