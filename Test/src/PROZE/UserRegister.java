@@ -60,7 +60,7 @@ public class UserRegister extends javax.swing.JPanel {
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(0, 102, 0));
+        setBackground(new java.awt.Color(0, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(15, 15, 15, 15));
         setLayout(new java.awt.GridLayout(0, 2, 15, 0));
 
@@ -70,8 +70,8 @@ public class UserRegister extends javax.swing.JPanel {
         jLabel2.setDoubleBuffered(true);
         add(jLabel2);
 
-        jSeparator1.setBackground(new java.awt.Color(0, 102, 0));
-        jSeparator1.setForeground(new java.awt.Color(0, 102, 0));
+        jSeparator1.setBackground(new java.awt.Color(0, 255, 255));
+        jSeparator1.setForeground(new java.awt.Color(0, 255, 255));
         jSeparator1.setDoubleBuffered(true);
         add(jSeparator1);
 
@@ -89,8 +89,8 @@ public class UserRegister extends javax.swing.JPanel {
         jPanel1.getAccessibleContext().setAccessibleName("");
         jPanel1.getAccessibleContext().setAccessibleDescription("");
 
-        jSeparator4.setBackground(new java.awt.Color(0, 102, 0));
-        jSeparator4.setForeground(new java.awt.Color(0, 102, 0));
+        jSeparator4.setBackground(new java.awt.Color(0, 255, 255));
+        jSeparator4.setForeground(new java.awt.Color(0, 255, 255));
         jSeparator4.setDoubleBuffered(true);
         add(jSeparator4);
 
@@ -99,8 +99,8 @@ public class UserRegister extends javax.swing.JPanel {
         jLabel7.setDoubleBuffered(true);
         add(jLabel7);
 
-        jSeparator5.setBackground(new java.awt.Color(0, 102, 0));
-        jSeparator5.setForeground(new java.awt.Color(0, 102, 0));
+        jSeparator5.setBackground(new java.awt.Color(0, 255, 255));
+        jSeparator5.setForeground(new java.awt.Color(0, 255, 255));
         jSeparator5.setDoubleBuffered(true);
         add(jSeparator5);
 
@@ -115,8 +115,8 @@ public class UserRegister extends javax.swing.JPanel {
 
         add(jPanel2);
 
-        jSeparator2.setBackground(new java.awt.Color(0, 102, 0));
-        jSeparator2.setForeground(new java.awt.Color(0, 102, 0));
+        jSeparator2.setBackground(new java.awt.Color(0, 255, 255));
+        jSeparator2.setForeground(new java.awt.Color(0, 255, 255));
         jSeparator2.setDoubleBuffered(true);
         add(jSeparator2);
 
@@ -125,8 +125,8 @@ public class UserRegister extends javax.swing.JPanel {
         jLabel5.setDoubleBuffered(true);
         add(jLabel5);
 
-        jSeparator6.setBackground(new java.awt.Color(0, 102, 0));
-        jSeparator6.setForeground(new java.awt.Color(0, 102, 0));
+        jSeparator6.setBackground(new java.awt.Color(0, 255, 255));
+        jSeparator6.setForeground(new java.awt.Color(0, 255, 255));
         jSeparator6.setDoubleBuffered(true);
         add(jSeparator6);
 
@@ -141,8 +141,8 @@ public class UserRegister extends javax.swing.JPanel {
 
         add(jPanel3);
 
-        jSeparator3.setBackground(new java.awt.Color(0, 102, 0));
-        jSeparator3.setForeground(new java.awt.Color(0, 102, 0));
+        jSeparator3.setBackground(new java.awt.Color(51, 255, 255));
+        jSeparator3.setForeground(new java.awt.Color(51, 255, 255));
         jSeparator3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jSeparator3.setDoubleBuffered(true);
         add(jSeparator3);
@@ -211,13 +211,13 @@ public class UserRegister extends javax.swing.JPanel {
 
         add(jPanel7);
 
-        jSeparator7.setBackground(new java.awt.Color(0, 102, 0));
-        jSeparator7.setForeground(new java.awt.Color(0, 102, 0));
+        jSeparator7.setBackground(new java.awt.Color(0, 255, 255));
+        jSeparator7.setForeground(new java.awt.Color(0, 255, 255));
         jSeparator7.setDoubleBuffered(true);
         add(jSeparator7);
 
-        jSeparator8.setBackground(new java.awt.Color(0, 102, 0));
-        jSeparator8.setForeground(new java.awt.Color(0, 102, 0));
+        jSeparator8.setBackground(new java.awt.Color(0, 255, 255));
+        jSeparator8.setForeground(new java.awt.Color(0, 255, 255));
         jSeparator8.setDoubleBuffered(true);
         add(jSeparator8);
 
