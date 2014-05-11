@@ -60,54 +60,41 @@ public class UserRegister extends javax.swing.JPanel {
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(0, 102, 0));
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(15, 15, 15, 15));
         setLayout(new java.awt.GridLayout(0, 2, 15, 0));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Imię");
-        jLabel2.setDoubleBuffered(true);
         add(jLabel2);
 
-        jSeparator1.setBackground(new java.awt.Color(0, 102, 0));
-        jSeparator1.setForeground(new java.awt.Color(0, 102, 0));
-        jSeparator1.setDoubleBuffered(true);
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         add(jSeparator1);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 0));
-        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        nameTextField.setDoubleBuffered(true);
         nameTextField.setMaximumSize(new java.awt.Dimension(6, 20));
         nameTextField.setMinimumSize(new java.awt.Dimension(259, 25));
         nameTextField.setPreferredSize(new java.awt.Dimension(150, 25));
         jPanel1.add(nameTextField);
 
         add(jPanel1);
-        jPanel1.getAccessibleContext().setAccessibleName("");
-        jPanel1.getAccessibleContext().setAccessibleDescription("");
 
-        jSeparator4.setBackground(new java.awt.Color(0, 102, 0));
-        jSeparator4.setForeground(new java.awt.Color(0, 102, 0));
-        jSeparator4.setDoubleBuffered(true);
+        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
         add(jSeparator4);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Nazwisko");
-        jLabel7.setDoubleBuffered(true);
         add(jLabel7);
 
-        jSeparator5.setBackground(new java.awt.Color(0, 102, 0));
-        jSeparator5.setForeground(new java.awt.Color(0, 102, 0));
-        jSeparator5.setDoubleBuffered(true);
+        jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
         add(jSeparator5);
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 0));
-        jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        secondNameTextField.setDoubleBuffered(true);
         secondNameTextField.setMaximumSize(new java.awt.Dimension(6, 20));
         secondNameTextField.setMinimumSize(new java.awt.Dimension(259, 25));
         secondNameTextField.setPreferredSize(new java.awt.Dimension(150, 25));
@@ -115,25 +102,19 @@ public class UserRegister extends javax.swing.JPanel {
 
         add(jPanel2);
 
-        jSeparator2.setBackground(new java.awt.Color(0, 102, 0));
-        jSeparator2.setForeground(new java.awt.Color(0, 102, 0));
-        jSeparator2.setDoubleBuffered(true);
+        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
         add(jSeparator2);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Login");
-        jLabel5.setDoubleBuffered(true);
         add(jLabel5);
 
-        jSeparator6.setBackground(new java.awt.Color(0, 102, 0));
-        jSeparator6.setForeground(new java.awt.Color(0, 102, 0));
-        jSeparator6.setDoubleBuffered(true);
+        jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
         add(jSeparator6);
 
-        jPanel3.setBackground(new java.awt.Color(0, 102, 0));
-        jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        loginTextField.setDoubleBuffered(true);
         loginTextField.setMaximumSize(new java.awt.Dimension(6, 20));
         loginTextField.setMinimumSize(new java.awt.Dimension(259, 25));
         loginTextField.setPreferredSize(new java.awt.Dimension(150, 25));
@@ -141,26 +122,21 @@ public class UserRegister extends javax.swing.JPanel {
 
         add(jPanel3);
 
-        jSeparator3.setBackground(new java.awt.Color(0, 102, 0));
-        jSeparator3.setForeground(new java.awt.Color(0, 102, 0));
+        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jSeparator3.setDoubleBuffered(true);
         add(jSeparator3);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("Hasło");
-        jLabel4.setDoubleBuffered(true);
         add(jLabel4);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Powtórz hasło");
-        jLabel6.setDoubleBuffered(true);
         add(jLabel6);
 
-        jPanel4.setBackground(new java.awt.Color(0, 102, 0));
-        jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        firstPasswordTextField.setDoubleBuffered(true);
         firstPasswordTextField.setMaximumSize(new java.awt.Dimension(6, 20));
         firstPasswordTextField.setMinimumSize(new java.awt.Dimension(259, 25));
         firstPasswordTextField.setPreferredSize(new java.awt.Dimension(150, 25));
@@ -168,10 +144,9 @@ public class UserRegister extends javax.swing.JPanel {
 
         add(jPanel4);
 
-        jPanel5.setBackground(new java.awt.Color(0, 102, 0));
-        jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        secondPasswordTextField.setDoubleBuffered(true);
         secondPasswordTextField.setMaximumSize(new java.awt.Dimension(6, 20));
         secondPasswordTextField.setMinimumSize(new java.awt.Dimension(259, 25));
         secondPasswordTextField.setPreferredSize(new java.awt.Dimension(150, 25));
@@ -181,18 +156,15 @@ public class UserRegister extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("E-mail");
-        jLabel3.setDoubleBuffered(true);
         add(jLabel3);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel8.setText("Powtórz e-mail");
-        jLabel8.setDoubleBuffered(true);
         add(jLabel8);
 
-        jPanel6.setBackground(new java.awt.Color(0, 102, 0));
-        jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        firstMailTextField.setDoubleBuffered(true);
         firstMailTextField.setMaximumSize(new java.awt.Dimension(6, 20));
         firstMailTextField.setMinimumSize(new java.awt.Dimension(259, 25));
         firstMailTextField.setPreferredSize(new java.awt.Dimension(150, 25));
@@ -200,10 +172,9 @@ public class UserRegister extends javax.swing.JPanel {
 
         add(jPanel6);
 
-        jPanel7.setBackground(new java.awt.Color(0, 102, 0));
-        jPanel7.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel7.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        secondMailTextField.setDoubleBuffered(true);
         secondMailTextField.setMaximumSize(new java.awt.Dimension(6, 20));
         secondMailTextField.setMinimumSize(new java.awt.Dimension(259, 25));
         secondMailTextField.setPreferredSize(new java.awt.Dimension(150, 25));
@@ -211,22 +182,16 @@ public class UserRegister extends javax.swing.JPanel {
 
         add(jPanel7);
 
-        jSeparator7.setBackground(new java.awt.Color(0, 102, 0));
-        jSeparator7.setForeground(new java.awt.Color(0, 102, 0));
-        jSeparator7.setDoubleBuffered(true);
+        jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
         add(jSeparator7);
 
-        jSeparator8.setBackground(new java.awt.Color(0, 102, 0));
-        jSeparator8.setForeground(new java.awt.Color(0, 102, 0));
-        jSeparator8.setDoubleBuffered(true);
+        jSeparator8.setForeground(new java.awt.Color(255, 255, 255));
         add(jSeparator8);
 
         okButton.setText("Zarejestruj");
-        okButton.setDoubleBuffered(true);
         add(okButton);
 
         cancelButton.setText("Anuluj");
-        cancelButton.setDoubleBuffered(true);
         add(cancelButton);
     }// </editor-fold>//GEN-END:initComponents
 
