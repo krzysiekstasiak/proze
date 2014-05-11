@@ -6,6 +6,7 @@
 package PROZE;
 
 import java.io.File;
+import java.io.IOException;
 import org.junit.After;
 import org.junit.Test;
 
@@ -30,7 +31,7 @@ public class AccountSettingsManagerTest {
      * Test of parseXmlFile method, of class AccountSettingsManager.
      */
     @Test
-    public void testLoadingStoring() {
+    public void testLoadingStoring() throws IOException {
         String login = "login";
         String password = "password";
         String server = "server";
