@@ -46,9 +46,9 @@ public class UserRegister extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        firstPasswordTextField = new javax.swing.JTextField();
+        firstPasswordTextField = new javax.swing.JPasswordField();
         jPanel5 = new javax.swing.JPanel();
-        secondPasswordTextField = new javax.swing.JTextField();
+        secondPasswordTextField = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
@@ -75,7 +75,7 @@ public class UserRegister extends javax.swing.JPanel {
         jSeparator1.setDoubleBuffered(true);
         add(jSeparator1);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 0));
+        jPanel1.setBackground(new java.awt.Color(0, 255, 255));
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
 
@@ -104,7 +104,7 @@ public class UserRegister extends javax.swing.JPanel {
         jSeparator5.setDoubleBuffered(true);
         add(jSeparator5);
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 0));
+        jPanel2.setBackground(new java.awt.Color(0, 255, 255));
         jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
 
         secondNameTextField.setDoubleBuffered(true);
@@ -130,7 +130,7 @@ public class UserRegister extends javax.swing.JPanel {
         jSeparator6.setDoubleBuffered(true);
         add(jSeparator6);
 
-        jPanel3.setBackground(new java.awt.Color(0, 102, 0));
+        jPanel3.setBackground(new java.awt.Color(0, 255, 255));
         jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
 
         loginTextField.setDoubleBuffered(true);
@@ -157,23 +157,21 @@ public class UserRegister extends javax.swing.JPanel {
         jLabel6.setDoubleBuffered(true);
         add(jLabel6);
 
-        jPanel4.setBackground(new java.awt.Color(0, 102, 0));
+        jPanel4.setBackground(new java.awt.Color(0, 255, 255));
         jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
 
-        firstPasswordTextField.setDoubleBuffered(true);
-        firstPasswordTextField.setMaximumSize(new java.awt.Dimension(6, 20));
-        firstPasswordTextField.setMinimumSize(new java.awt.Dimension(259, 25));
+        firstPasswordTextField.setMaximumSize(new java.awt.Dimension(2147483647, 25));
+        firstPasswordTextField.setMinimumSize(new java.awt.Dimension(150, 25));
         firstPasswordTextField.setPreferredSize(new java.awt.Dimension(150, 25));
         jPanel4.add(firstPasswordTextField);
 
         add(jPanel4);
 
-        jPanel5.setBackground(new java.awt.Color(0, 102, 0));
+        jPanel5.setBackground(new java.awt.Color(0, 255, 255));
         jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
 
-        secondPasswordTextField.setDoubleBuffered(true);
-        secondPasswordTextField.setMaximumSize(new java.awt.Dimension(6, 20));
-        secondPasswordTextField.setMinimumSize(new java.awt.Dimension(259, 25));
+        secondPasswordTextField.setMaximumSize(new java.awt.Dimension(2147483647, 25));
+        secondPasswordTextField.setMinimumSize(new java.awt.Dimension(150, 25));
         secondPasswordTextField.setPreferredSize(new java.awt.Dimension(150, 25));
         jPanel5.add(secondPasswordTextField);
 
@@ -189,7 +187,7 @@ public class UserRegister extends javax.swing.JPanel {
         jLabel8.setDoubleBuffered(true);
         add(jLabel8);
 
-        jPanel6.setBackground(new java.awt.Color(0, 102, 0));
+        jPanel6.setBackground(new java.awt.Color(0, 255, 255));
         jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
 
         firstMailTextField.setDoubleBuffered(true);
@@ -200,7 +198,7 @@ public class UserRegister extends javax.swing.JPanel {
 
         add(jPanel6);
 
-        jPanel7.setBackground(new java.awt.Color(0, 102, 0));
+        jPanel7.setBackground(new java.awt.Color(0, 255, 255));
         jPanel7.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
 
         secondMailTextField.setDoubleBuffered(true);
@@ -234,7 +232,7 @@ public class UserRegister extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
     private javax.swing.JTextField firstMailTextField;
-    private javax.swing.JTextField firstPasswordTextField;
+    private javax.swing.JPasswordField firstPasswordTextField;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -262,6 +260,6 @@ public class UserRegister extends javax.swing.JPanel {
     private javax.swing.JButton okButton;
     private javax.swing.JTextField secondMailTextField;
     private javax.swing.JTextField secondNameTextField;
-    private javax.swing.JTextField secondPasswordTextField;
+    private javax.swing.JPasswordField secondPasswordTextField;
     // End of variables declaration//GEN-END:variables
 }
