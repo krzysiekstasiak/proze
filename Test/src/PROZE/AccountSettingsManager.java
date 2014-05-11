@@ -6,20 +6,26 @@
 package PROZE;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
 /**
- * Do przekonstruowania (brak dostępu do plików i podobne sytuacje).
+ * Klasa zarządzająca ustawieniami dotyczącymi konta użytkownika. Zapewnia
+ * dostęp do loginu, hasza hasła użytkownika i adresu serwera aplikacji. Pozwala
+ * również przechowywać te dane w pliku XML.
+ *
  * @author Krzysztof
  */
 public class AccountSettingsManager {
 
-    private String xmlFileName;
-    private Properties properties;
+    private final String xmlFileName;
+    private final Properties properties;
+
     /**
-     * 
+     * Konstruktor klasy ustawiający nazwę pliku przechowującego ustawienia.
+     *
      * @param xmlFileName nazwa pliku XML przechowującego trwałą kopię ustawień
      */
     public AccountSettingsManager(String xmlFileName) {
@@ -28,79 +34,107 @@ public class AccountSettingsManager {
     }
 
     /**
+     * Odczytuje adres URL serwera z pliku XML. W przypadku braku pliku, lub
+     * jeśli jest on pusty, albo wartość nie została zapisana zwraca pusty
+     * łańcuch.
      *
-     * @return
+     * @return Pobrany adres URL
+     * @throws java.io.IOException W przypadku błędu odczytu pliku. Jeśli
+     * powodem jest wyjątek SecurityException, jest on oznaczony jako przyczyna
+     * rzuconego wyjątku.
      */
-    public String getServerURL() {
+    public String getServerURL() throws IOException {
         this.updateProperties();
         return this.properties.getProperty("serverURL", "");
     }
 
     /**
+     * Odczytuje nazwę użytkownika z pliku XML. W przypadku braku pliku, lub
+     * jeśli jest on pusty, albo wartość nie została zapisana zwraca pusty
+     * łańcuch.
      *
-     * @return
+     * @return Odczytana nazwa użytkownika.
+     * @throws java.io.IOException W przypadku błędu odczytu pliku. Jeśli
+     * powodem jest wyjątek SecurityException, jest on oznaczony jako przyczyna
+     * rzuconego wyjątku.
      */
-    public String getLogin() {
+    public String getLogin() throws IOException {
         this.updateProperties();
         return this.properties.getProperty("login", "");
     }
 
     /**
+     * Odczytuje hasz hasła z pliku XML. W przypadku braku pliku, lub jeśli jest
+     * on pusty, albo wartość nie została zapisana zwraca pusty łańcuch.
      *
-     * @return
+     * @return Odczytany hasz hasła.
+     * @throws java.io.IOException W przypadku błędu odczytu pliku. Jeśli
+     * powodem jest wyjątek SecurityException, jest on oznaczony jako przyczyna
+     * rzuconego wyjątku.
      */
-    public String getPasswordHash() {
+    public String getPasswordHash() throws IOException {
         this.updateProperties();
         return this.properties.getProperty("passwordHash", "");
     }
 
     /**
+     * Zapisuje adres URL serwera do pliku XML.
      *
-     * @param value
+     * @param value Zapisywany adres serwera.
+     * @throws java.io.IOException W przypadku niepowodzenia zapisu. Jesli
+     * przyczyną jest wyjątek SecurityException, jest on dołączany jako
+     * przyczyna rzuconego wyjatku.
      */
-    public void setServerURL(String value) {
+    public void setServerURL(String value) throws IOException {
         this.properties.setProperty("serverURL", value);
         this.updateXML();
     }
 
     /**
+     * Zapisuje nazwę użytkownika do pliku XML.
      *
-     * @param value
+     * @param value Zapisywana nazwa użytkownika.
+     * @throws java.io.IOException W przypadku niepowodzenia zapisu. Jesli
+     * przyczyną jest wyjątek SecurityException, jest on dołączany jako
+     * przyczyna rzuconego wyjatku.
      */
-    public void setLogin(String value) {
+    public void setLogin(String value) throws IOException {
         this.properties.setProperty("login", value);
         this.updateXML();
     }
 
     /**
+     * Zapisuje hasz hasła do pliku XML.
      *
-     * @param value
+     * @param value Zapisywany hasz hasła.
+     * @throws java.io.IOException W przypadku niepowodzenia zapisu. Jesli
+     * przyczyną jest wyjątek SecurityException, jest on dołączany jako
+     * przyczyna rzuconego wyjatku.
      */
-    public void setPasswordHash(String value) {
+    public void setPasswordHash(String value) throws IOException {
         this.properties.setProperty("passwordHash", value);
         this.updateXML();
     }
 
-    private boolean updateXML() {
-        boolean updateSuccessful;
+    private void updateXML() throws IOException {
         try (FileOutputStream fileStream = new FileOutputStream(this.xmlFileName)) {
             this.properties.storeToXML(fileStream, null);
-            updateSuccessful = true;
-        } catch (IOException exc) {
-            updateSuccessful = false;
+        } catch (FileNotFoundException exc) {
+        } catch (SecurityException | IOException exc) {
+            IOException newException = new IOException("Reading file failed");
+            newException.initCause(exc);
+            throw newException;
         }
-        return updateSuccessful;
     }
 
-    private boolean updateProperties() {
-        boolean readSuccessful;
+    private void updateProperties() throws IOException {
         try (FileInputStream fileStream = new FileInputStream(this.xmlFileName)) {
             this.properties.loadFromXML(fileStream);
-            readSuccessful = true;
-        } catch (IOException exc) {
-            readSuccessful = false;
+        } catch (SecurityException | IOException exc) {
+            IOException newException = new IOException("Writing to file failed");
+            newException.initCause(exc);
+            throw newException;
         }
-        return readSuccessful;
     }
 
 }
