@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package test;
+package PROZE;
 
 /**
  *
@@ -18,7 +18,7 @@ public class UserRegister extends javax.swing.JPanel {
     public UserRegister() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
