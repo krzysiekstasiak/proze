@@ -116,7 +116,7 @@ public class MenageGroup extends javax.swing.JPanel {
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 600));
         add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 39, 654, 10));
 
-        jLabel1.setText("Urzytkownicy");
+        jLabel1.setText("Użytkownicy");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(159, 55, -1, -1));
 
         jList1.setModel(new javax.swing.AbstractListModel() {
