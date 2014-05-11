@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMI xmlns:UML="omg.org/UML/1.4" xmi.version="2.0"> <XMI.header> <XMI.metamodel xmi.name="UML" xmi.version="1.4"/> <XMI.documentation> <XMI.exporter> Embarcadero's Describe </XMI.exporter> <XMI.exporterVersion> 6.0 </XMI.exporterVersion> </XMI.documentation> </XMI.header> <XMI.content> <UML:Project xmi.id="DCE.6EC7BBB3-3D7D-046E-0F66-6B663045931F" mode="Implementation" defaultLanguage="Java" projVersion="6.1.4.837" name="UMLProject"><UML:Element.ownedElement>
+
+
+
+
+
+
+
+
+<UML:UseCase xmi.id="DCE.72ED0A12-A820-6485-2297-2475C57163FB" name="Zarejestruj" owner="DCE.6EC7BBB3-3D7D-046E-0F66-6B663045931F" associationEnd="DCE.E510156B-46F5-74B1-F4BC-016298EC4C39 DCE.C9FAB3E5-B572-E4EB-40ED-20B99A8283D5"><UML:Element.presentation>
+</UML:Element.presentation><UML:Element.ownedElement>
+
+</UML:Element.ownedElement></UML:UseCase>
+
+
+<UML:Actor xmi.id="DCE.8AA4DA97-ADF7-4597-FBD4-52BCF9ED0F8A" name="Anonimowy u¿ytkownik" owner="DCE.6EC7BBB3-3D7D-046E-0F66-6B663045931F" associationEnd="DCE.1C5FE473-68C2-4DAD-73BA-52F9D09E5071"><UML:Element.presentation>
+</UML:Element.presentation></UML:Actor>
+<UML:Association xmi.id="DCE.E8CCDB07-5E83-4C7E-843C-E68FB1CC4FBD" owner="DCE.6EC7BBB3-3D7D-046E-0F66-6B663045931F"><UML:Association.end>
+<UML:AssociationEnd xmi.id="DCE.1C5FE473-68C2-4DAD-73BA-52F9D09E5071" visibility="private" association="DCE.E8CCDB07-5E83-4C7E-843C-E68FB1CC4FBD" type="DCE.8AA4DA97-ADF7-4597-FBD4-52BCF9ED0F8A"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.2A5A2F6B-EA9D-D176-909D-635BCB743A91"/></UML:TypedElement.multiplicity></UML:AssociationEnd>
+<UML:AssociationEnd xmi.id="DCE.C9FAB3E5-B572-E4EB-40ED-20B99A8283D5" visibility="private" association="DCE.E8CCDB07-5E83-4C7E-843C-E68FB1CC4FBD" type="DCE.72ED0A12-A820-6485-2297-2475C57163FB"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.1C017D0B-67BA-8A85-1FB0-B2082A9A96BE"/></UML:TypedElement.multiplicity></UML:AssociationEnd></UML:Association.end><UML:Element.presentation>
+</UML:Element.presentation></UML:Association>
+<UML:Actor xmi.id="DCE.F1B3E784-4CC5-1A68-5BFF-6FC4B4DAEAA1" name="U¿ytkownik" owner="DCE.6EC7BBB3-3D7D-046E-0F66-6B663045931F" associationEnd="DCE.35CE8ED5-A872-9CC1-AEC3-E3A44212169E DCE.BBED46C3-030F-CE3D-D759-B5F6D40387EC"><UML:Element.presentation>
+</UML:Element.presentation></UML:Actor>
+<UML:UseCase xmi.id="DCE.0EDD5EA6-9A48-7CC0-6D62-F82315562354" name="Zaloguj" owner="DCE.6EC7BBB3-3D7D-046E-0F66-6B663045931F" associationEnd="DCE.1DF75460-A18E-5935-B737-D1EBA3012A07 DCE.25875AC8-6B2F-9CCC-BCE3-0A4996891D38"><UML:Element.presentation>
+</UML:Element.presentation></UML:UseCase>
+
+<UML:Association xmi.id="DCE.E80E5C04-EC9D-7178-9180-E659B0037F31" owner="DCE.6EC7BBB3-3D7D-046E-0F66-6B663045931F"><UML:Association.end>
+<UML:AssociationEnd xmi.id="DCE.BBED46C3-030F-CE3D-D759-B5F6D40387EC" visibility="private" association="DCE.E80E5C04-EC9D-7178-9180-E659B0037F31" type="DCE.F1B3E784-4CC5-1A68-5BFF-6FC4B4DAEAA1"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.4CA6FF49-821D-C1DC-8813-797E66B83D31"/></UML:TypedElement.multiplicity></UML:AssociationEnd>
+<UML:AssociationEnd xmi.id="DCE.25875AC8-6B2F-9CCC-BCE3-0A4996891D38" visibility="private" association="DCE.E80E5C04-EC9D-7178-9180-E659B0037F31" type="DCE.0EDD5EA6-9A48-7CC0-6D62-F82315562354"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.67792126-4A0A-D011-E419-371BBA695D12"/></UML:TypedElement.multiplicity></UML:AssociationEnd></UML:Association.end><UML:Element.presentation>
+</UML:Element.presentation></UML:Association></UML:Element.ownedElement></UML:Project></XMI.content> </XMI>

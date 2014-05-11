@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<XMI xmlns:UML="org.omg.xmi.namespace.UML" xmi.version="1.2" timestamp="11 maja 2014 22:56:49 CEST">
+  <XMI.content>
+    <UML:Diagram xmi.id="DCE.8DD1FD36-D898-ABF6-1BD4-9985CB841B47" name="PrzypadkiUzycia" zoom="1.0" isVisible="false" diagramXMIID="DCE.06FDE9BA-5C12-9CA1-772F-78BD2042899F">
+      <UML:GraphElement.position>
+        <XMI.field>0</XMI.field>
+        <XMI.field>0</XMI.field>
+      </UML:GraphElement.position>
+      <UML:GraphNode.size>
+        <XMI.field>638</XMI.field>
+        <XMI.field>573</XMI.field>
+      </UML:GraphNode.size>
+      <UML:Diagram.viewport>
+        <XMI.field>0</XMI.field>
+        <XMI.field>0</XMI.field>
+      </UML:Diagram.viewport>
+      <UML:DiagramElement.property>
+        <UML:Property value="DCE.6EC7BBB3-3D7D-046E-0F66-6B663045931F" key="netbeans-diagram-namespace"/>
+        <UML:Property xmi.id="Property2_PEID" value="DCE.6EC7BBB3-3D7D-046E-0F66-6B663045931F" key="netbeans-diagram-projectID"/>
+      </UML:DiagramElement.property>
+      <UML:GraphElement.semanticModel>
+        <UML:SimpleSemanticModelElement presentation="" typeinfo="Use Case Diagram" xmi.id="DCE.8DD1FD36-D898-ABF6-1BD4-9985CB841B47"/>
+      </UML:GraphElement.semanticModel>
+      <UML:GraphElement.contained>
+        <UML:GraphNode xmi.id="DCE.EF052111-6748-2E6B-321D-7419D003F298" isVisible="false">
+          <UML:GraphElement.position>
+            <XMI.field>326</XMI.field>
+            <XMI.field>67</XMI.field>
+          </UML:GraphElement.position>
+          <UML:GraphNode.size>
+            <XMI.field>125</XMI.field>
+            <XMI.field>60</XMI.field>
+          </UML:GraphNode.size>
+          <UML:DiagramElement.property>
+            <UML:Property value="1" key="WIDGET_INDEX"/>
+            <UML:Property value="MINIMUMSIZE" key="ResizeMode"/>
+            <UML:Property value="false" key="ShowExtensionPoints"/>
+          </UML:DiagramElement.property>
+          <UML:GraphElement.semanticModel>
+            <UML:Uml2SemanticModelBridge presentation="" xmi.id="xmi_id">
+              <UML:Uml2SemanticModelBridge.element>
+                <UML:UseCase xmi.idref="DCE.6633FF13-69ED-5621-D86C-E45445A49952"/>
+              </UML:Uml2SemanticModelBridge.element>
+            </UML:Uml2SemanticModelBridge>
+          </UML:GraphElement.semanticModel>
+          <UML:GraphElement.contained>
+            <UML:GraphNode xmi.id="DCE.EF052111-6748-2E6B-321D-7419D003F298" isVisible="false">
+              <UML:GraphElement.semanticModel>
+                <UML:SimpleSemanticModelElement presentation="" xmi.id="DCE.EF052111-6748-2E6B-321D-7419D003F298"/>
+              </UML:GraphElement.semanticModel>
+              <UML:GraphElement.contained></UML:GraphElement.contained>
+            </UML:GraphNode>
+          </UML:GraphElement.contained>
+        </UML:GraphNode>
+        <UML:GraphNode xmi.id="DCE.884D187A-EC9C-617B-A0EB-44B6EB61A266" isVisible="false">
+          <UML:GraphElement.position>
+            <XMI.field>65</XMI.field>
+            <XMI.field>67</XMI.field>
+          </UML:GraphElement.position>
+          <UML:GraphNode.size>
+            <XMI.field>141</XMI.field>
+            <XMI.field>81</XMI.field>
+          </UML:GraphNode.size>
+          <UML:DiagramElement.property>
+            <UML:Property value="0" key="WIDGET_INDEX"/>
+            <UML:Property value="MINIMUMSIZE" key="ResizeMode"/>
+          </UML:DiagramElement.property>
+          <UML:GraphElement.semanticModel>
+            <UML:Uml2SemanticModelBridge presentation="" xmi.id="xmi_id">
+              <UML:Uml2SemanticModelBridge.element>
+                <UML:Actor xmi.idref="DCE.5F3BC0B5-B6A0-B5C6-FBCB-A09B4E6DFECA"/>
+              </UML:Uml2SemanticModelBridge.element>
+            </UML:Uml2SemanticModelBridge>
+          </UML:GraphElement.semanticModel>
+          <UML:GraphElement.contained>
+            <UML:GraphNode xmi.id="DCE.884D187A-EC9C-617B-A0EB-44B6EB61A266" isVisible="false">
+              <UML:GraphElement.semanticModel>
+                <UML:SimpleSemanticModelElement presentation="" xmi.id="DCE.884D187A-EC9C-617B-A0EB-44B6EB61A266"/>
+              </UML:GraphElement.semanticModel>
+              <UML:GraphElement.contained></UML:GraphElement.contained>
+            </UML:GraphNode>
+          </UML:GraphElement.contained>
+        </UML:GraphNode>
+      </UML:GraphElement.contained>
+      <UML:Diagram.owner></UML:Diagram.owner>
+    </UML:Diagram>
+  </XMI.content>
+</XMI>
