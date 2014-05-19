@@ -64,7 +64,8 @@ public class UserRegister extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(0, 204, 51));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(15, 15, 15, 15));
-        setLayout(new java.awt.GridLayout(0, 2, 15, 0));
+        setForeground(new java.awt.Color(0, 204, 51));
+        setLayout(new java.awt.GridLayout(0, 2, 15, 15));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
