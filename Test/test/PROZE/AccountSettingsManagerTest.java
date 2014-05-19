@@ -38,9 +38,9 @@ public class AccountSettingsManagerTest {
         this.testedObject.setLogin(login);
         this.testedObject.setPasswordHash(password);
         this.testedObject.setServerURL(server);
+        this.testedObject = new AccountSettingsManager("test.xml");
         assert login.equals(this.testedObject.getLogin());
         assert password.equals(this.testedObject.getPasswordHash());
         assert server.equals(this.testedObject.getServerURL());
     }
-
 }
