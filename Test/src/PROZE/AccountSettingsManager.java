@@ -86,6 +86,7 @@ public class AccountSettingsManager {
      * przyczyna rzuconego wyjatku.
      */
     public void setServerURL(String value) throws IOException {
+        this.updateProperties();
         this.properties.setProperty("serverURL", value);
         this.updateXML();
     }
@@ -99,6 +100,7 @@ public class AccountSettingsManager {
      * przyczyna rzuconego wyjatku.
      */
     public void setLogin(String value) throws IOException {
+        this.updateProperties();
         this.properties.setProperty("login", value);
         this.updateXML();
     }
@@ -112,6 +114,7 @@ public class AccountSettingsManager {
      * przyczyna rzuconego wyjatku.
      */
     public void setPasswordHash(String value) throws IOException {
+        this.updateProperties();
         this.properties.setProperty("passwordHash", value);
         this.updateXML();
     }
@@ -130,6 +133,7 @@ public class AccountSettingsManager {
     private void updateProperties() throws IOException {
         try (FileInputStream fileStream = new FileInputStream(this.xmlFileName)) {
             this.properties.loadFromXML(fileStream);
+        } catch (FileNotFoundException exc) {
         } catch (SecurityException | IOException exc) {
             IOException newException = new IOException("Writing to file failed");
             newException.initCause(exc);

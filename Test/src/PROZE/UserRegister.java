@@ -57,10 +57,12 @@ public class UserRegister extends javax.swing.JPanel {
         secondMailTextField = new javax.swing.JTextField();
         jSeparator7 = new javax.swing.JSeparator();
         jSeparator8 = new javax.swing.JSeparator();
+        jPanel8 = new javax.swing.JPanel();
         okButton = new javax.swing.JButton();
+        jPanel9 = new javax.swing.JPanel();
         cancelButton = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(0, 255, 255));
+        setBackground(new java.awt.Color(0, 204, 51));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(15, 15, 15, 15));
         setLayout(new java.awt.GridLayout(0, 2, 15, 0));
 
@@ -70,12 +72,12 @@ public class UserRegister extends javax.swing.JPanel {
         jLabel2.setDoubleBuffered(true);
         add(jLabel2);
 
-        jSeparator1.setBackground(new java.awt.Color(0, 255, 255));
-        jSeparator1.setForeground(new java.awt.Color(0, 255, 255));
+        jSeparator1.setBackground(new java.awt.Color(0, 204, 51));
+        jSeparator1.setForeground(new java.awt.Color(0, 204, 51));
         jSeparator1.setDoubleBuffered(true);
         add(jSeparator1);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 0));
+        jPanel1.setBackground(new java.awt.Color(0, 204, 51));
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
 
@@ -89,8 +91,8 @@ public class UserRegister extends javax.swing.JPanel {
         jPanel1.getAccessibleContext().setAccessibleName("");
         jPanel1.getAccessibleContext().setAccessibleDescription("");
 
-        jSeparator4.setBackground(new java.awt.Color(0, 255, 255));
-        jSeparator4.setForeground(new java.awt.Color(0, 255, 255));
+        jSeparator4.setBackground(new java.awt.Color(0, 204, 51));
+        jSeparator4.setForeground(new java.awt.Color(0, 204, 51));
         jSeparator4.setDoubleBuffered(true);
         add(jSeparator4);
 
@@ -99,12 +101,12 @@ public class UserRegister extends javax.swing.JPanel {
         jLabel7.setDoubleBuffered(true);
         add(jLabel7);
 
-        jSeparator5.setBackground(new java.awt.Color(0, 255, 255));
-        jSeparator5.setForeground(new java.awt.Color(0, 255, 255));
+        jSeparator5.setBackground(new java.awt.Color(0, 204, 51));
+        jSeparator5.setForeground(new java.awt.Color(0, 204, 51));
         jSeparator5.setDoubleBuffered(true);
         add(jSeparator5);
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 0));
+        jPanel2.setBackground(new java.awt.Color(0, 204, 51));
         jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
 
         secondNameTextField.setDoubleBuffered(true);
@@ -115,8 +117,8 @@ public class UserRegister extends javax.swing.JPanel {
 
         add(jPanel2);
 
-        jSeparator2.setBackground(new java.awt.Color(0, 255, 255));
-        jSeparator2.setForeground(new java.awt.Color(0, 255, 255));
+        jSeparator2.setBackground(new java.awt.Color(0, 204, 51));
+        jSeparator2.setForeground(new java.awt.Color(0, 204, 51));
         jSeparator2.setDoubleBuffered(true);
         add(jSeparator2);
 
@@ -125,12 +127,12 @@ public class UserRegister extends javax.swing.JPanel {
         jLabel5.setDoubleBuffered(true);
         add(jLabel5);
 
-        jSeparator6.setBackground(new java.awt.Color(0, 255, 255));
-        jSeparator6.setForeground(new java.awt.Color(0, 255, 255));
+        jSeparator6.setBackground(new java.awt.Color(0, 204, 51));
+        jSeparator6.setForeground(new java.awt.Color(0, 204, 51));
         jSeparator6.setDoubleBuffered(true);
         add(jSeparator6);
 
-        jPanel3.setBackground(new java.awt.Color(0, 102, 0));
+        jPanel3.setBackground(new java.awt.Color(0, 204, 51));
         jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
 
         loginTextField.setDoubleBuffered(true);
@@ -141,8 +143,8 @@ public class UserRegister extends javax.swing.JPanel {
 
         add(jPanel3);
 
-        jSeparator3.setBackground(new java.awt.Color(51, 255, 255));
-        jSeparator3.setForeground(new java.awt.Color(51, 255, 255));
+        jSeparator3.setBackground(new java.awt.Color(0, 204, 51));
+        jSeparator3.setForeground(new java.awt.Color(0, 204, 51));
         jSeparator3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jSeparator3.setDoubleBuffered(true);
         add(jSeparator3);
@@ -157,7 +159,7 @@ public class UserRegister extends javax.swing.JPanel {
         jLabel6.setDoubleBuffered(true);
         add(jLabel6);
 
-        jPanel4.setBackground(new java.awt.Color(0, 102, 0));
+        jPanel4.setBackground(new java.awt.Color(0, 204, 51));
         jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
 
         firstPasswordTextField.setDoubleBuffered(true);
@@ -168,7 +170,7 @@ public class UserRegister extends javax.swing.JPanel {
 
         add(jPanel4);
 
-        jPanel5.setBackground(new java.awt.Color(0, 102, 0));
+        jPanel5.setBackground(new java.awt.Color(0, 204, 51));
         jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
 
         secondPasswordTextField.setDoubleBuffered(true);
@@ -189,7 +191,7 @@ public class UserRegister extends javax.swing.JPanel {
         jLabel8.setDoubleBuffered(true);
         add(jLabel8);
 
-        jPanel6.setBackground(new java.awt.Color(0, 102, 0));
+        jPanel6.setBackground(new java.awt.Color(0, 204, 51));
         jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
 
         firstMailTextField.setDoubleBuffered(true);
@@ -200,7 +202,7 @@ public class UserRegister extends javax.swing.JPanel {
 
         add(jPanel6);
 
-        jPanel7.setBackground(new java.awt.Color(0, 102, 0));
+        jPanel7.setBackground(new java.awt.Color(0, 204, 51));
         jPanel7.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
 
         secondMailTextField.setDoubleBuffered(true);
@@ -211,23 +213,39 @@ public class UserRegister extends javax.swing.JPanel {
 
         add(jPanel7);
 
-        jSeparator7.setBackground(new java.awt.Color(0, 255, 255));
-        jSeparator7.setForeground(new java.awt.Color(0, 255, 255));
+        jSeparator7.setBackground(new java.awt.Color(0, 204, 51));
+        jSeparator7.setForeground(new java.awt.Color(0, 204, 51));
         jSeparator7.setDoubleBuffered(true);
         add(jSeparator7);
 
-        jSeparator8.setBackground(new java.awt.Color(0, 255, 255));
-        jSeparator8.setForeground(new java.awt.Color(0, 255, 255));
+        jSeparator8.setBackground(new java.awt.Color(0, 204, 51));
+        jSeparator8.setForeground(new java.awt.Color(0, 204, 51));
         jSeparator8.setDoubleBuffered(true);
         add(jSeparator8);
 
+        jPanel8.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel8.setLayout(new javax.swing.BoxLayout(jPanel8, javax.swing.BoxLayout.LINE_AXIS));
+
         okButton.setText("Zarejestruj");
         okButton.setDoubleBuffered(true);
-        add(okButton);
+        okButton.setMaximumSize(new java.awt.Dimension(259, 25));
+        okButton.setMinimumSize(new java.awt.Dimension(6, 20));
+        okButton.setPreferredSize(new java.awt.Dimension(150, 25));
+        jPanel8.add(okButton);
+
+        add(jPanel8);
+
+        jPanel9.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel9.setLayout(new javax.swing.BoxLayout(jPanel9, javax.swing.BoxLayout.LINE_AXIS));
 
         cancelButton.setText("Anuluj");
         cancelButton.setDoubleBuffered(true);
-        add(cancelButton);
+        cancelButton.setMaximumSize(new java.awt.Dimension(259, 25));
+        cancelButton.setMinimumSize(new java.awt.Dimension(6, 20));
+        cancelButton.setPreferredSize(new java.awt.Dimension(150, 25));
+        jPanel9.add(cancelButton);
+
+        add(jPanel9);
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -249,6 +267,8 @@ public class UserRegister extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;

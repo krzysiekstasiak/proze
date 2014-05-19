@@ -46,16 +46,20 @@ public class MyAccount extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         secondPasswordField = new javax.swing.JPasswordField();
-        jSeparator8 = new javax.swing.JSeparator();
+        jPanel8 = new javax.swing.JPanel();
+        cancelButton = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        editButton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(0, 204, 51));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(15, 15, 15, 15));
         setLayout(new java.awt.GridLayout(0, 2, 15, 15));
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Imię:");
         add(jLabel7);
 
+        jPanel1.setBackground(new java.awt.Color(0, 204, 51));
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
 
         firstNameTextField.setMaximumSize(new java.awt.Dimension(259, 25));
@@ -69,9 +73,11 @@ public class MyAccount extends javax.swing.JPanel {
 
         add(jPanel1);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Nazwisko:");
         add(jLabel1);
 
+        jPanel2.setBackground(new java.awt.Color(0, 204, 51));
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
 
         secondNameTextField.setMaximumSize(new java.awt.Dimension(259, 25));
@@ -85,9 +91,11 @@ public class MyAccount extends javax.swing.JPanel {
 
         add(jPanel2);
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Login:");
         add(jLabel2);
 
+        jPanel3.setBackground(new java.awt.Color(0, 204, 51));
         jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
 
         loginTextField.setMaximumSize(new java.awt.Dimension(259, 25));
@@ -101,9 +109,11 @@ public class MyAccount extends javax.swing.JPanel {
 
         add(jPanel3);
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Adres E-mail:");
         add(jLabel3);
 
+        jPanel4.setBackground(new java.awt.Color(0, 204, 51));
         jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.LINE_AXIS));
 
         emailTextField.setMaximumSize(new java.awt.Dimension(259, 25));
@@ -112,9 +122,11 @@ public class MyAccount extends javax.swing.JPanel {
 
         add(jPanel4);
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("Hasło:");
         add(jLabel4);
 
+        jPanel5.setBackground(new java.awt.Color(0, 204, 51));
         jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.LINE_AXIS));
 
         firstPasswordField.setMaximumSize(new java.awt.Dimension(259, 25));
@@ -123,9 +135,11 @@ public class MyAccount extends javax.swing.JPanel {
 
         add(jPanel5);
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Powtórz hasło:");
         add(jLabel5);
 
+        jPanel6.setBackground(new java.awt.Color(0, 204, 51));
         jPanel6.setLayout(new javax.swing.BoxLayout(jPanel6, javax.swing.BoxLayout.LINE_AXIS));
 
         secondPasswordField.setMaximumSize(new java.awt.Dimension(259, 25));
@@ -139,16 +153,30 @@ public class MyAccount extends javax.swing.JPanel {
 
         add(jPanel6);
 
-        jSeparator8.setForeground(new java.awt.Color(255, 255, 255));
-        add(jSeparator8);
+        jPanel8.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel8.setLayout(new javax.swing.BoxLayout(jPanel8, javax.swing.BoxLayout.LINE_AXIS));
 
+        cancelButton.setText("Anuluj");
+        cancelButton.setMaximumSize(new java.awt.Dimension(259, 25));
+        cancelButton.setMinimumSize(new java.awt.Dimension(6, 20));
+        cancelButton.setPreferredSize(new java.awt.Dimension(150, 25));
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
+        jPanel8.add(cancelButton);
+
+        add(jPanel8);
+
+        jPanel7.setBackground(new java.awt.Color(0, 204, 51));
         jPanel7.setLayout(new javax.swing.BoxLayout(jPanel7, javax.swing.BoxLayout.LINE_AXIS));
 
-        jButton1.setText("jButton1");
-        jButton1.setMaximumSize(new java.awt.Dimension(259, 25));
-        jButton1.setMinimumSize(new java.awt.Dimension(6, 20));
-        jButton1.setPreferredSize(new java.awt.Dimension(150, 25));
-        jPanel7.add(jButton1);
+        editButton.setText("Zmień");
+        editButton.setMaximumSize(new java.awt.Dimension(259, 25));
+        editButton.setMinimumSize(new java.awt.Dimension(6, 20));
+        editButton.setPreferredSize(new java.awt.Dimension(150, 25));
+        jPanel7.add(editButton);
 
         add(jPanel7);
     }// </editor-fold>//GEN-END:initComponents
@@ -169,12 +197,17 @@ public class MyAccount extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_secondPasswordFieldActionPerformed
 
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelButton;
+    private javax.swing.JButton editButton;
     private javax.swing.JTextField emailTextField;
     private javax.swing.JTextField firstNameTextField;
     private javax.swing.JPasswordField firstPasswordField;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -188,7 +221,7 @@ public class MyAccount extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JTextField loginTextField;
     private javax.swing.JTextField secondNameTextField;
     private javax.swing.JPasswordField secondPasswordField;
