@@ -46,17 +46,15 @@ public class UserRegister extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        firstPasswordTextField = new javax.swing.JTextField();
+        firstPasswordField = new javax.swing.JPasswordField();
         jPanel5 = new javax.swing.JPanel();
-        secondPasswordTextField = new javax.swing.JTextField();
+        secondPasswordField = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         firstMailTextField = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         secondMailTextField = new javax.swing.JTextField();
-        jSeparator7 = new javax.swing.JSeparator();
-        jSeparator8 = new javax.swing.JSeparator();
         jPanel8 = new javax.swing.JPanel();
         okButton = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
@@ -83,8 +81,8 @@ public class UserRegister extends javax.swing.JPanel {
         jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
 
         nameTextField.setDoubleBuffered(true);
-        nameTextField.setMaximumSize(new java.awt.Dimension(6, 20));
-        nameTextField.setMinimumSize(new java.awt.Dimension(259, 25));
+        nameTextField.setMaximumSize(new java.awt.Dimension(259, 25));
+        nameTextField.setMinimumSize(new java.awt.Dimension(6, 25));
         nameTextField.setPreferredSize(new java.awt.Dimension(150, 25));
         jPanel1.add(nameTextField);
 
@@ -111,8 +109,8 @@ public class UserRegister extends javax.swing.JPanel {
         jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
 
         secondNameTextField.setDoubleBuffered(true);
-        secondNameTextField.setMaximumSize(new java.awt.Dimension(6, 20));
-        secondNameTextField.setMinimumSize(new java.awt.Dimension(259, 25));
+        secondNameTextField.setMaximumSize(new java.awt.Dimension(259, 25));
+        secondNameTextField.setMinimumSize(new java.awt.Dimension(6, 25));
         secondNameTextField.setPreferredSize(new java.awt.Dimension(150, 25));
         jPanel2.add(secondNameTextField);
 
@@ -137,8 +135,8 @@ public class UserRegister extends javax.swing.JPanel {
         jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
 
         loginTextField.setDoubleBuffered(true);
-        loginTextField.setMaximumSize(new java.awt.Dimension(6, 20));
-        loginTextField.setMinimumSize(new java.awt.Dimension(259, 25));
+        loginTextField.setMaximumSize(new java.awt.Dimension(259, 25));
+        loginTextField.setMinimumSize(new java.awt.Dimension(6, 25));
         loginTextField.setPreferredSize(new java.awt.Dimension(150, 25));
         jPanel3.add(loginTextField);
 
@@ -163,22 +161,22 @@ public class UserRegister extends javax.swing.JPanel {
         jPanel4.setBackground(new java.awt.Color(0, 204, 51));
         jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
 
-        firstPasswordTextField.setDoubleBuffered(true);
-        firstPasswordTextField.setMaximumSize(new java.awt.Dimension(6, 20));
-        firstPasswordTextField.setMinimumSize(new java.awt.Dimension(259, 25));
-        firstPasswordTextField.setPreferredSize(new java.awt.Dimension(150, 25));
-        jPanel4.add(firstPasswordTextField);
+        firstPasswordField.setDoubleBuffered(true);
+        firstPasswordField.setMaximumSize(new java.awt.Dimension(259, 25));
+        firstPasswordField.setMinimumSize(new java.awt.Dimension(6, 25));
+        firstPasswordField.setPreferredSize(new java.awt.Dimension(150, 25));
+        jPanel4.add(firstPasswordField);
 
         add(jPanel4);
 
         jPanel5.setBackground(new java.awt.Color(0, 204, 51));
         jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
 
-        secondPasswordTextField.setDoubleBuffered(true);
-        secondPasswordTextField.setMaximumSize(new java.awt.Dimension(6, 20));
-        secondPasswordTextField.setMinimumSize(new java.awt.Dimension(259, 25));
-        secondPasswordTextField.setPreferredSize(new java.awt.Dimension(150, 25));
-        jPanel5.add(secondPasswordTextField);
+        secondPasswordField.setDoubleBuffered(true);
+        secondPasswordField.setMaximumSize(new java.awt.Dimension(259, 25));
+        secondPasswordField.setMinimumSize(new java.awt.Dimension(6, 25));
+        secondPasswordField.setPreferredSize(new java.awt.Dimension(150, 25));
+        jPanel5.add(secondPasswordField);
 
         add(jPanel5);
 
@@ -196,8 +194,8 @@ public class UserRegister extends javax.swing.JPanel {
         jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
 
         firstMailTextField.setDoubleBuffered(true);
-        firstMailTextField.setMaximumSize(new java.awt.Dimension(6, 20));
-        firstMailTextField.setMinimumSize(new java.awt.Dimension(259, 25));
+        firstMailTextField.setMaximumSize(new java.awt.Dimension(259, 25));
+        firstMailTextField.setMinimumSize(new java.awt.Dimension(6, 25));
         firstMailTextField.setPreferredSize(new java.awt.Dimension(150, 25));
         jPanel6.add(firstMailTextField);
 
@@ -207,42 +205,32 @@ public class UserRegister extends javax.swing.JPanel {
         jPanel7.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
 
         secondMailTextField.setDoubleBuffered(true);
-        secondMailTextField.setMaximumSize(new java.awt.Dimension(6, 20));
-        secondMailTextField.setMinimumSize(new java.awt.Dimension(259, 25));
+        secondMailTextField.setMaximumSize(new java.awt.Dimension(259, 25));
+        secondMailTextField.setMinimumSize(new java.awt.Dimension(6, 25));
         secondMailTextField.setPreferredSize(new java.awt.Dimension(150, 25));
         jPanel7.add(secondMailTextField);
 
         add(jPanel7);
 
-        jSeparator7.setBackground(new java.awt.Color(0, 204, 51));
-        jSeparator7.setForeground(new java.awt.Color(0, 204, 51));
-        jSeparator7.setDoubleBuffered(true);
-        add(jSeparator7);
-
-        jSeparator8.setBackground(new java.awt.Color(0, 204, 51));
-        jSeparator8.setForeground(new java.awt.Color(0, 204, 51));
-        jSeparator8.setDoubleBuffered(true);
-        add(jSeparator8);
-
         jPanel8.setBackground(new java.awt.Color(0, 204, 51));
-        jPanel8.setLayout(new javax.swing.BoxLayout(jPanel8, javax.swing.BoxLayout.LINE_AXIS));
+        jPanel8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         okButton.setText("Zarejestruj");
         okButton.setDoubleBuffered(true);
         okButton.setMaximumSize(new java.awt.Dimension(259, 25));
-        okButton.setMinimumSize(new java.awt.Dimension(6, 20));
+        okButton.setMinimumSize(new java.awt.Dimension(6, 25));
         okButton.setPreferredSize(new java.awt.Dimension(150, 25));
         jPanel8.add(okButton);
 
         add(jPanel8);
 
         jPanel9.setBackground(new java.awt.Color(0, 204, 51));
-        jPanel9.setLayout(new javax.swing.BoxLayout(jPanel9, javax.swing.BoxLayout.LINE_AXIS));
+        jPanel9.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         cancelButton.setText("Anuluj");
         cancelButton.setDoubleBuffered(true);
         cancelButton.setMaximumSize(new java.awt.Dimension(259, 25));
-        cancelButton.setMinimumSize(new java.awt.Dimension(6, 20));
+        cancelButton.setMinimumSize(new java.awt.Dimension(6, 25));
         cancelButton.setPreferredSize(new java.awt.Dimension(150, 25));
         jPanel9.add(cancelButton);
 
@@ -253,7 +241,7 @@ public class UserRegister extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
     private javax.swing.JTextField firstMailTextField;
-    private javax.swing.JTextField firstPasswordTextField;
+    private javax.swing.JPasswordField firstPasswordField;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -276,13 +264,11 @@ public class UserRegister extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JTextField loginTextField;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JButton okButton;
     private javax.swing.JTextField secondMailTextField;
     private javax.swing.JTextField secondNameTextField;
-    private javax.swing.JTextField secondPasswordTextField;
+    private javax.swing.JPasswordField secondPasswordField;
     // End of variables declaration//GEN-END:variables
 }
