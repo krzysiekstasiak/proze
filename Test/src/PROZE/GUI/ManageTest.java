@@ -28,6 +28,20 @@ public class ManageTest extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        editQuestionDialog = new javax.swing.JDialog();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jList3 = new javax.swing.JList();
+        cancelButton = new javax.swing.JButton();
+        okButton = new javax.swing.JButton();
+        questionPopupMenu = new javax.swing.JPopupMenu();
+        editPopupMenuAction = new javax.swing.JMenuItem();
+        deletePopupMenuAction = new javax.swing.JMenuItem();
+        proposedQuestionPopupMenu = new javax.swing.JPopupMenu();
+        addPopupMenuAction = new javax.swing.JMenuItem();
+        deleteProposedPopupMenuAction = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         testName = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -41,6 +55,74 @@ public class ManageTest extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList();
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane3.setViewportView(jTextArea1);
+
+        jLabel1.setText("Treść pytania");
+
+        jList3.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane4.setViewportView(jList3);
+
+        cancelButton.setText("Anuluj");
+
+        okButton.setText("Zapisz");
+
+        javax.swing.GroupLayout editQuestionDialogLayout = new javax.swing.GroupLayout(editQuestionDialog.getContentPane());
+        editQuestionDialog.getContentPane().setLayout(editQuestionDialogLayout);
+        editQuestionDialogLayout.setHorizontalGroup(
+            editQuestionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editQuestionDialogLayout.createSequentialGroup()
+                .addGroup(editQuestionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editQuestionDialogLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(editQuestionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane4)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, editQuestionDialogLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editQuestionDialogLayout.createSequentialGroup()
+                        .addContainerGap(250, Short.MAX_VALUE)
+                        .addComponent(okButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cancelButton)))
+                .addContainerGap())
+        );
+        editQuestionDialogLayout.setVerticalGroup(
+            editQuestionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editQuestionDialogLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(editQuestionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelButton)
+                    .addComponent(okButton))
+                .addContainerGap())
+        );
+
+        questionPopupMenu.setLabel("Pytanie");
+
+        editPopupMenuAction.setText("Edytuj");
+        questionPopupMenu.add(editPopupMenuAction);
+
+        deletePopupMenuAction.setText("Usuń");
+        questionPopupMenu.add(deletePopupMenuAction);
+
+        addPopupMenuAction.setText("Dodaj");
+        proposedQuestionPopupMenu.add(addPopupMenuAction);
+
+        deleteProposedPopupMenuAction.setText("Usuń");
+        proposedQuestionPopupMenu.add(deleteProposedPopupMenuAction);
 
         setBackground(new java.awt.Color(0, 204, 51));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
@@ -58,6 +140,11 @@ public class ManageTest extends javax.swing.JPanel {
         jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         jButton2.setText("Dodaj pytanie");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel5.add(jButton2);
 
         jButton1.setText("Edytuj opis");
@@ -79,6 +166,7 @@ public class ManageTest extends javax.swing.JPanel {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        jList1.setComponentPopupMenu(questionPopupMenu);
         jScrollPane1.setViewportView(jList1);
 
         jPanel3.add(jScrollPane1);
@@ -92,6 +180,7 @@ public class ManageTest extends javax.swing.JPanel {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        jList2.setComponentPopupMenu(proposedQuestionPopupMenu);
         jScrollPane2.setViewportView(jList2);
 
         jPanel4.add(jScrollPane2);
@@ -103,12 +192,24 @@ public class ManageTest extends javax.swing.JPanel {
         add(jPanel2);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.editQuestionDialog.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem addPopupMenuAction;
+    private javax.swing.JButton cancelButton;
+    private javax.swing.JMenuItem deletePopupMenuAction;
+    private javax.swing.JMenuItem deleteProposedPopupMenuAction;
+    private javax.swing.JMenuItem editPopupMenuAction;
+    private javax.swing.JDialog editQuestionDialog;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JList jList1;
     private javax.swing.JList jList2;
+    private javax.swing.JList jList3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -116,7 +217,13 @@ public class ManageTest extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton okButton;
+    private javax.swing.JPopupMenu proposedQuestionPopupMenu;
+    private javax.swing.JPopupMenu questionPopupMenu;
     private javax.swing.JLabel testName;
     // End of variables declaration//GEN-END:variables
 }
