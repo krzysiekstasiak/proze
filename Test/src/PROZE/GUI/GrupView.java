@@ -27,11 +27,162 @@ public class GrupView extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
+        jSeparator2 = new javax.swing.JSeparator();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jSeparator5 = new javax.swing.JSeparator();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jSeparator4 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
+
+        setBackground(new java.awt.Color(0, 204, 51));
+        setForeground(new java.awt.Color(0, 204, 51));
+        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
+
+        jSeparator2.setBackground(new java.awt.Color(0, 204, 51));
+        jSeparator2.setForeground(new java.awt.Color(0, 204, 51));
+        jSeparator2.setMaximumSize(new java.awt.Dimension(32767, 10));
+        add(jSeparator2);
+
+        jPanel1.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.X_AXIS));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Grupa");
+        jPanel1.add(jLabel1);
+
+        jSeparator1.setBackground(new java.awt.Color(0, 204, 51));
+        jSeparator1.setForeground(new java.awt.Color(0, 204, 51));
+        jSeparator1.setMaximumSize(new java.awt.Dimension(10, 32767));
+        jSeparator1.setMinimumSize(new java.awt.Dimension(10, 10));
+        jSeparator1.setPreferredSize(new java.awt.Dimension(10, 10));
+        jPanel1.add(jSeparator1);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Nazwa");
+        jPanel3.add(jLabel2);
+
+        jPanel1.add(jPanel3);
+
+        add(jPanel1);
+
+        jSeparator3.setBackground(new java.awt.Color(0, 204, 51));
+        jSeparator3.setForeground(new java.awt.Color(0, 204, 51));
+        jSeparator3.setMaximumSize(new java.awt.Dimension(32767, 10));
+        jSeparator3.setMinimumSize(new java.awt.Dimension(0, 10));
+        jSeparator3.setPreferredSize(new java.awt.Dimension(0, 10));
+        add(jSeparator3);
+
+        jPanel4.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel3.setBackground(new java.awt.Color(0, 204, 51));
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Testy");
+        jPanel4.add(jLabel3);
+
+        add(jPanel4);
+
+        jPanel2.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel2.setForeground(new java.awt.Color(0, 204, 51));
+        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.X_AXIS));
+
+        jSeparator5.setBackground(new java.awt.Color(0, 204, 51));
+        jSeparator5.setForeground(new java.awt.Color(0, 204, 51));
+        jSeparator5.setMaximumSize(new java.awt.Dimension(5, 32767));
+        jSeparator5.setMinimumSize(new java.awt.Dimension(5, 10));
+        jSeparator5.setPreferredSize(new java.awt.Dimension(5, 10));
+        jPanel2.add(jSeparator5);
+
+        jScrollPane1.setBorder(new javax.swing.border.MatteBorder(null));
+        jScrollPane1.setForeground(new java.awt.Color(240, 240, 240));
+        jScrollPane1.setAlignmentX(0.0F);
+
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jLabel1, org.jdesktop.beansbinding.ELProperty.create("${background}"), jScrollPane1, org.jdesktop.beansbinding.BeanProperty.create("foreground"));
+        bindingGroup.addBinding(binding);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Nazwa", "Autor", "Opis"
+            }
+        ));
+        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel2.add(jScrollPane1);
+
+        jSeparator4.setBackground(new java.awt.Color(0, 204, 51));
+        jSeparator4.setForeground(new java.awt.Color(0, 204, 51));
+        jSeparator4.setMaximumSize(new java.awt.Dimension(5, 32767));
+        jSeparator4.setMinimumSize(new java.awt.Dimension(5, 10));
+        jSeparator4.setPreferredSize(new java.awt.Dimension(5, 10));
+        jPanel2.add(jSeparator4);
+
+        add(jPanel2);
+
+        jSeparator6.setBackground(new java.awt.Color(0, 204, 51));
+        jSeparator6.setForeground(new java.awt.Color(0, 204, 51));
+        jSeparator6.setMaximumSize(new java.awt.Dimension(32767, 5));
+        jSeparator6.setMinimumSize(new java.awt.Dimension(0, 5));
+        jSeparator6.setPreferredSize(new java.awt.Dimension(0, 5));
+        add(jSeparator6);
+
+        bindingGroup.bind();
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JTable jTable1;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
