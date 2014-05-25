@@ -5,7 +5,9 @@
  */
 package PROZE.GUI;
 
+import java.awt.List;
 import java.awt.event.KeyEvent;
+import java.util.LinkedList;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
@@ -57,6 +59,13 @@ public class ManageTest extends javax.swing.JPanel {
         proposedQuestionPopupMenu = new javax.swing.JPopupMenu();
         addPopupMenuAction = new javax.swing.JMenuItem();
         deleteProposedPopupMenuAction = new javax.swing.JMenuItem();
+        editDescriptionDialog = new javax.swing.JDialog();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTextArea3 = new javax.swing.JTextArea();
+        jLabel6 = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         nameField = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
@@ -266,6 +275,50 @@ public class ManageTest extends javax.swing.JPanel {
         deleteProposedPopupMenuAction.setText("Usuń");
         proposedQuestionPopupMenu.add(deleteProposedPopupMenuAction);
 
+        jTextArea3.setColumns(20);
+        jTextArea3.setRows(5);
+        jScrollPane6.setViewportView(jTextArea3);
+
+        jLabel6.setText("Opis:");
+
+        jButton8.setText("Anuluj");
+
+        jButton9.setText("Zapisz");
+
+        javax.swing.GroupLayout editDescriptionDialogLayout = new javax.swing.GroupLayout(editDescriptionDialog.getContentPane());
+        editDescriptionDialog.getContentPane().setLayout(editDescriptionDialogLayout);
+        editDescriptionDialogLayout.setHorizontalGroup(
+            editDescriptionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editDescriptionDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(editDescriptionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6)
+                    .addGroup(editDescriptionDialogLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editDescriptionDialogLayout.createSequentialGroup()
+                        .addGap(0, 248, Short.MAX_VALUE)
+                        .addComponent(jButton9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton8)))
+                .addContainerGap())
+        );
+        editDescriptionDialogLayout.setVerticalGroup(
+            editDescriptionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editDescriptionDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(editDescriptionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton8)
+                    .addComponent(jButton9))
+                .addContainerGap())
+        );
+
+        jButton7.setText("Zapisz");
+
         setBackground(new java.awt.Color(0, 204, 51));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
@@ -306,6 +359,11 @@ public class ManageTest extends javax.swing.JPanel {
         jPanel5.add(jButton2);
 
         jButton1.setText("Edytuj opis");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel5.add(jButton1);
 
         jPanel1.add(jPanel5);
@@ -389,11 +447,17 @@ public class ManageTest extends javax.swing.JPanel {
         this.saveNameButton.setVisible(false);
     }//GEN-LAST:event_saveNameButtonActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.editDescriptionDialog.setVisible(true);
+        this.editDescriptionDialog.setSize(this.editDescriptionDialog.getPreferredSize());
+    }//GEN-LAST:event_jButton1ActionPerformed
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem addPopupMenuAction;
     private javax.swing.JMenuItem deletePopupMenuAction;
     private javax.swing.JMenuItem deleteProposedPopupMenuAction;
+    private javax.swing.JDialog editDescriptionDialog;
     private javax.swing.JMenuItem editPopupMenuAction;
     private javax.swing.JDialog editQuestionDialog;
     private javax.swing.JButton jButton1;
@@ -402,6 +466,9 @@ public class ManageTest extends javax.swing.JPanel {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
@@ -409,6 +476,7 @@ public class ManageTest extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JList jList1;
     private javax.swing.JList jList2;
     private javax.swing.JPanel jPanel1;
@@ -423,11 +491,13 @@ public class ManageTest extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField nameField;
     private javax.swing.JPopupMenu proposedQuestionPopupMenu;
