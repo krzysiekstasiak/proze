@@ -10,12 +10,12 @@ package PROZE.GUI;
  *
  * @author Maciek
  */
-public class Menage extends javax.swing.JPanel {
+public class Create extends javax.swing.JPanel {
 
     /**
      * Creates new form Menage
      */
-    public Menage() {
+    public Create() {
         initComponents();
     }
 
