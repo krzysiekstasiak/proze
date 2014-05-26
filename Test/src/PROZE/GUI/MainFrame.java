@@ -6,6 +6,9 @@
 package PROZE.GUI;
 
 import java.awt.Dimension;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JSplitPane;
 
 /**
  *
@@ -34,21 +37,9 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
 
         jPanel4 = new javax.swing.JPanel();
         jButton7 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JSeparator();
-        jPanel1 = new javax.swing.JPanel();
+        jSplitPane1 = new javax.swing.JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new LeftPanel(), new ManageTest());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
 
         jPanel4.setBackground(new java.awt.Color(0, 204, 51));
 
@@ -72,166 +63,73 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
             .addComponent(jButton7)
         );
 
-        getContentPane().add(jPanel4);
+        jSplitPane1.setDividerLocation(250);
+        jSplitPane1.setDividerSize(0);
+        jSplitPane1.setEnabled(false);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
-
-        jPanel3.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
-        jPanel3.setMaximumSize(new java.awt.Dimension(225, 600));
-        jPanel3.setMinimumSize(new java.awt.Dimension(225, 600));
-        jPanel3.setPreferredSize(new java.awt.Dimension(225, 600));
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("<Nazwa użytkownika>");
-
-        jButton1.setText("Mój profil");
-
-        jButton2.setText("Wyloguj");
-
-        jButton3.setText("Moje grupy");
-
-        jButton4.setText("Moje testy");
-
-        jButton5.setText("Wyszukaj...");
-
-        jButton6.setText("Brak powiadomień");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3)
-                            .addComponent(jButton4)
-                            .addComponent(jButton5)
-                            .addComponent(jButton6))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jSeparator2))
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jSplitPane1)
                 .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 343, Short.MAX_VALUE)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton6)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
                 .addContainerGap())
         );
-
-        jPanel2.add(jPanel3);
-
-        jPanel1.setBackground(new java.awt.Color(0, 204, 51));
-        jPanel1.setForeground(new java.awt.Color(0, 204, 51));
-        jPanel1.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-        );
-
-        jPanel2.add(jPanel1);
-
-        getContentPane().add(jPanel2);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        if (hidden == false) {
-            Thread thread1 = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    for (int i = 0; i <= 225; i++) {
-                        try {
-                            Thread.sleep(2);
-                        } catch (InterruptedException ie) {
-                        }
-                        jPanel3.setSize(new Dimension(jPanel3.getWidth() - 1, jPanel3.getHeight()));
-                        jPanel2.repaint();
-                    }
-                }
-            });
-            Thread thread2 = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    for (int i = 0; i <= 225; i++) {
-                        try {
-                            Thread.sleep(2);
-                        } catch (InterruptedException ie) {
-                        }
-                        jPanel1.setSize(new Dimension(jPanel1.getWidth() + 1, jPanel1.getHeight()));
-                        jPanel2.repaint();
-                    }
-                }
-            });
-            thread1.start();
-            thread2.start();
-            //jPanel3.setVisible(false);  
-            hidden = true;
-        } else if (hidden == true) {
-            Thread thread3 = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    for (int i = 0; i <= 225; i++) {
-                        try {
-                            Thread.sleep(2);
-                        } catch (InterruptedException ie) {
-                        }
-                        jPanel3.setSize(new Dimension(jPanel3.getWidth() + 1, jPanel3.getHeight()));
-                        jPanel2.repaint();
-                    }
-                }
-            });
-            Thread thread4 = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    for (int i = 0; i <= 225; i++) {
-                        try {
-                            Thread.sleep(2);
-                        } catch (InterruptedException ie) {
-                        }
-                        jPanel1.setSize(new Dimension(jPanel1.getWidth() - 1, jPanel1.getHeight()));
-                        jPanel2.repaint();
-                    }
-                }
-            });
-            thread3.start();
-            thread4.start();
 
-            hidden = false;
+        if (this.hidden) {
+            Thread showThread = new Thread(new Runnable() {
+
+                @Override
+                public void run() {
+                    for (int i = 0; i < 50; ++i) {
+                        jSplitPane1.setDividerLocation(i * dividerLocation / 50);
+                        jSplitPane1.repaint();
+                        try {
+                            Thread.sleep(20);
+                        } catch (InterruptedException ex) {
+
+                        }
+                    }
+                }
+            });
+            showThread.start();
+            this.hidden = false;
+        } else {
+
+            Thread hideThread = new Thread(new Runnable() {
+
+                @Override
+                public void run() {
+                    for (int i = 49; i > 0; --i) {
+                        jSplitPane1.setDividerLocation(i * dividerLocation / 50);
+                        jSplitPane1.repaint();
+                        try {
+                            Thread.sleep(20);
+                        } catch (InterruptedException ex) {
+
+                        }
+                    }
+                }
+            });
+            hideThread.start();
+            this.hidden = true;
         }
-        // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
@@ -270,21 +168,12 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         });
     }
 
+    private final int dividerLocation = 250;
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables
 
     @Override
