@@ -178,7 +178,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
                         } catch (InterruptedException ie) {
                         }
                         jPanel3.setSize(new Dimension(jPanel3.getWidth() - 1, jPanel3.getHeight()));
-                        jPanel3.repaint();
+                        jPanel2.repaint();
                     }
                 }
             });
@@ -191,7 +191,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
                         } catch (InterruptedException ie) {
                         }
                         jPanel1.setSize(new Dimension(jPanel1.getWidth() + 1, jPanel1.getHeight()));
-                        jPanel1.repaint();
+                        jPanel2.repaint();
                     }
                 }
             });
@@ -209,7 +209,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
                         } catch (InterruptedException ie) {
                         }
                         jPanel3.setSize(new Dimension(jPanel3.getWidth() + 1, jPanel3.getHeight()));
-                        jPanel3.repaint();
+                        jPanel2.repaint();
                     }
                 }
             });
@@ -222,7 +222,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
                         } catch (InterruptedException ie) {
                         }
                         jPanel1.setSize(new Dimension(jPanel1.getWidth() - 1, jPanel1.getHeight()));
-                        jPanel1.repaint();
+                        jPanel2.repaint();
                     }
                 }
             });
