@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package PROZE;
+package PROZE.InputOutput;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

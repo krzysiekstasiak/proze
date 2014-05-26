@@ -5,6 +5,7 @@
  */
 package PROZE;
 
+import PROZE.InputOutput.AccountSettingsManager;
 import java.io.File;
 import java.io.IOException;
 import org.junit.After;

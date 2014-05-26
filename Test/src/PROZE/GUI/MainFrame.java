@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package PROZE.GUI;
 
 import java.awt.Dimension;
@@ -13,14 +12,15 @@ import java.awt.Dimension;
  * @author Maciek
  */
 public class MainFrame extends javax.swing.JFrame implements Runnable {
-    private boolean hidden=false;
+
+    private boolean hidden = false;
 
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
-        
+
     }
 
     /**
@@ -76,7 +76,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.X_AXIS));
+        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
 
         jPanel3.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
         jPanel3.setMaximumSize(new java.awt.Dimension(225, 600));
@@ -168,67 +168,69 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-            if (hidden==false){
-                Thread thread1 = new Thread(new Runnable(){
-            @Override
-            public void run(){
-                for(int i=0; i<=225; i++){
-                    try {
-                        Thread.sleep(2);
-                    } catch (InterruptedException ie) {
+        if (hidden == false) {
+            Thread thread1 = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    for (int i = 0; i <= 225; i++) {
+                        try {
+                            Thread.sleep(2);
+                        } catch (InterruptedException ie) {
+                        }
+                        jPanel3.setSize(new Dimension(jPanel3.getWidth() - 1, jPanel3.getHeight()));
+                        jPanel3.repaint();
                     }
-                    jPanel3.setSize(new Dimension(jPanel3.getWidth()-1, jPanel3.getHeight()));
-                    jPanel3.repaint();
-                }}
-        });
-        Thread thread2 = new Thread(new Runnable(){
-            @Override
-            public void run(){
-                for(int i=0; i<=225; i++){
-                    try {
-                        Thread.sleep(2);
-                    } catch (InterruptedException ie) {
+                }
+            });
+            Thread thread2 = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    for (int i = 0; i <= 225; i++) {
+                        try {
+                            Thread.sleep(2);
+                        } catch (InterruptedException ie) {
+                        }
+                        jPanel1.setSize(new Dimension(jPanel1.getWidth() + 1, jPanel1.getHeight()));
+                        jPanel1.repaint();
                     }
-                    jPanel1.setSize(new Dimension(jPanel1.getWidth()+1, jPanel1.getHeight()));
-                    jPanel1.repaint();
-                }}
-        });
-    thread1.start();
-    thread2.start();
+                }
+            });
+            thread1.start();
+            thread2.start();
             //jPanel3.setVisible(false);  
             hidden = true;
-            }
-            else if (hidden==true){
-                Thread thread3 = new Thread(new Runnable(){
-                    @Override
-                    public void run(){
-                        for(int i=0; i<=225; i++){
-                            try {
-                        Thread.sleep(2);
-                    } catch (InterruptedException ie) {
-                    }
-                            jPanel3.setSize(new Dimension(jPanel3.getWidth()+1, jPanel3.getHeight()));
-                            jPanel3.repaint();
-                        }}
-                });
-                Thread thread4 = new Thread(new Runnable(){
-                    @Override
-                    public void run(){
+        } else if (hidden == true) {
+            Thread thread3 = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    for (int i = 0; i <= 225; i++) {
                         try {
-                        Thread.sleep(2);
-                    } catch (InterruptedException ie) {
+                            Thread.sleep(2);
+                        } catch (InterruptedException ie) {
+                        }
+                        jPanel3.setSize(new Dimension(jPanel3.getWidth() + 1, jPanel3.getHeight()));
+                        jPanel3.repaint();
                     }
-                        for(int i=0; i<=225; i++){
-                            jPanel1.setSize(new Dimension(jPanel1.getWidth()-1, jPanel1.getHeight()));
-                            jPanel1.repaint();
-                        }}
-                }); 
-                thread3.start();
-                thread4.start();
+                }
+            });
+            Thread thread4 = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    for (int i = 0; i <= 225; i++) {
+                        try {
+                            Thread.sleep(2);
+                        } catch (InterruptedException ie) {
+                        }
+                        jPanel1.setSize(new Dimension(jPanel1.getWidth() - 1, jPanel1.getHeight()));
+                        jPanel1.repaint();
+                    }
+                }
+            });
+            thread3.start();
+            thread4.start();
 
-                
-            hidden=false;
-            }
+            hidden = false;
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -285,24 +287,9 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 
- 
-
-    
-  
-
-  
-       
-    
-
     @Override
     public void run() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-   
-
-  
 
 }
-  
- 
-
