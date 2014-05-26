@@ -5,9 +5,10 @@
  */
 package PROZE.GUI;
 
-import java.awt.Dimension;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.JSplitPane;
 
 /**
@@ -16,14 +17,45 @@ import javax.swing.JSplitPane;
  */
 public class MainFrame extends javax.swing.JFrame implements Runnable {
 
-    private boolean hidden = false;
+    private final Timer hideLeftPanelTimer;
+    private boolean leftPanelVisible;
 
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
+        this.hideLeftPanelTimer = new Timer();
+        this.leftPanelVisible = true;
         initComponents();
+        initHidingLeftPanel();
+    }
+    //TODO: Lepszy sposób planowania schowania paska
+    private void initHidingLeftPanel() {
+        this.jSplitPane1.getLeftComponent().addMouseListener(new MouseAdapter() {
 
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                if(!leftPanelVisible) {
+                    showLeftPanel();
+                }
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e); 
+                TimerTask hideLeftPanelTask = new TimerTask() {
+
+                    @Override
+                    public void run() {
+                        hideLeftPanel();
+                    }
+                };
+                hideLeftPanelTimer.schedule(hideLeftPanelTask, 2000);
+            }
+            
+            
+        });
     }
 
     /**
@@ -35,36 +67,13 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel4 = new javax.swing.JPanel();
-        jButton7 = new javax.swing.JButton();
         jSplitPane1 = new javax.swing.JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new LeftPanel(), new ManageTest());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel4.setBackground(new java.awt.Color(0, 204, 51));
-
-        jButton7.setText("Schowaj/Wysuń");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 330, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton7)
-        );
-
         jSplitPane1.setDividerLocation(250);
         jSplitPane1.setDividerSize(0);
+        jSplitPane1.setDoubleBuffered(true);
         jSplitPane1.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -72,65 +81,58 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jSplitPane1)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void hideLeftPanel() {
+        Thread hideThread = new Thread(new Runnable() {
 
-        if (this.hidden) {
-            Thread showThread = new Thread(new Runnable() {
-
-                @Override
-                public void run() {
-                    for (int i = 0; i < 50; ++i) {
-                        jSplitPane1.setDividerLocation(i * dividerLocation / 50);
-                        jSplitPane1.repaint();
-                        try {
-                            Thread.sleep(20);
-                        } catch (InterruptedException ex) {
-
-                        }
+            @Override
+            public void run() {
+                for (int i = 49; i > 0; --i) {
+                    jSplitPane1.setDividerLocation(10 + i * dividerLocation / 50);
+                    jSplitPane1.repaint();
+                    try {
+                        Thread.sleep(5);
+                    } catch (InterruptedException ex) {
                     }
                 }
-            });
-            showThread.start();
-            this.hidden = false;
-        } else {
+                leftPanelVisible = false;
+            }
+        });
+        hideThread.start();
+    }
 
-            Thread hideThread = new Thread(new Runnable() {
+    private void showLeftPanel() {
+        Thread showThread;
+        showThread = new Thread(new Runnable() {
 
-                @Override
-                public void run() {
-                    for (int i = 49; i > 0; --i) {
-                        jSplitPane1.setDividerLocation(i * dividerLocation / 50);
-                        jSplitPane1.repaint();
-                        try {
-                            Thread.sleep(20);
-                        } catch (InterruptedException ex) {
+            @Override
+            public void run() {
+                for (int i = 0; i < 50; ++i) {
+                    jSplitPane1.setDividerLocation(10 + i * dividerLocation / 50);
+                    jSplitPane1.repaint();
+                    try {
+                        Thread.sleep(5);
+                    } catch (InterruptedException ex) {
 
-                        }
                     }
                 }
-            });
-            hideThread.start();
-            this.hidden = true;
-        }
-    }//GEN-LAST:event_jButton7ActionPerformed
+                leftPanelVisible = true;
+            }
+        });
+        showThread.start();
+    }
 
     /**
      * @param args the command line arguments
@@ -171,8 +173,6 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
     private final int dividerLocation = 250;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton7;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables
 
