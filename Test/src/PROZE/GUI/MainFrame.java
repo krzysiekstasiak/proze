@@ -17,7 +17,7 @@ import javax.swing.JSplitPane;
  */
 public class MainFrame extends javax.swing.JFrame implements Runnable {
 
-    private final Timer hideLeftPanelTimer;
+    private Timer hideLeftPanelTimer;
     private boolean leftPanelVisible;
 
     /**
@@ -29,21 +29,26 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         initComponents();
         initHidingLeftPanel();
     }
+
     //TODO: Lepszy sposób planowania schowania paska
+
     private void initHidingLeftPanel() {
         this.jSplitPane1.getLeftComponent().addMouseListener(new MouseAdapter() {
 
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                if(!leftPanelVisible) {
+                if (!leftPanelVisible) {
                     showLeftPanel();
                 }
+                hideLeftPanelTimer.cancel();
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                super.mouseExited(e); 
+                super.mouseExited(e);
+                hideLeftPanelTimer.cancel();
+                hideLeftPanelTimer = new Timer();
                 TimerTask hideLeftPanelTask = new TimerTask() {
 
                     @Override
@@ -53,8 +58,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
                 };
                 hideLeftPanelTimer.schedule(hideLeftPanelTask, 2000);
             }
-            
-            
+
         });
     }
 
@@ -119,6 +123,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
 
             @Override
             public void run() {
+                leftPanelVisible = true;
                 for (int i = 0; i < 50; ++i) {
                     jSplitPane1.setDividerLocation(10 + i * dividerLocation / 50);
                     jSplitPane1.repaint();
@@ -128,7 +133,6 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
 
                     }
                 }
-                leftPanelVisible = true;
             }
         });
         showThread.start();
