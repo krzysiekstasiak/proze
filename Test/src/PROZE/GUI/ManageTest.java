@@ -118,7 +118,7 @@ public class ManageTest extends javax.swing.JPanel {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"<Nowa odpowiedź>",  new Boolean(false)}
+                {" ",  new Boolean(false)}
             },
             new String [] {
                 "Odpowiedź", "Poprawna"
@@ -420,11 +420,11 @@ public class ManageTest extends javax.swing.JPanel {
     private void jTable2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable2KeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             if (this.jTable2.getRowCount() == 0) {
-                ((DefaultTableModel) this.jTable2.getModel()).addRow(new Object[]{"<Nowa odpowiedź>", false});
+                ((DefaultTableModel) this.jTable2.getModel()).addRow(new Object[]{" ", false});
             } else if ("".equals((String) this.jTable2.getModel().getValueAt(this.jTable2.getSelectedRow(), 0))) {
                 ((DefaultTableModel) this.jTable2.getModel()).removeRow(this.jTable2.getSelectedRow());
-            } else if (!"<Nowa odpowiedź>".equals(this.jTable2.getModel().getValueAt(this.jTable2.getRowCount() - 1, 0))) {
-                ((DefaultTableModel) this.jTable2.getModel()).addRow(new Object[]{"<Nowa odpowiedź>", false});
+            } else if (!" ".equals(this.jTable2.getModel().getValueAt(this.jTable2.getRowCount() - 1, 0))) {
+                ((DefaultTableModel) this.jTable2.getModel()).addRow(new Object[]{" ", false});
             }
         }
     }//GEN-LAST:event_jTable2KeyPressed
