@@ -7,13 +7,12 @@
 package PROZE.GUI;
 
 import java.awt.Dimension;
-import java.util.Date;
 
 /**
  *
  * @author Maciek
  */
-public class MainFrame extends javax.swing.JFrame {
+public class MainFrame extends javax.swing.JFrame implements Runnable {
     private boolean hidden=false;
 
     /**
@@ -21,8 +20,6 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
-        hideJpanel();
-        showJpanel();
         
     }
 
@@ -172,10 +169,65 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
             if (hidden==false){
-                hideJpanel();
+                Thread thread1 = new Thread(new Runnable(){
+            @Override
+            public void run(){
+                for(int i=0; i<=225; i++){
+                    try {
+                        Thread.sleep(2);
+                    } catch (InterruptedException ie) {
+                    }
+                    jPanel3.setSize(new Dimension(jPanel3.getWidth()-1, jPanel3.getHeight()));
+                    jPanel3.repaint();
+                }}
+        });
+        Thread thread2 = new Thread(new Runnable(){
+            @Override
+            public void run(){
+                for(int i=0; i<=225; i++){
+                    try {
+                        Thread.sleep(2);
+                    } catch (InterruptedException ie) {
+                    }
+                    jPanel1.setSize(new Dimension(jPanel1.getWidth()+1, jPanel1.getHeight()));
+                    jPanel1.repaint();
+                }}
+        });
+    thread1.start();
+    thread2.start();
+            //jPanel3.setVisible(false);  
+            hidden = true;
             }
             else if (hidden==true){
-                showJpanel();
+                Thread thread3 = new Thread(new Runnable(){
+                    @Override
+                    public void run(){
+                        for(int i=0; i<=225; i++){
+                            try {
+                        Thread.sleep(2);
+                    } catch (InterruptedException ie) {
+                    }
+                            jPanel3.setSize(new Dimension(jPanel3.getWidth()+1, jPanel3.getHeight()));
+                            jPanel3.repaint();
+                        }}
+                });
+                Thread thread4 = new Thread(new Runnable(){
+                    @Override
+                    public void run(){
+                        try {
+                        Thread.sleep(2);
+                    } catch (InterruptedException ie) {
+                    }
+                        for(int i=0; i<=225; i++){
+                            jPanel1.setSize(new Dimension(jPanel1.getWidth()-1, jPanel1.getHeight()));
+                            jPanel1.repaint();
+                        }}
+                }); 
+                thread3.start();
+                thread4.start();
+
+                
+            hidden=false;
             }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
@@ -209,6 +261,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new MainFrame().setVisible(true);
             }
@@ -232,37 +285,24 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 
-    private void hideJpanel() {
-            runHideAnim();
-            //jPanel3.setVisible(false);  
-            hidden = true;
-    }
-
-    private void showJpanel() {
-         runShowAnim();
-        //jPanel3.setVisible(true); 
-         hidden = false;
-    }
-
-    private void runShowAnim() {
-        for(int i=0; i<=255; i++){
-           
-            jPanel3.setSize(new Dimension(jPanel3.getWidth()+1, jPanel3.getHeight()));
-            jPanel1.setSize(new Dimension(jPanel1.getWidth()-1, jPanel1.getHeight()));
-            revalidate(); 
-            repaint();
-        }
-    }
-
-    private void runHideAnim() {
-        for(int i=0; i<=255; i++){
-       
-            jPanel3.setSize(new Dimension(jPanel3.getWidth()-1, jPanel3.getHeight()));
-            jPanel1.setSize(new Dimension(jPanel1.getWidth()+1, jPanel1.getHeight()));
-            revalidate(); 
-            repaint();
-        }
-    }
-    
  
+
+    
+  
+
+  
+       
+    
+
+    @Override
+    public void run() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+   
+
+  
+
 }
+  
+ 
+
