@@ -7,10 +7,8 @@
 package PROZE.EntitiesModels;
 
 import PROZE.InputOutput.EntitiesStoringManager;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Observable;
-import java.util.Observer;
 
 /**
  * Klasa reprezentujące test (trzeba dodać możliwość edycji pytań).
@@ -25,7 +23,6 @@ public class TestEntity extends Observable {
     private final Date added;
     private String categoryName;
     private final String authorLogin;
-    private final ArrayList<Observer> observers;
     
     public TestEntity(EntitiesStoringManager entitiesStoringManager, String name, String groupName, int ID, Date added, String authorLogin) {
         this.entitiesStoringManager = entitiesStoringManager;
@@ -34,7 +31,6 @@ public class TestEntity extends Observable {
         this.ID = ID;
         this.added = added;
         this.authorLogin = authorLogin;
-        this.observers= new ArrayList<>();
     }
     
     public void saveChanges() {

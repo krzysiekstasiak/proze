@@ -6,10 +6,22 @@
 
 package PROZE.InputOutput;
 
+import PROZE.EntitiesModels.*;
+
 /**
  * Nie zaimplementowane!!!
  * @author Krzysztof
  */
 public class EntitiesStoringManager {
+    
+    public TestEntity getTestEntity(TestDescription description) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+    
+    public TestEntity getTestEntity(int ID) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+    
+    
     
 }
