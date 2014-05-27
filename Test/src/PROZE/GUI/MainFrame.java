@@ -30,7 +30,6 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         initHidingLeftPanel();
     }
 
-    //TODO: Lepszy sposób planowania schowania paska
 
     private void initHidingLeftPanel() {
         this.jSplitPane1.getLeftComponent().addMouseListener(new MouseAdapter() {
@@ -74,6 +73,11 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         jSplitPane1 = new javax.swing.JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new LeftPanel(), new ManageTest());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                formComponentResized(evt);
+            }
+        });
 
         jSplitPane1.setDividerLocation(250);
         jSplitPane1.setDividerSize(0);
@@ -97,6 +101,10 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
+        this.hideLeftPanel();
+    }//GEN-LAST:event_formComponentResized
 
     private void hideLeftPanel() {
         Thread hideThread = new Thread(new Runnable() {
