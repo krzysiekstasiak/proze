@@ -16,7 +16,7 @@ import javax.swing.JSplitPane;
  * @author Maciek
  */
 public class MainFrame extends javax.swing.JFrame implements Runnable {
-
+    
     private Timer hideLeftPanelTimer;
     private boolean leftPanelVisible;
 
@@ -29,11 +29,10 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         initComponents();
         initHidingLeftPanel();
     }
-
-
+    
     private void initHidingLeftPanel() {
         this.jSplitPane1.getLeftComponent().addMouseListener(new MouseAdapter() {
-
+            
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
@@ -42,14 +41,14 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
                 }
                 hideLeftPanelTimer.cancel();
             }
-
+            
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
                 hideLeftPanelTimer.cancel();
                 hideLeftPanelTimer = new Timer();
                 TimerTask hideLeftPanelTask = new TimerTask() {
-
+                    
                     @Override
                     public void run() {
                         hideLeftPanel();
@@ -57,7 +56,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
                 };
                 hideLeftPanelTimer.schedule(hideLeftPanelTask, 2000);
             }
-
+            
         });
     }
 
@@ -103,12 +102,12 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
-        this.hideLeftPanel();
+        this.jSplitPane1.setDividerLocation((this.leftPanelVisible) ? 10 + this.dividerLocation : 10);
     }//GEN-LAST:event_formComponentResized
-
+    
     private void hideLeftPanel() {
         Thread hideThread = new Thread(new Runnable() {
-
+            
             @Override
             public void run() {
                 for (int i = 49; i > 0; --i) {
@@ -124,11 +123,11 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         });
         hideThread.start();
     }
-
+    
     private void showLeftPanel() {
         Thread showThread;
         showThread = new Thread(new Runnable() {
-
+            
             @Override
             public void run() {
                 leftPanelVisible = true;
@@ -138,7 +137,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
                     try {
                         Thread.sleep(5);
                     } catch (InterruptedException ex) {
-
+                        
                     }
                 }
             }
@@ -181,7 +180,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
             }
         });
     }
-
+    
     private final int dividerLocation = 250;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -192,5 +191,5 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
     public void run() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
 }

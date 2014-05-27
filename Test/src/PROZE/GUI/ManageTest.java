@@ -9,6 +9,8 @@ import java.awt.List;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 import java.util.Vector;
+import javax.swing.JLabel;
+import javax.swing.ListModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,6 +24,7 @@ public class ManageTest extends javax.swing.JPanel {
      */
     public ManageTest() {
         initComponents();
+        
     }
 
     /**
@@ -377,12 +380,6 @@ public class ManageTest extends javax.swing.JPanel {
 
         jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jList1.setComponentPopupMenu(questionPopupMenu);
         jScrollPane1.setViewportView(jList1);
 
         jPanel3.add(jScrollPane1);
