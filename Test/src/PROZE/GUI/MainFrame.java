@@ -24,13 +24,13 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
      * Creates new form MainFrame
      */
     public MainFrame() {
-        this.hideLeftPanelTimer = new Timer();
-        this.leftPanelVisible = true;
         initComponents();
         initHidingLeftPanel();
     }
     
     private void initHidingLeftPanel() {
+        this.hideLeftPanelTimer = new Timer();
+        this.leftPanelVisible = true;
         this.jSplitPane1.getLeftComponent().addMouseListener(new MouseAdapter() {
             
             @Override
@@ -56,7 +56,6 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
                 };
                 hideLeftPanelTimer.schedule(hideLeftPanelTask, 2000);
             }
-            
         });
     }
 
