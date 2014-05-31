@@ -15,7 +15,7 @@ public class UserEntity {
     private String firstName;
     private String secondName;
     private String mailAddress;
-    private final boolean editPermissions;
+    private final boolean editPermitted;
 
     /**
      * Konstruktor utworzony w celu testowania GUI. Nie należy tworzyć obiektów tej klasy w kodzie klienta.
@@ -25,15 +25,15 @@ public class UserEntity {
      */
     public UserEntity(String login, boolean editPermissions) {
         this.login = login;
-        this.editPermissions = editPermissions;
+        this.editPermitted = editPermissions;
     }
 
     /**
      * Sprawdza, czy obiekt może być modyfikowany.
      * @return True, jeśli istnieje możliwość edycji.
      */
-    public boolean editPermitted() {
-        return this.editPermissions;
+    public boolean isEditPermitted() {
+        return this.editPermitted;
     }
 
     /**
@@ -55,10 +55,10 @@ public class UserEntity {
     /**
      * Modyfikuje imię użytkownika.
      * @param firstName Nowe imię.
-     * @throws IllegalAccessException W przypadku próby modyfikacji obiektu tylko oo odczytu. Należy wywołać metodę {@link #editPermitted() editPermitted} w celu uniknięcia wyjątku.
+     * @throws IllegalAccessException W przypadku próby modyfikacji obiektu tylko oo odczytu. Należy wywołać metodę {@link #isEditPermitted() isEditPermitted} w celu uniknięcia wyjątku.
      */
     public void setFirstName(String firstName) throws IllegalAccessException {
-        if (this.editPermissions) {
+        if (this.editPermitted) {
             this.firstName = firstName;
         } else {
             throw new IllegalAccessException("No edit permissions.");
@@ -76,10 +76,10 @@ public class UserEntity {
     /**
      * Modyfikuje nazwisko użytkownika.
      * @param secondName Nowe nazwisko.
-     * @throws IllegalAccessException W przypadku próby modyfikacji obiektu tylko oo odczytu. Należy wywołać metodę {@link #editPermitted() editPermitted} w celu uniknięcia wyjątku.
+     * @throws IllegalAccessException W przypadku próby modyfikacji obiektu tylko oo odczytu. Należy wywołać metodę {@link #isEditPermitted() isEditPermitted} w celu uniknięcia wyjątku.
      */
     public void setSecondName(String secondName) throws IllegalAccessException {
-        if (this.editPermissions) {
+        if (this.editPermitted) {
             this.secondName = secondName;
         } else {
             throw new IllegalAccessException("No edit permissions.");
@@ -97,10 +97,10 @@ public class UserEntity {
     /**
      * Modyfikuje adres e-mail użytkownika.
      * @param mailAddress Nowy adres e-mail.
-     * @throws IllegalAccessException W przypadku próby modyfikacji obiektu tylko oo odczytu. Należy wywołać metodę {@link #editPermitted() editPermitted} w celu uniknięcia wyjątku.
+     * @throws IllegalAccessException W przypadku próby modyfikacji obiektu tylko oo odczytu. Należy wywołać metodę {@link #isEditPermitted() isEditPermitted} w celu uniknięcia wyjątku.
      */
     public void setMailAddress(String mailAddress) throws IllegalAccessException {
-        if (this.editPermissions) {
+        if (this.editPermitted) {
             this.mailAddress = mailAddress;
         } else {
             throw new IllegalAccessException("No edit permissions.");
