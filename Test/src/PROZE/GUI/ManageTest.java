@@ -35,7 +35,6 @@ public class ManageTest extends javax.swing.JPanel {
 
     public ManageTest() {
         initComponents();
-
     }
 
     /**
@@ -550,6 +549,7 @@ public class ManageTest extends javax.swing.JPanel {
             if (isSelected) {
                 setBackground(HIGHLIGHT_COLOR);
                 setForeground(Color.white);
+                
             } else {
                 setBackground(Color.white);
                 setForeground(Color.black);
