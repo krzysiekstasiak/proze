@@ -6,6 +6,12 @@
 
 package PROZE.GUI;
 
+import java.awt.Color;
+import java.awt.Component;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.ListCellRenderer;
+
 /**
  *
  * @author Maciek
@@ -15,6 +21,13 @@ public class ManageGroup extends javax.swing.JPanel {
     /**
      * Creates new form MenageGroup
      */
+    UserListItem  users[]={
+        new UserListItem("User"),
+        new UserListItem("User"),
+        new UserListItem("User"),
+        new UserListItem("User"),
+        new UserListItem("User")};
+    
     public ManageGroup() {
         initComponents();
     }
@@ -33,7 +46,7 @@ public class ManageGroup extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
+        jList2 = new javax.swing.JList(users);
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -56,11 +69,7 @@ public class ManageGroup extends javax.swing.JPanel {
 
         jLabel3.setText("Członkowie grupy:");
 
-        jList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        jList2.setCellRenderer(new UserCellRenderer());
         jScrollPane2.setViewportView(jList2);
 
         jButton2.setText("Dodaj użytkownika");
@@ -175,4 +184,42 @@ public class ManageGroup extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+  class UserListItem {
+
+        private final String user;
+
+
+        public UserListItem(String user) {
+            this.user = user;
+        }
+
+        public String getUser() {
+            return user;
+        }
+
+    }
+
+    class UserCellRenderer extends JLabel implements ListCellRenderer {
+
+        private final Color HIGHLIGHT_COLOR = new Color(0, 0, 128);
+
+        public UserCellRenderer() {
+            setOpaque(true);
+        }
+
+        @Override
+        public Component getListCellRendererComponent(JList list, Object value,
+                int index, boolean isSelected, boolean cellHasFocus) {
+            UserListItem entry = (UserListItem) value;
+            setText(entry.getUser());
+            if (isSelected) {
+                setBackground(HIGHLIGHT_COLOR);
+                setForeground(Color.white);
+            } else {
+                setBackground(Color.white);
+                setForeground(Color.black);
+            }
+            return this;
+        }
+    }
 }
