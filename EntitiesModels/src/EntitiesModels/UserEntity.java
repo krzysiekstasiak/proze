@@ -55,7 +55,9 @@ public class UserEntity {
     /**
      * Modyfikuje imię użytkownika.
      * @param firstName Nowe imię.
-     * @throws IllegalAccessException W przypadku próby modyfikacji obiektu tylko oo odczytu. Należy wywołać metodę {@link #isEditPermitted() isEditPermitted} w celu uniknięcia wyjątku.
+     * @throws IllegalAccessException W przypadku próby modyfikacji obiektu
+     * tylko oo odczytu. Należy wywołać metodę
+     * {@link #isEditPermitted() isEditPermitted} w celu uniknięcia wyjątku.
      */
     public void setFirstName(String firstName) throws IllegalAccessException {
         if (this.editPermitted) {

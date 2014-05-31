@@ -17,8 +17,11 @@ public class GroupEntity {
     private String description;
 
     /**
-     * Konstruktor utworzony w celu testowania GUI. Nie należy tworzyć obiektów tej klasy w kodzie klienta.
-     * @deprecated Do ustawiania jako chroniony wraz z uruchomieniem serwera z bazą danych. 
+     * Konstruktor utworzony w celu testowania GUI. Nie należy tworzyć obiektów
+     * tej klasy w kodzie klienta.
+     *
+     * @deprecated Do ustawiania jako chroniony wraz z uruchomieniem serwera z
+     * bazą danych.
      * @param name Nazwa grupy.
      * @param editPermissions Jeśli ustawione jest jako false, próba edycji któregokolwiek pola spowoduje zgłoszenie wyjątku.
      */
@@ -28,33 +31,33 @@ public class GroupEntity {
     }
 
     /**
-     *
-     * @return
+     * Zwraca nazwę grupy.
+     * @return Nazwa grupy.
      */
     public String getName() {
         return name;
     }
 
-    /**
-     *
-     * @return
+     /**
+     * Sprawdza, czy obiekt może być modyfikowany.
+     * @return True, jeśli istnieje możliwość edycji.
      */
     public boolean isEditPermitted() {
         return editPermitted;
     }
 
     /**
-     *
-     * @return
+     * Zwraca opis grupy.
+     * @return Opis grupy.
      */
     public String getDescription() {
         return description;
     }
 
     /**
-     *
-     * @param description
-     * @throws IllegalAccessException
+     * Modyfikuje opis grupy.
+     * @param description Nowy opis grupy.
+     * @throws IllegalAccessException W przypadku próby modyfikacji obiektu tylko oo odczytu. Należy wywołać metodę {@link #isEditPermitted() isEditPermitted} w celu uniknięcia wyjątku.
      */
     public void setDescription(String description) throws IllegalAccessException {
         if (this.editPermitted) {
