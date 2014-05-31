@@ -5,11 +5,15 @@
  */
 package PROZE.GUI;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.List;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 import java.util.Vector;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.ListCellRenderer;
 import javax.swing.ListModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,6 +26,13 @@ public class ManageTest extends javax.swing.JPanel {
     /**
      * Creates new form MenageTest
      */
+    TestEntry Tests[]={
+        new TestEntry("test","autor"),
+        new TestEntry("test","autor"),
+        new TestEntry("test","autor"),
+        new TestEntry("test","autor"),
+        new TestEntry("test","autor")};
+   
     public ManageTest() {
         initComponents();
         
@@ -81,7 +92,7 @@ public class ManageTest extends javax.swing.JPanel {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        jList1 = new javax.swing.JList(Tests);
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList();
@@ -379,7 +390,10 @@ public class ManageTest extends javax.swing.JPanel {
         jTabbedPane1.setDoubleBuffered(true);
 
         jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
+		
 
+		jList1.setCellRenderer(new TestCellRenderer());
+		jList1.setVisibleRowCount(4);
         jScrollPane1.setViewportView(jList1);
 
         jPanel3.add(jScrollPane1);
@@ -501,4 +515,50 @@ public class ManageTest extends javax.swing.JPanel {
     private javax.swing.JPopupMenu questionPopupMenu;
     private javax.swing.JButton saveNameButton;
     // End of variables declaration//GEN-END:variables
+  class TestEntry {
+  private final String title;
+
+  private final String author;
+
+ 
+
+  public TestEntry(String title, String author) {
+    this.title = title;
+    this.author = author;
+  }
+
+  public String getTitle() {
+    return title;
+  }
+
+    public String getAuthor() {
+    return title;
+  }
+
+  }
+
+  class TestCellRenderer extends JLabel implements ListCellRenderer {
+  private final Color HIGHLIGHT_COLOR = new Color(0, 0, 128);
+
+  public TestCellRenderer() {
+    setOpaque(true);
+  }
+    public Component getListCellRendererComponent(JList list, Object value,
+            int index, boolean isSelected, boolean cellHasFocus){
+       TestEntry entry = (TestEntry) value;
+    setText(entry.getTitle());
+    setText(entry.getAuthor());
+    if (isSelected) {
+      setBackground(HIGHLIGHT_COLOR);
+      setForeground(Color.white);
+    } else {
+      setBackground(Color.white);
+      setForeground(Color.black);
+    }
+    return this;
+  }
+}
+
+
+
 }
