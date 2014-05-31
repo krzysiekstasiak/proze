@@ -5,11 +5,14 @@
  */
 package EntitiesModels;
 
+import java.io.Serializable;
+
 /**
+ * Klasa reprezentująca komentarz do testu.
  *
  * @author Krzysztof
  */
-public class Comment {
+public class Comment implements Serializable {
 
     private final long ID;
     private final long testID;

@@ -5,12 +5,14 @@
  */
 package EntitiesModels;
 
+import java.io.Serializable;
+
 /**
  * Model encji grupy.
  *
  * @author Krzysztof
  */
-public class GroupEntity {
+public class GroupEntity implements Serializable {
 
     private final String name;
     private final boolean editPermitted;

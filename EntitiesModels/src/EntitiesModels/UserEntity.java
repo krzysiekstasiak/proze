@@ -5,12 +5,14 @@
  */
 package EntitiesModels;
 
+import java.io.Serializable;
+
 /**
  * Model encji użytkownika.
  *
  * @author Krzysztof
  */
-public class UserEntity {
+public class UserEntity implements Serializable {
 
     private final String login;
     private String firstName;
