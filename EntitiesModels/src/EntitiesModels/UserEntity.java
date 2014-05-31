@@ -7,6 +7,7 @@ package EntitiesModels;
 
 /**
  * Model encji użytkownika.
+ *
  * @author Krzysztof
  */
 public class UserEntity {
@@ -18,10 +19,14 @@ public class UserEntity {
     private final boolean editPermitted;
 
     /**
-     * Konstruktor utworzony w celu testowania GUI. Nie należy tworzyć obiektów tej klasy w kodzie klienta.
-     * @deprecated Do ustawiania jako chroniony wraz z uruchomieniem serwera z bazą danych.
+     * Konstruktor utworzony w celu testowania GUI. Nie należy tworzyć obiektów
+     * tej klasy w kodzie klienta.
+     *
+     * @deprecated Do ustawiania jako chroniony wraz z uruchomieniem serwera z
+     * bazą danych.
      * @param login Login, który zarazem identyfikuje użytkownika.
-     * @param editPermissions Jeśli ustawione jest jako false, próba edycji któregokolwiek pola spowoduje zgłoszenie wyjątku.
+     * @param editPermissions Jeśli ustawione jest jako false, próba edycji
+     * któregokolwiek pola spowoduje zgłoszenie wyjątku.
      */
     public UserEntity(String login, boolean editPermissions) {
         this.login = login;
@@ -30,6 +35,7 @@ public class UserEntity {
 
     /**
      * Sprawdza, czy obiekt może być modyfikowany.
+     *
      * @return True, jeśli istnieje możliwość edycji.
      */
     public boolean isEditPermitted() {
@@ -38,6 +44,7 @@ public class UserEntity {
 
     /**
      * Zwraca login użytkownika.
+     *
      * @return Login użytkownika.
      */
     public String getLogin() {
@@ -46,6 +53,7 @@ public class UserEntity {
 
     /**
      * Zwraca imię użytkownika.
+     *
      * @return Imię użytkownika.
      */
     public String getFirstName() {
@@ -54,6 +62,7 @@ public class UserEntity {
 
     /**
      * Modyfikuje imię użytkownika.
+     *
      * @param firstName Nowe imię.
      * @throws IllegalAccessException W przypadku próby modyfikacji obiektu
      * tylko oo odczytu. Należy wywołać metodę
@@ -69,6 +78,7 @@ public class UserEntity {
 
     /**
      * Zwraca nazwisko użytkownika.
+     *
      * @return Nazwysko użytkownika.
      */
     public String getSecondName() {
@@ -77,8 +87,11 @@ public class UserEntity {
 
     /**
      * Modyfikuje nazwisko użytkownika.
+     *
      * @param secondName Nowe nazwisko.
-     * @throws IllegalAccessException W przypadku próby modyfikacji obiektu tylko oo odczytu. Należy wywołać metodę {@link #isEditPermitted() isEditPermitted} w celu uniknięcia wyjątku.
+     * @throws IllegalAccessException W przypadku próby modyfikacji obiektu
+     * tylko oo odczytu. Należy wywołać metodę
+     * {@link #isEditPermitted() isEditPermitted} w celu uniknięcia wyjątku.
      */
     public void setSecondName(String secondName) throws IllegalAccessException {
         if (this.editPermitted) {
@@ -90,6 +103,7 @@ public class UserEntity {
 
     /**
      * Zwraca adres e-mail użytkownika.
+     *
      * @return Adres e-mail użytkownika.
      */
     public String getMailAddress() {
@@ -98,8 +112,11 @@ public class UserEntity {
 
     /**
      * Modyfikuje adres e-mail użytkownika.
+     *
      * @param mailAddress Nowy adres e-mail.
-     * @throws IllegalAccessException W przypadku próby modyfikacji obiektu tylko oo odczytu. Należy wywołać metodę {@link #isEditPermitted() isEditPermitted} w celu uniknięcia wyjątku.
+     * @throws IllegalAccessException W przypadku próby modyfikacji obiektu
+     * tylko oo odczytu. Należy wywołać metodę
+     * {@link #isEditPermitted() isEditPermitted} w celu uniknięcia wyjątku.
      */
     public void setMailAddress(String mailAddress) throws IllegalAccessException {
         if (this.editPermitted) {

@@ -23,7 +23,8 @@ public class GroupEntity {
      * @deprecated Do ustawiania jako chroniony wraz z uruchomieniem serwera z
      * bazą danych.
      * @param name Nazwa grupy.
-     * @param editPermissions Jeśli ustawione jest jako false, próba edycji któregokolwiek pola spowoduje zgłoszenie wyjątku.
+     * @param editPermissions Jeśli ustawione jest jako false, próba edycji
+     * któregokolwiek pola spowoduje zgłoszenie wyjątku.
      */
     public GroupEntity(String name, boolean editPermissions) {
         this.name = name;
@@ -32,14 +33,16 @@ public class GroupEntity {
 
     /**
      * Zwraca nazwę grupy.
+     *
      * @return Nazwa grupy.
      */
     public String getName() {
         return name;
     }
 
-     /**
+    /**
      * Sprawdza, czy obiekt może być modyfikowany.
+     *
      * @return True, jeśli istnieje możliwość edycji.
      */
     public boolean isEditPermitted() {
@@ -48,6 +51,7 @@ public class GroupEntity {
 
     /**
      * Zwraca opis grupy.
+     *
      * @return Opis grupy.
      */
     public String getDescription() {
@@ -56,8 +60,11 @@ public class GroupEntity {
 
     /**
      * Modyfikuje opis grupy.
+     *
      * @param description Nowy opis grupy.
-     * @throws IllegalAccessException W przypadku próby modyfikacji obiektu tylko oo odczytu. Należy wywołać metodę {@link #isEditPermitted() isEditPermitted} w celu uniknięcia wyjątku.
+     * @throws IllegalAccessException W przypadku próby modyfikacji obiektu
+     * tylko oo odczytu. Należy wywołać metodę
+     * {@link #isEditPermitted() isEditPermitted} w celu uniknięcia wyjątku.
      */
     public void setDescription(String description) throws IllegalAccessException {
         if (this.editPermitted) {
