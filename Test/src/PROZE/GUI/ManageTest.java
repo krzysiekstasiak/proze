@@ -26,16 +26,16 @@ public class ManageTest extends javax.swing.JPanel {
     /**
      * Creates new form MenageTest
      */
-    TestEntry Tests[]={
-        new TestEntry("test","autor"),
-        new TestEntry("test","autor"),
-        new TestEntry("test","autor"),
-        new TestEntry("test","autor"),
-        new TestEntry("test","autor")};
-   
+    TestEntry Tests[] = {
+        new TestEntry("test", "autor"),
+        new TestEntry("test", "autor"),
+        new TestEntry("test", "autor"),
+        new TestEntry("test", "autor"),
+        new TestEntry("test", "autor")};
+
     public ManageTest() {
         initComponents();
-        
+
     }
 
     /**
@@ -390,10 +390,8 @@ public class ManageTest extends javax.swing.JPanel {
         jTabbedPane1.setDoubleBuffered(true);
 
         jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
-		
 
-		jList1.setCellRenderer(new TestCellRenderer());
-		jList1.setVisibleRowCount(4);
+        jList1.setCellRenderer(new TestCellRenderer());
         jScrollPane1.setViewportView(jList1);
 
         jPanel3.add(jScrollPane1);
@@ -462,7 +460,7 @@ public class ManageTest extends javax.swing.JPanel {
         this.editDescriptionDialog.setVisible(true);
         this.editDescriptionDialog.setSize(this.editDescriptionDialog.getPreferredSize());
     }//GEN-LAST:event_jButton1ActionPerformed
-   
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem addPopupMenuAction;
@@ -516,49 +514,48 @@ public class ManageTest extends javax.swing.JPanel {
     private javax.swing.JButton saveNameButton;
     // End of variables declaration//GEN-END:variables
   class TestEntry {
-  private final String title;
 
-  private final String author;
+        private final String title;
 
- 
+        private final String author;
 
-  public TestEntry(String title, String author) {
-    this.title = title;
-    this.author = author;
-  }
+        public TestEntry(String title, String author) {
+            this.title = title;
+            this.author = author;
+        }
 
-  public String getTitle() {
-    return title;
-  }
+        public String getTitle() {
+            return title;
+        }
 
-    public String getAuthor() {
-    return title;
-  }
+        public String getAuthor() {
+            return title;
+        }
 
-  }
-
-  class TestCellRenderer extends JLabel implements ListCellRenderer {
-  private final Color HIGHLIGHT_COLOR = new Color(0, 0, 128);
-
-  public TestCellRenderer() {
-    setOpaque(true);
-  }
-    public Component getListCellRendererComponent(JList list, Object value,
-            int index, boolean isSelected, boolean cellHasFocus){
-       TestEntry entry = (TestEntry) value;
-    setText(entry.getTitle());
-    setText(entry.getAuthor());
-    if (isSelected) {
-      setBackground(HIGHLIGHT_COLOR);
-      setForeground(Color.white);
-    } else {
-      setBackground(Color.white);
-      setForeground(Color.black);
     }
-    return this;
-  }
-}
 
+    class TestCellRenderer extends JLabel implements ListCellRenderer {
 
+        private final Color HIGHLIGHT_COLOR = new Color(0, 0, 128);
+
+        public TestCellRenderer() {
+            setOpaque(true);
+        }
+
+        public Component getListCellRendererComponent(JList list, Object value,
+                int index, boolean isSelected, boolean cellHasFocus) {
+            TestEntry entry = (TestEntry) value;
+            setText(entry.getTitle());
+            setText(entry.getAuthor());
+            if (isSelected) {
+                setBackground(HIGHLIGHT_COLOR);
+                setForeground(Color.white);
+            } else {
+                setBackground(Color.white);
+                setForeground(Color.black);
+            }
+            return this;
+        }
+    }
 
 }
