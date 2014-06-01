@@ -34,6 +34,7 @@ public class ManageGroup extends javax.swing.JPanel {
     public ManageGroup() {
         initComponents();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
