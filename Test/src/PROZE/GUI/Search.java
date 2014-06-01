@@ -278,8 +278,6 @@ public class Search extends javax.swing.JPanel {
         jSeparator15.setBackground(new java.awt.Color(0, 204, 51));
         jSeparator15.setForeground(new java.awt.Color(0, 204, 51));
         jSeparator15.setMaximumSize(new java.awt.Dimension(32767, 5));
-        jSeparator15.setMinimumSize(new java.awt.Dimension(50, 5));
-        jSeparator15.setPreferredSize(new java.awt.Dimension(50, 5));
         jPanel2.add(jSeparator15);
 
         jTabbedPane1.addTab("Wyszukaj test", jPanel2);
