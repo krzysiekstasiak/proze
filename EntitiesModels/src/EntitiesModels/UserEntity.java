@@ -95,7 +95,7 @@ public class UserEntity implements Serializable {
      *
      * @return Nazwysko użytkownika.
      */
-    public String getSecondName() {
+    public String getLastName() {
         return secondName;
     }
 
