@@ -25,12 +25,12 @@ public class GroupEntity implements Serializable {
      * @deprecated Do ustawiania jako chroniony wraz z uruchomieniem serwera z
      * bazą danych.
      * @param name Nazwa grupy.
-     * @param editPermissions Jeśli ustawione jest jako false, próba edycji
+     * @param editPermitted Jeśli ustawione jest jako false, próba edycji
      * któregokolwiek pola spowoduje zgłoszenie wyjątku.
      */
-    public GroupEntity(String name, boolean editPermissions) {
+    public GroupEntity(String name, boolean editPermitted) {
         this.name = name;
-        this.editPermitted = editPermissions;
+        this.editPermitted = editPermitted;
     }
 
     /**
