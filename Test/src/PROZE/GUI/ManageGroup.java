@@ -21,13 +21,16 @@ public class ManageGroup extends javax.swing.JPanel {
     /**
      * Creates new form MenageGroup
      */
-    UserListItem  users[]={
-        new UserListItem("User"),
-        new UserListItem("User"),
-        new UserListItem("User"),
-        new UserListItem("User"),
-        new UserListItem("User")};
-    
+    int usersize;
+    if(CurentUser.isEditPermitted()==true){
+    UserListItem [] users = new UserListItem[usersize];
+    for(int k=0; k < users.length; k++){
+        users[k] = new UserListItem((UserEntity.getLogin()+" "+UserEntity.getFirstName()+" "+UserEntity.getSecondName()));
+    } 
+    }
+    else if(CurentUser.isEditPermitted()==false){
+    UserListItem users = null; 
+    }
     public ManageGroup() {
         initComponents();
     }
