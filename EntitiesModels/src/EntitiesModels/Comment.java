@@ -34,7 +34,7 @@ public class Comment implements Serializable {
         this.ID = ID;
         this.testID = testID;
         this.content = content;
-        this.rating = (rating % 10) + 1;
+        this.rating = ((rating - 1) % 10) + 1;
     }
 
     /**

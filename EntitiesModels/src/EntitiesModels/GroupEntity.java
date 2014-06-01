@@ -16,7 +16,11 @@ public class GroupEntity implements Serializable {
 
     private final String name;
     private final boolean editPermitted;
-    private String description;
+
+    /**
+     * Opis testu.
+     */
+    protected String description;
 
     /**
      * Konstruktor utworzony w celu testowania GUI. Nie należy tworzyć obiektów

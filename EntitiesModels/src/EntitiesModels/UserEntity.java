@@ -15,10 +15,22 @@ import java.io.Serializable;
 public class UserEntity implements Serializable {
 
     private final String login;
-    private String firstName;
-    private String secondName;
-    private String mailAddress;
     private final boolean editPermitted;
+
+    /**
+     * Imię użytkownika.
+     */
+    protected String firstName;
+
+    /**
+     * Nazwisko użytkownika.
+     */
+    protected String secondName;
+
+    /**
+     * Adres e-mail użytkownika.
+     */
+    protected String mailAddress;
 
     /**
      * Konstruktor utworzony w celu testowania GUI. Nie należy tworzyć obiektów
@@ -27,12 +39,12 @@ public class UserEntity implements Serializable {
      * @deprecated Do ustawiania jako chroniony wraz z uruchomieniem serwera z
      * bazą danych.
      * @param login Login, który zarazem identyfikuje użytkownika.
-     * @param editPermissions Jeśli ustawione jest jako false, próba edycji
+     * @param editPermitted Jeśli ustawione jest jako false, próba edycji
      * któregokolwiek pola spowoduje zgłoszenie wyjątku.
      */
-    public UserEntity(String login, boolean editPermissions) {
+    public UserEntity(String login, boolean editPermitted) {
         this.login = login;
-        this.editPermitted = editPermissions;
+        this.editPermitted = editPermitted;
     }
 
     /**
