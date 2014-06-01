@@ -5,8 +5,13 @@
  */
 package ServerAccess;
 
+import EntitiesModels.Comment;
 import EntitiesModels.GroupEntity;
+import EntitiesModels.TestDescription;
+import EntitiesModels.TestEntity;
 import EntitiesModels.UserEntity;
+import java.util.Date;
+import java.util.List;
 import javax.ejb.Remote;
 
 /**
@@ -35,5 +40,25 @@ public interface ServerAccessBeanRemote {
     void addUserToGroup(String groupName, String userLogin) throws IllegalAccessException;
 
     Boolean removeUserFromGroup(String groupName, String userLogin) throws IllegalAccessException;
+
+    List<UserEntity> getUsersFromGroup(String groupName) throws IllegalAccessException;
+
+    List<TestDescription> getTestsFromGroup(String groupName) throws IllegalAccessException;
+
+    TestEntity createTest(String name, String groupName, String category) throws IllegalAccessException;
+
+    void updateTestEntity(TestEntity testEntity) throws IllegalAccessException;
+
+    Boolean removeTest(long testID) throws IllegalAccessException;
+
+    TestEntity getTestEntity(long testID) throws IllegalAccessException;
+
+    int getTestRating(long testID) throws IllegalAccessException;
+
+    Date getTestModificationDate(long testID) throws IllegalAccessException;
+
+    List<Comment> getTestComments(long testID) throws IllegalAccessException;
+
+    Comment addComment(long testID, String content, int rating) throws IllegalAccessException;
 
 }
