@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package PROZE.GUI;
 
+import EntitiesModels.UserEntity;
 import java.awt.Color;
 import java.awt.Component;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
@@ -18,23 +20,28 @@ import javax.swing.ListCellRenderer;
  */
 public class ManageGroup extends javax.swing.JPanel {
 
+    private List<UserEntity> members = new ArrayList<>();
+
     /**
      * Creates new form MenageGroup
      */
-    int usersize;
-    if(CurentUser.isEditPermitted()==true){
-    UserListItem [] users = new UserListItem[usersize];
-    for(int k=0; k < users.length; k++){
-        users[k] = new UserListItem((UserEntity.getLogin()+" "+UserEntity.getFirstName()+" "+UserEntity.getSecondName()));
-    } 
+    private void initTestContent() {
+        UserEntity user1 = new UserEntity("User1", true);
+
+        try {
+            user1.setFirstName("Jan");
+            user1.setSecondName("Kowalski");
+            user1.setMailAddress("jkowal@mail.com");
+        } catch (IllegalAccessException exc) {
+
+        }
+        this.members.add(user1);
     }
-    else if(CurentUser.isEditPermitted()==false){
-    UserListItem users = null; 
-    }
+
     public ManageGroup() {
+        this.initTestContent();
         initComponents();
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,7 +57,7 @@ public class ManageGroup extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList(users);
+        jList2 = new javax.swing.JList(this.members.toArray());
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -171,11 +178,10 @@ public class ManageGroup extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        if(evt.getClickCount()==2){
+        if (evt.getClickCount() == 2) {
             //TODO: Otworzyć edytor testu
         }
     }//GEN-LAST:event_jTable1MouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -188,10 +194,10 @@ public class ManageGroup extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-  class UserListItem {
+
+    class UserListItem {
 
         private final String user;
-
 
         public UserListItem(String user) {
             this.user = user;
@@ -214,8 +220,8 @@ public class ManageGroup extends javax.swing.JPanel {
         @Override
         public Component getListCellRendererComponent(JList list, Object value,
                 int index, boolean isSelected, boolean cellHasFocus) {
-            UserListItem entry = (UserListItem) value;
-            setText(entry.getUser());
+            UserEntity entry = (UserEntity) value;
+            setText(entry.getLogin() + " " + entry.getFirstName() + " " + entry.getLastName());
             if (isSelected) {
                 setBackground(HIGHLIGHT_COLOR);
                 setForeground(Color.white);

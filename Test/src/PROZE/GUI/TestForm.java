@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package PROZE.GUI;
 
 /**
@@ -29,10 +28,12 @@ public class TestForm extends javax.swing.JFrame {
     private void initComponents() {
 
         manageTest1 = new PROZE.GUI.ManageTest();
+        manageGroup1 = new PROZE.GUI.ManageGroup();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
         getContentPane().add(manageTest1);
+        getContentPane().add(manageGroup1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -44,7 +45,7 @@ public class TestForm extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -73,6 +74,7 @@ public class TestForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private PROZE.GUI.ManageGroup manageGroup1;
     private PROZE.GUI.ManageTest manageTest1;
     // End of variables declaration//GEN-END:variables
 }

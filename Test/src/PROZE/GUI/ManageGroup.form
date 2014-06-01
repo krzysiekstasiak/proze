@@ -112,7 +112,7 @@
       <SubComponents>
         <Component class="javax.swing.JList" name="jList2">
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JList(users)"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JList(this.members.toArray())"/>
             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jList2.setCellRenderer(new UserCellRenderer());"/>
           </AuxValues>
         </Component>
