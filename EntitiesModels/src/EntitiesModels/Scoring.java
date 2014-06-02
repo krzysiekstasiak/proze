@@ -5,12 +5,14 @@
  */
 package EntitiesModels;
 
+import java.io.Serializable;
+
 /**
  * Klasa reprezentująca punktację za pytanie.
  *
  * @author Krzysztof
  */
-public class Scoring {
+public class Scoring implements Serializable {
 
     private int pointsForCorrectAnswer;
     private int pointsForNoAnswer;
