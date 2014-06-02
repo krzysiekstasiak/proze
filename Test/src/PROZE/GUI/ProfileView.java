@@ -3,19 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package PROZE.GUI;
 
 /**
  *
  * @author Maciek
  */
-public class ProfilViev extends javax.swing.JPanel {
+public class ProfileView extends javax.swing.JPanel {
 
     /**
      * Creates new form ProfilViev
      */
-    public ProfilViev() {
+    public ProfileView() {
         initComponents();
     }
 
@@ -46,7 +45,7 @@ public class ProfilViev extends javax.swing.JPanel {
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 51));
-        jPanel1.setLayout(new java.awt.GridLayout());
+        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
         Login.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Login.setText("            Login:");
@@ -58,7 +57,7 @@ public class ProfilViev extends javax.swing.JPanel {
         add(jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(0, 204, 51));
-        jPanel2.setLayout(new java.awt.GridLayout());
+        jPanel2.setLayout(new java.awt.GridLayout(1, 0));
 
         Name.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Name.setText("            Imie:");
@@ -70,7 +69,7 @@ public class ProfilViev extends javax.swing.JPanel {
         add(jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(0, 204, 51));
-        jPanel3.setLayout(new java.awt.GridLayout());
+        jPanel3.setLayout(new java.awt.GridLayout(1, 0));
 
         SureName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         SureName.setText("            Nazwisko:");
@@ -82,7 +81,7 @@ public class ProfilViev extends javax.swing.JPanel {
         add(jPanel3);
 
         jPanel4.setBackground(new java.awt.Color(0, 204, 51));
-        jPanel4.setLayout(new java.awt.GridLayout());
+        jPanel4.setLayout(new java.awt.GridLayout(1, 0));
 
         Email.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Email.setText("            Email:");
@@ -93,7 +92,6 @@ public class ProfilViev extends javax.swing.JPanel {
 
         add(jPanel4);
     }// </editor-fold>//GEN-END:initComponents
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Email;
@@ -110,7 +108,9 @@ public class ProfilViev extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator4;
     // End of variables declaration//GEN-END:variables
-    public ProfilViev(String login, String name, String sureName, String email){
+
+    public ProfileView(String login, String name, String sureName, String email) {
+        initComponents();
         jLabel1.setText(login);
         jLabel2.setText(name);
         jLabel3.setText(sureName);
