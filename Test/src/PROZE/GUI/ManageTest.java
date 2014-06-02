@@ -6,17 +6,14 @@
 package PROZE.GUI;
 
 import EntitiesModels.QuestionEntity;
-import java.util.ArrayList;
-import java.util.List;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.KeyEvent;
-import java.util.LinkedList;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
-import javax.swing.ListModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,19 +22,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ManageTest extends javax.swing.JPanel {
 
-	private List<QuestionEntity> Tests = new ArrayList<>();
+    private List<QuestionEntity> Tests = new ArrayList<>();
+
     /**
      * Creates new form MenageTest
      */
     private void initTestContent() {
-        QuestionEntity quest1 = new QuestionEntity();
 
-        try {
-            quest1.setContent("Pytanie1");
-        } catch (IllegalAccessException exc) {
-
-        }
-        this.Tests.add(quest1);
     }
 
     public ManageTest() {
@@ -467,7 +458,6 @@ public class ManageTest extends javax.swing.JPanel {
         this.editDescriptionDialog.setSize(this.editDescriptionDialog.getPreferredSize());
     }//GEN-LAST:event_jButton1ActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem addPopupMenuAction;
     private javax.swing.JMenuItem deletePopupMenuAction;
@@ -519,7 +509,8 @@ public class ManageTest extends javax.swing.JPanel {
     private javax.swing.JPopupMenu questionPopupMenu;
     private javax.swing.JButton saveNameButton;
     // End of variables declaration//GEN-END:variables
-  class TestEntry {
+
+    class TestEntry {
 
         private final String title;
 
@@ -555,7 +546,7 @@ public class ManageTest extends javax.swing.JPanel {
             if (isSelected) {
                 setBackground(HIGHLIGHT_COLOR);
                 setForeground(Color.white);
-                
+
             } else {
                 setBackground(Color.white);
                 setForeground(Color.black);
