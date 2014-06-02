@@ -72,7 +72,6 @@ public class ManageGroup extends javax.swing.JPanel {
                 ProfileView profileView = new ProfileView(userEntity.getLogin(), userEntity.getFirstName(), userEntity.getLastName(), userEntity.getMailAddress());
                 profileView.setVisible(true);
                 JFrame frame = new JFrame();
-
                 frame.add(profileView);
                 frame.setVisible(true);
             }
