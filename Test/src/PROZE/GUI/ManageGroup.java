@@ -52,6 +52,22 @@ public class ManageGroup extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
+        jPanel1 = new javax.swing.JPanel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
+        jPanel3 = new javax.swing.JPanel();
+        jSeparator6 = new javax.swing.JSeparator();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
+        jSeparator5 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jPanel4 = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -61,6 +77,97 @@ public class ManageGroup extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+
+        jDialog1.getContentPane().setLayout(new javax.swing.BoxLayout(jDialog1.getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
+
+        jPanel1.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel1.setForeground(new java.awt.Color(0, 204, 51));
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
+
+        jSeparator1.setBackground(new java.awt.Color(0, 204, 51));
+        jSeparator1.setForeground(new java.awt.Color(0, 204, 51));
+        jSeparator1.setMaximumSize(new java.awt.Dimension(32767, 10));
+        jSeparator1.setMinimumSize(new java.awt.Dimension(0, 10));
+        jSeparator1.setPreferredSize(new java.awt.Dimension(0, 10));
+        jPanel1.add(jSeparator1);
+
+        jPanel2.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel2.setForeground(new java.awt.Color(0, 204, 51));
+        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.X_AXIS));
+
+        jLabel4.setText("Wybierz użytkownika");
+        jPanel2.add(jLabel4);
+
+        jPanel1.add(jPanel2);
+
+        jSeparator4.setBackground(new java.awt.Color(0, 204, 51));
+        jSeparator4.setForeground(new java.awt.Color(0, 204, 51));
+        jSeparator4.setMaximumSize(new java.awt.Dimension(32767, 10));
+        jSeparator4.setMinimumSize(new java.awt.Dimension(0, 10));
+        jSeparator4.setPreferredSize(new java.awt.Dimension(0, 10));
+        jPanel1.add(jSeparator4);
+
+        jPanel3.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel3.setForeground(new java.awt.Color(0, 204, 51));
+        jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
+
+        jSeparator6.setBackground(new java.awt.Color(0, 204, 51));
+        jSeparator6.setForeground(new java.awt.Color(0, 204, 51));
+        jSeparator6.setMaximumSize(new java.awt.Dimension(10, 32767));
+        jSeparator6.setMinimumSize(new java.awt.Dimension(10, 10));
+        jSeparator6.setPreferredSize(new java.awt.Dimension(10, 10));
+        jPanel3.add(jSeparator6);
+
+        jList1.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane3.setViewportView(jList1);
+
+        jPanel3.add(jScrollPane3);
+
+        jSeparator5.setBackground(new java.awt.Color(0, 204, 51));
+        jSeparator5.setForeground(new java.awt.Color(0, 204, 51));
+        jSeparator5.setMaximumSize(new java.awt.Dimension(10, 32767));
+        jSeparator5.setMinimumSize(new java.awt.Dimension(10, 10));
+        jSeparator5.setPreferredSize(new java.awt.Dimension(10, 10));
+        jPanel3.add(jSeparator5);
+
+        jPanel1.add(jPanel3);
+
+        jSeparator3.setBackground(new java.awt.Color(0, 204, 51));
+        jSeparator3.setForeground(new java.awt.Color(0, 204, 51));
+        jSeparator3.setMaximumSize(new java.awt.Dimension(32767, 10));
+        jSeparator3.setMinimumSize(new java.awt.Dimension(0, 10));
+        jSeparator3.setPreferredSize(new java.awt.Dimension(0, 10));
+        jPanel1.add(jSeparator3);
+
+        jPanel4.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel4.setForeground(new java.awt.Color(0, 204, 51));
+        jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.LINE_AXIS));
+
+        jButton3.setText("Dodaj");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton3);
+
+        jButton4.setText("Anuluj");
+        jPanel4.add(jButton4);
+
+        jPanel1.add(jPanel4);
+
+        jSeparator2.setBackground(new java.awt.Color(0, 204, 51));
+        jSeparator2.setForeground(new java.awt.Color(0, 204, 51));
+        jSeparator2.setMaximumSize(new java.awt.Dimension(32767, 10));
+        jSeparator2.setMinimumSize(new java.awt.Dimension(0, 10));
+        jSeparator2.setPreferredSize(new java.awt.Dimension(0, 10));
+        jPanel1.add(jSeparator2);
+
+        jDialog1.getContentPane().add(jPanel1);
 
         setBackground(new java.awt.Color(0, 204, 51));
         setMinimumSize(new java.awt.Dimension(300, 300));
@@ -183,15 +290,35 @@ public class ManageGroup extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JList jList1;
     private javax.swing.JList jList2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
