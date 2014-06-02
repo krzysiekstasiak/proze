@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * Klasa reprezentująca pytanie zamknięte jednokrotnego wyboru.
  *
  * @author Krzysztof
  */

@@ -6,6 +6,7 @@
 package EntitiesModels;
 
 /**
+ * Klasa reprezentująca punktację za pytanie.
  *
  * @author Krzysztof
  */
