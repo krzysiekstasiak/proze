@@ -6,7 +6,11 @@
 package ServerAccess;
 
 import EntitiesModels.Comment;
+import EntitiesModels.Filters.GroupSelector;
+import EntitiesModels.Filters.TestSelector;
 import EntitiesModels.GroupEntity;
+import EntitiesModels.Notifications.Notification;
+import EntitiesModels.QuestionEntity;
 import EntitiesModels.TestDescription;
 import EntitiesModels.TestEntity;
 import EntitiesModels.UserEntity;
@@ -40,7 +44,7 @@ public class ServerAccessBean implements ServerAccessBeanRemote {
     }
 
     @Override
-    public Boolean registerUser(String login, String password, String firstName, String secondName, String eMail) throws IllegalStateException {
+    public Boolean registerUser(String login, String password, String firstName, String lastName, String eMail) throws IllegalStateException {
         return null;
     }
 
@@ -113,6 +117,39 @@ public class ServerAccessBean implements ServerAccessBeanRemote {
 
     @Override
     public Comment addComment(long testID, String content, int rating) throws IllegalAccessException {
+        return null;
+    }
+
+    @Override
+    public void reportQuestionError(long testID, int indexInTest, String problemDesciption, String proposedSolution) throws IllegalAccessException {
+    }
+
+    @Override
+    public void addProposedQuestion(long testID, QuestionEntity question) throws IllegalAccessException {
+    }
+
+    @Override
+    public Boolean requestJoiningGroup(String userLogin, String groupName) throws IllegalAccessException {
+        return null;
+    }
+
+    @Override
+    public Comment getComment(long commentID) throws IllegalAccessException {
+        return null;
+    }
+
+    @Override
+    public List<Notification> getNotifications() throws IllegalAccessException {
+        return null;
+    }
+
+    @Override
+    public List<GroupEntity> findGroups(GroupSelector groupSelector) throws IllegalAccessException {
+        return null;
+    }
+
+    @Override
+    public List<TestDescription> findTests(TestSelector testSelector) throws IllegalAccessException {
         return null;
     }
 
