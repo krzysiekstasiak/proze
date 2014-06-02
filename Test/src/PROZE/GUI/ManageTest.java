@@ -5,9 +5,11 @@
  */
 package PROZE.GUI;
 
+import EntitiesModels.QuestionEntity;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.List;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 import java.util.Vector;
@@ -23,15 +25,20 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ManageTest extends javax.swing.JPanel {
 
+	private List<QuestionEntity> Tests = new ArrayList<>();
     /**
      * Creates new form MenageTest
      */
-    TestEntry Tests[] = {
-        new TestEntry("test", "autor"),
-        new TestEntry("test", "autor"),
-        new TestEntry("test", "autor"),
-        new TestEntry("test", "autor"),
-        new TestEntry("test", "autor")};
+    private void initTestContent() {
+        QuestionEntity quest1 = new QuestionEntity();
+
+        try {
+            quest1.setContent("Pytanie1");
+        } catch (IllegalAccessException exc) {
+
+        }
+        this.Tests.add(quest1);
+    }
 
     public ManageTest() {
         initComponents();
@@ -91,7 +98,7 @@ public class ManageTest extends javax.swing.JPanel {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList(Tests);
+        jList1 = new javax.swing.JList(this.Tests.toArray());
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList();
@@ -543,9 +550,8 @@ public class ManageTest extends javax.swing.JPanel {
 
         public Component getListCellRendererComponent(JList list, Object value,
                 int index, boolean isSelected, boolean cellHasFocus) {
-            TestEntry entry = (TestEntry) value;
-            setText(entry.getTitle());
-            setText(entry.getAuthor());
+            QuestionEntity entry = (QuestionEntity) value;
+            setText(entry.getContent());
             if (isSelected) {
                 setBackground(HIGHLIGHT_COLOR);
                 setForeground(Color.white);
