@@ -19,6 +19,13 @@ public class Scoring implements Serializable {
     private int pointsForWrongAnswer;
     private double timeForAnswer;
 
+    public Scoring() {
+        this.pointsForCorrectAnswer = 1;
+        this.pointsForNoAnswer = 0;
+        this.pointsForWrongAnswer = 0;
+        this.timeForAnswer = 60;
+    }
+
     /**
      * Zwraca ilość punktów za poprawną odpowiedź.
      *

@@ -15,7 +15,7 @@ import java.io.Serializable;
 public abstract class QuestionEntity implements Serializable {
 
     private String content;
-    private Scoring scoring;
+    private Scoring scoring = new Scoring();
 
     /**
      * Zwraca treść pytania.
