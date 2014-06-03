@@ -12,12 +12,17 @@ import EntitiesModels.TestEntity;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.ListCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -55,15 +60,50 @@ public class ManageTest extends javax.swing.JPanel {
         this.loadTest(test1);
     }
 
-    /**
+        /**
      * Creates new form MenageTest
      */
-    public ManageTest() {
+               
+        public ManageTest() {
         initComponents();
+        addQuestionPopupMenu();
         this.setEditorState(EditorState.NO_TEST_LOADED);
         this.initTestContent();
     }
+              private void addQuestionPopupMenu() {
+        JPopupMenu popupMenu1 = new JPopupMenu() {
 
+            @Override
+            public void show(Component invoker, int x, int y) {
+                int selectedIndex = questionsList.getSelectedIndex();
+                if (selectedIndex == questionsList.locationToIndex(new Point(x, y))) {
+                    super.show(invoker, x, y);
+                }
+            }
+
+        };
+
+        JMenuItem editQuestion = new JMenuItem("Edytuj pytanie");
+        editQuestion.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        popupMenu1.add(editQuestion);
+        JMenuItem removeQuestion = new JMenuItem("Usuń pytanie");
+        removeQuestion.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        popupMenu1.add(removeQuestion);
+        this.questionsList.setComponentPopupMenu(popupMenu1);
+          
+              }
     private void setEditorState(EditorState state) {
         switch (state) {
             case NO_TEST_LOADED:
@@ -81,6 +121,50 @@ public class ManageTest extends javax.swing.JPanel {
                 setContainerEnabled(this, true);
                 this.nameField.setEditable(false);
         }
+    }
+            private void addProposeQuestionPopupMenu() {
+        JPopupMenu popupMenu2 = new JPopupMenu() {
+
+            @Override
+            public void show(Component invoker, int x, int y) {
+                int selectedIndex = proposedQuestionsList.getSelectedIndex();
+                if (selectedIndex == proposedQuestionsList.locationToIndex(new Point(x, y))) {
+                    super.show(invoker, x, y);
+                }
+            }
+
+        };
+
+        JMenuItem editOpenQuestion = new JMenuItem("Otwórz/edytuj pytanie");
+        editOpenQuestion.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        popupMenu2.add(editOpenQuestion);
+        JMenuItem addProposeQuestion = new JMenuItem("Dodaj do testu");
+        addProposeQuestion.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        popupMenu2.add(addProposeQuestion);
+        this.proposedQuestionsList.setComponentPopupMenu(popupMenu2);
+        
+        JMenuItem removeProposeQuestion = new JMenuItem("Usuń pytanie");
+        removeProposeQuestion.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        popupMenu2.add(removeProposeQuestion);
+        this.proposedQuestionsList.setComponentPopupMenu(popupMenu2);
     }
 
     private static void setContainerEnabled(Container container, boolean enabled) {
