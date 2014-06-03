@@ -35,6 +35,7 @@ public class Create extends javax.swing.JPanel {
         jTextField2 = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel5 = new javax.swing.JPanel();
+        jSeparator20 = new javax.swing.JSeparator();
         jPanel6 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -86,18 +87,47 @@ public class Create extends javax.swing.JPanel {
         jScrollPane6 = new javax.swing.JScrollPane();
         jTextArea4 = new javax.swing.JTextArea();
         jButton8 = new javax.swing.JButton();
+        jPanel25 = new javax.swing.JPanel();
+        jSeparator19 = new javax.swing.JSeparator();
+        jPanel26 = new javax.swing.JPanel();
+        jPanel27 = new javax.swing.JPanel();
+        jSeparator18 = new javax.swing.JSeparator();
+        jPanel28 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jPanel35 = new javax.swing.JPanel();
+        jLabel22 = new javax.swing.JLabel();
+        jTextField14 = new javax.swing.JTextField();
+        jPanel36 = new javax.swing.JPanel();
+        jLabel23 = new javax.swing.JLabel();
+        jTextField15 = new javax.swing.JTextField();
+        jPanel29 = new javax.swing.JPanel();
+        jPanel30 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        jPanel31 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        jTextField10 = new javax.swing.JTextField();
+        jPanel32 = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
+        jTextField11 = new javax.swing.JTextField();
+        jPanel33 = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        jTextField12 = new javax.swing.JTextField();
+        jPanel34 = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
+        jTextField13 = new javax.swing.JTextField();
+        jSeparator5 = new javax.swing.JSeparator();
+        jPanel24 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jSeparator4 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jSeparator6 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
-        jPanel8 = new javax.swing.JPanel();
+        jSeparator3 = new javax.swing.JSeparator();
         jPanel4 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -150,6 +180,13 @@ public class Create extends javax.swing.JPanel {
 
         jPanel5.setBackground(new java.awt.Color(0, 204, 51));
         jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.X_AXIS));
+
+        jSeparator20.setBackground(new java.awt.Color(0, 204, 51));
+        jSeparator20.setForeground(new java.awt.Color(0, 204, 51));
+        jSeparator20.setMaximumSize(new java.awt.Dimension(5, 32767));
+        jSeparator20.setMinimumSize(new java.awt.Dimension(5, 0));
+        jSeparator20.setPreferredSize(new java.awt.Dimension(5, 2));
+        jPanel5.add(jSeparator20);
 
         jPanel6.setBackground(new java.awt.Color(0, 204, 51));
         jPanel6.setMinimumSize(new java.awt.Dimension(200, 120));
@@ -207,6 +244,7 @@ public class Create extends javax.swing.JPanel {
         jTabbedPane3.setBackground(new java.awt.Color(0, 204, 51));
         jTabbedPane3.setDoubleBuffered(true);
         jTabbedPane3.setMinimumSize(new java.awt.Dimension(400, 141));
+        jTabbedPane3.setPreferredSize(new java.awt.Dimension(400, 227));
 
         jPanel14.setBackground(new java.awt.Color(0, 204, 51));
         jPanel14.setForeground(new java.awt.Color(0, 204, 51));
@@ -407,8 +445,129 @@ public class Create extends javax.swing.JPanel {
 
         jPanel3.add(jPanel5);
 
+        jPanel25.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel25.setLayout(new javax.swing.BoxLayout(jPanel25, javax.swing.BoxLayout.X_AXIS));
+
+        jSeparator19.setBackground(new java.awt.Color(0, 204, 51));
+        jSeparator19.setForeground(new java.awt.Color(0, 204, 51));
+        jSeparator19.setMaximumSize(new java.awt.Dimension(5, 10));
+        jSeparator19.setMinimumSize(new java.awt.Dimension(5, 10));
+        jSeparator19.setPreferredSize(new java.awt.Dimension(5, 10));
+        jPanel25.add(jSeparator19);
+
+        jPanel26.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel26.setLayout(new javax.swing.BoxLayout(jPanel26, javax.swing.BoxLayout.Y_AXIS));
+
+        jPanel27.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel27.setMaximumSize(new java.awt.Dimension(30000, 2147483647));
+        jPanel27.setMinimumSize(new java.awt.Dimension(200, 148));
+        jPanel27.setLayout(new javax.swing.BoxLayout(jPanel27, javax.swing.BoxLayout.Y_AXIS));
+
+        jSeparator18.setBackground(new java.awt.Color(0, 204, 51));
+        jSeparator18.setForeground(new java.awt.Color(0, 204, 51));
+        jSeparator18.setMaximumSize(new java.awt.Dimension(50, 5));
+        jSeparator18.setMinimumSize(new java.awt.Dimension(50, 5));
+        jSeparator18.setPreferredSize(new java.awt.Dimension(50, 5));
+        jPanel27.add(jSeparator18);
+
+        jPanel28.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel28.setLayout(new javax.swing.BoxLayout(jPanel28, javax.swing.BoxLayout.Y_AXIS));
+
+        jLabel15.setText("Czas na rozwiązanie ");
+        jPanel28.add(jLabel15);
+
+        jPanel27.add(jPanel28);
+
+        jPanel35.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel35.setLayout(new javax.swing.BoxLayout(jPanel35, javax.swing.BoxLayout.X_AXIS));
+
+        jLabel22.setText("Testu   ");
+        jPanel35.add(jLabel22);
+
+        jTextField14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField14ActionPerformed(evt);
+            }
+        });
+        jPanel35.add(jTextField14);
+
+        jPanel27.add(jPanel35);
+
+        jPanel36.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel36.setLayout(new javax.swing.BoxLayout(jPanel36, javax.swing.BoxLayout.X_AXIS));
+
+        jLabel23.setText("Pytania");
+        jPanel36.add(jLabel23);
+        jPanel36.add(jTextField15);
+
+        jPanel27.add(jPanel36);
+
+        jPanel29.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel29.setLayout(new javax.swing.BoxLayout(jPanel29, javax.swing.BoxLayout.Y_AXIS));
+        jPanel27.add(jPanel29);
+
+        jPanel30.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel30.setLayout(new javax.swing.BoxLayout(jPanel30, javax.swing.BoxLayout.Y_AXIS));
+
+        jLabel17.setText("Punkty za odpowiedź");
+        jPanel30.add(jLabel17);
+
+        jPanel27.add(jPanel30);
+
+        jPanel31.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel31.setLayout(new javax.swing.BoxLayout(jPanel31, javax.swing.BoxLayout.X_AXIS));
+
+        jLabel18.setText("Prawidłową ");
+        jPanel31.add(jLabel18);
+        jPanel31.add(jTextField10);
+
+        jPanel27.add(jPanel31);
+
+        jPanel32.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel32.setLayout(new javax.swing.BoxLayout(jPanel32, javax.swing.BoxLayout.X_AXIS));
+
+        jLabel19.setText("Złą              ");
+        jPanel32.add(jLabel19);
+        jPanel32.add(jTextField11);
+
+        jPanel27.add(jPanel32);
+
+        jPanel33.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel33.setLayout(new javax.swing.BoxLayout(jPanel33, javax.swing.BoxLayout.X_AXIS));
+
+        jLabel20.setText("Brak            ");
+        jPanel33.add(jLabel20);
+        jPanel33.add(jTextField12);
+
+        jPanel27.add(jPanel33);
+
+        jPanel34.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel34.setLayout(new javax.swing.BoxLayout(jPanel34, javax.swing.BoxLayout.X_AXIS));
+
+        jLabel21.setText("Prawidłową ");
+        jPanel34.add(jLabel21);
+        jPanel34.add(jTextField13);
+
+        jPanel27.add(jPanel34);
+
+        jSeparator5.setBackground(new java.awt.Color(0, 204, 51));
+        jSeparator5.setForeground(new java.awt.Color(0, 204, 51));
+        jSeparator5.setMaximumSize(new java.awt.Dimension(50, 20));
+        jSeparator5.setMinimumSize(new java.awt.Dimension(50, 20));
+        jSeparator5.setPreferredSize(new java.awt.Dimension(50, 20));
+        jPanel27.add(jSeparator5);
+
+        jPanel26.add(jPanel27);
+
+        jPanel25.add(jPanel26);
+
+        jPanel24.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel24.setMinimumSize(new java.awt.Dimension(400, 67));
+        jPanel24.setPreferredSize(new java.awt.Dimension(400, 113));
+        jPanel24.setLayout(new javax.swing.BoxLayout(jPanel24, javax.swing.BoxLayout.PAGE_AXIS));
+
         jLabel1.setText("Dodaj opis");
-        jPanel3.add(jLabel1);
+        jPanel24.add(jLabel1);
 
         jPanel2.setBackground(new java.awt.Color(0, 204, 51));
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.X_AXIS));
@@ -432,17 +591,14 @@ public class Create extends javax.swing.JPanel {
         jSeparator6.setPreferredSize(new java.awt.Dimension(5, 50));
         jPanel2.add(jSeparator6);
 
-        jPanel3.add(jPanel2);
+        jPanel24.add(jPanel2);
 
-        jSeparator2.setBackground(new java.awt.Color(0, 204, 51));
-        jSeparator2.setForeground(new java.awt.Color(0, 204, 51));
-        jSeparator2.setMaximumSize(new java.awt.Dimension(50, 5));
-        jSeparator2.setMinimumSize(new java.awt.Dimension(50, 5));
-        jSeparator2.setPreferredSize(new java.awt.Dimension(50, 5));
-        jPanel3.add(jSeparator2);
-
-        jPanel8.setLayout(new javax.swing.BoxLayout(jPanel8, javax.swing.BoxLayout.LINE_AXIS));
-        jPanel3.add(jPanel8);
+        jSeparator3.setBackground(new java.awt.Color(0, 204, 51));
+        jSeparator3.setForeground(new java.awt.Color(0, 204, 51));
+        jSeparator3.setMaximumSize(new java.awt.Dimension(50, 5));
+        jSeparator3.setMinimumSize(new java.awt.Dimension(50, 5));
+        jSeparator3.setPreferredSize(new java.awt.Dimension(50, 5));
+        jPanel24.add(jSeparator3);
 
         jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.LINE_AXIS));
 
@@ -454,14 +610,18 @@ public class Create extends javax.swing.JPanel {
         jButton3.setText("Anuluj");
         jPanel4.add(jButton3);
 
-        jPanel3.add(jPanel4);
+        jPanel24.add(jPanel4);
 
-        jSeparator3.setBackground(new java.awt.Color(0, 204, 51));
-        jSeparator3.setForeground(new java.awt.Color(0, 204, 51));
-        jSeparator3.setMaximumSize(new java.awt.Dimension(50, 5));
-        jSeparator3.setMinimumSize(new java.awt.Dimension(50, 5));
-        jSeparator3.setPreferredSize(new java.awt.Dimension(50, 5));
-        jPanel3.add(jSeparator3);
+        jSeparator2.setBackground(new java.awt.Color(0, 204, 51));
+        jSeparator2.setForeground(new java.awt.Color(0, 204, 51));
+        jSeparator2.setMaximumSize(new java.awt.Dimension(50, 5));
+        jSeparator2.setMinimumSize(new java.awt.Dimension(50, 5));
+        jSeparator2.setPreferredSize(new java.awt.Dimension(50, 5));
+        jPanel24.add(jSeparator2);
+
+        jPanel25.add(jPanel24);
+
+        jPanel3.add(jPanel25);
 
         jTabbedPane1.addTab("Utwórz test", jPanel3);
 
@@ -581,6 +741,10 @@ public class Create extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void jTextField14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField14ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField14ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -597,7 +761,15 @@ public class Create extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -623,12 +795,24 @@ public class Create extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
+    private javax.swing.JPanel jPanel24;
+    private javax.swing.JPanel jPanel25;
+    private javax.swing.JPanel jPanel26;
+    private javax.swing.JPanel jPanel27;
+    private javax.swing.JPanel jPanel28;
+    private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel30;
+    private javax.swing.JPanel jPanel31;
+    private javax.swing.JPanel jPanel32;
+    private javax.swing.JPanel jPanel33;
+    private javax.swing.JPanel jPanel34;
+    private javax.swing.JPanel jPanel35;
+    private javax.swing.JPanel jPanel36;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -646,9 +830,13 @@ public class Create extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator15;
     private javax.swing.JSeparator jSeparator16;
     private javax.swing.JSeparator jSeparator17;
+    private javax.swing.JSeparator jSeparator18;
+    private javax.swing.JSeparator jSeparator19;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator20;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
@@ -661,6 +849,12 @@ public class Create extends javax.swing.JPanel {
     private javax.swing.JTextArea jTextArea4;
     private javax.swing.JTextArea jTextArea5;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField10;
+    private javax.swing.JTextField jTextField11;
+    private javax.swing.JTextField jTextField12;
+    private javax.swing.JTextField jTextField13;
+    private javax.swing.JTextField jTextField14;
+    private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
