@@ -40,6 +40,7 @@ public class ProfileView extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         Email = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 204, 51));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
@@ -91,6 +92,9 @@ public class ProfileView extends javax.swing.JPanel {
         jPanel4.add(jLabel4);
 
         add(jPanel4);
+
+        jButton1.setText("Zamknij");
+        add(jButton1);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -98,6 +102,7 @@ public class ProfileView extends javax.swing.JPanel {
     private javax.swing.JLabel Login;
     private javax.swing.JLabel Name;
     private javax.swing.JLabel SureName;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

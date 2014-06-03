@@ -6,11 +6,12 @@
 package PROZE.GUI;
 
 import EntitiesModels.QuestionEntity;
+import EntitiesModels.TestEntity;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
@@ -22,17 +23,89 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ManageTest extends javax.swing.JPanel {
 
-    private List<QuestionEntity> Tests = new ArrayList<>();
+    private enum EditorState {
 
-    /**
-     * Creates new form MenageTest
-     */
+        NO_TEST_LOADED, TEST_CREATED, TEST_EDITED
+
+    }
+
+    private EditorState editorState;
+    private TestEntity testEntity;
+
+    private final DefaultListModel<QuestionEntity> questionsListModel = new DefaultListModel<>();
+
     private void initTestContent() {
 
     }
 
+    /**
+     * Creates new form MenageTest
+     */
     public ManageTest() {
         initComponents();
+        this.setEditorState(EditorState.NO_TEST_LOADED);
+    }
+
+    private void setEditorState(EditorState state) {
+        switch (state) {
+            case NO_TEST_LOADED:
+                setContainerEnabled(this, false);
+                break;
+            case TEST_CREATED:
+                setContainerEnabled(this, false);
+                this.saveNameButton.setVisible(true);
+                this.nameField.setEditable(true);
+                this.nameField.setText("<Nazwa testu>");
+                this.saveNameButton.setEnabled(true);
+                this.nameField.setEnabled(true);
+                break;
+            case TEST_EDITED:
+                setContainerEnabled(this, true);
+                this.nameField.setEditable(false);
+        }
+    }
+
+    private static void setContainerEnabled(Container container, boolean enabled) {
+        for (Component c : container.getComponents()) {
+            c.setEnabled(enabled);
+            if (c instanceof Container) {
+                setContainerEnabled((Container) c, enabled);
+            }
+        }
+    }
+
+    public void loadTest(TestEntity testEntity) {
+        if (testEntity == null) {
+            throw new NullPointerException("TestEntity object cannot be null");
+        }
+        this.testEntity = testEntity;
+        this.initComponentsWithTestEntity();
+        this.setEditorState(EditorState.TEST_EDITED);
+    }
+
+    public void createNewTest() {
+        this.testEntity = null;
+        this.restoreComponentsState();
+        this.setEditorState(EditorState.TEST_CREATED);
+    }
+
+    public void resetTest() {
+        this.testEntity = null;
+        this.restoreComponentsState();
+        this.setEditorState(EditorState.NO_TEST_LOADED);
+    }
+
+    private void restoreComponentsState() {
+        this.nameField.setText("");
+        this.questionsListModel.removeAllElements();
+    }
+
+    private void initComponentsWithTestEntity() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public void setAllowedCategories(String[] categories) {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 
     /**
@@ -64,35 +137,28 @@ public class ManageTest extends javax.swing.JPanel {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
-        questionPopupMenu = new javax.swing.JPopupMenu();
-        editPopupMenuAction = new javax.swing.JMenuItem();
-        deletePopupMenuAction = new javax.swing.JMenuItem();
-        proposedQuestionPopupMenu = new javax.swing.JPopupMenu();
-        addPopupMenuAction = new javax.swing.JMenuItem();
-        deleteProposedPopupMenuAction = new javax.swing.JMenuItem();
         editDescriptionDialog = new javax.swing.JDialog();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTextArea3 = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         nameField = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         saveNameButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        categoryBox = new javax.swing.JComboBox();
+        addQuestionButton = new javax.swing.JButton();
+        editDescriptionButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList(this.Tests.toArray());
+        questionsList = new javax.swing.JList();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
+        proposedQuestionsList = new javax.swing.JList();
 
         editQuestionDialog.getContentPane().setLayout(new javax.swing.BoxLayout(editQuestionDialog.getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
@@ -267,25 +333,6 @@ public class ManageTest extends javax.swing.JPanel {
 
         editQuestionDialog.getContentPane().add(jTabbedPane3);
 
-        questionPopupMenu.setLabel("Pytanie");
-
-        editPopupMenuAction.setText("Edytuj");
-        editPopupMenuAction.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editPopupMenuActionActionPerformed(evt);
-            }
-        });
-        questionPopupMenu.add(editPopupMenuAction);
-
-        deletePopupMenuAction.setText("Usuń");
-        questionPopupMenu.add(deletePopupMenuAction);
-
-        addPopupMenuAction.setText("Dodaj");
-        proposedQuestionPopupMenu.add(addPopupMenuAction);
-
-        deleteProposedPopupMenuAction.setText("Usuń");
-        proposedQuestionPopupMenu.add(deleteProposedPopupMenuAction);
-
         jTextArea3.setColumns(20);
         jTextArea3.setRows(5);
         jScrollPane6.setViewportView(jTextArea3);
@@ -328,8 +375,6 @@ public class ManageTest extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jButton7.setText("Zapisz");
-
         setBackground(new java.awt.Color(0, 204, 51));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
@@ -340,7 +385,6 @@ public class ManageTest extends javax.swing.JPanel {
 
         nameField.setBackground(new java.awt.Color(240, 240, 240));
         nameField.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        nameField.setText("<Nazwa testu>");
         nameField.setBorder(null);
         nameField.setMaximumSize(new java.awt.Dimension(400, 2147483647));
         jPanel1.add(nameField);
@@ -358,24 +402,23 @@ public class ManageTest extends javax.swing.JPanel {
         jLabel3.setText("Kategoria:");
         jPanel5.add(jLabel3);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel5.add(jComboBox1);
+        jPanel5.add(categoryBox);
 
-        jButton2.setText("Dodaj pytanie");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        addQuestionButton.setText("Dodaj pytanie");
+        addQuestionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                addQuestionButtonActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton2);
+        jPanel5.add(addQuestionButton);
 
-        jButton1.setText("Edytuj opis");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        editDescriptionButton.setText("Edytuj opis");
+        editDescriptionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                editDescriptionButtonActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton1);
+        jPanel5.add(editDescriptionButton);
 
         jPanel1.add(jPanel5);
 
@@ -388,8 +431,9 @@ public class ManageTest extends javax.swing.JPanel {
 
         jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
 
-        jList1.setCellRenderer(new TestCellRenderer());
-        jScrollPane1.setViewportView(jList1);
+        questionsList.setCellRenderer(new TestCellRenderer());
+        questionsList.setModel(this.questionsListModel);
+        jScrollPane1.setViewportView(questionsList);
 
         jPanel3.add(jScrollPane1);
 
@@ -397,13 +441,7 @@ public class ManageTest extends javax.swing.JPanel {
 
         jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.LINE_AXIS));
 
-        jList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jList2.setComponentPopupMenu(proposedQuestionPopupMenu);
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(proposedQuestionsList);
 
         jPanel4.add(jScrollPane2);
 
@@ -414,10 +452,10 @@ public class ManageTest extends javax.swing.JPanel {
         add(jPanel2);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void addQuestionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addQuestionButtonActionPerformed
         this.editQuestionDialog.setVisible(true);
         this.editQuestionDialog.setSize(this.editQuestionDialog.getPreferredSize());
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_addQuestionButtonActionPerformed
 
     private void jTable2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTable2PropertyChange
 
@@ -435,11 +473,6 @@ public class ManageTest extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTable2KeyPressed
 
-    private void editPopupMenuActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPopupMenuActionActionPerformed
-        this.editQuestionDialog.setVisible(true);
-        this.editQuestionDialog.setSize(this.editQuestionDialog.getPreferredSize());
-    }//GEN-LAST:event_editPopupMenuActionActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.editQuestionDialog.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -450,40 +483,33 @@ public class ManageTest extends javax.swing.JPanel {
 
     private void saveNameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveNameButtonActionPerformed
         this.nameField.setEditable(false);
-        this.saveNameButton.setVisible(false);
+
     }//GEN-LAST:event_saveNameButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void editDescriptionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editDescriptionButtonActionPerformed
         this.editDescriptionDialog.setVisible(true);
         this.editDescriptionDialog.setSize(this.editDescriptionDialog.getPreferredSize());
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_editDescriptionButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem addPopupMenuAction;
-    private javax.swing.JMenuItem deletePopupMenuAction;
-    private javax.swing.JMenuItem deleteProposedPopupMenuAction;
+    private javax.swing.JButton addQuestionButton;
+    private javax.swing.JComboBox categoryBox;
+    private javax.swing.JButton editDescriptionButton;
     private javax.swing.JDialog editDescriptionDialog;
-    private javax.swing.JMenuItem editPopupMenuAction;
     private javax.swing.JDialog editQuestionDialog;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JList jList1;
-    private javax.swing.JList jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel16;
@@ -505,31 +531,10 @@ public class ManageTest extends javax.swing.JPanel {
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField nameField;
-    private javax.swing.JPopupMenu proposedQuestionPopupMenu;
-    private javax.swing.JPopupMenu questionPopupMenu;
+    private javax.swing.JList proposedQuestionsList;
+    private javax.swing.JList questionsList;
     private javax.swing.JButton saveNameButton;
     // End of variables declaration//GEN-END:variables
-
-    class TestEntry {
-
-        private final String title;
-
-        private final String author;
-
-        public TestEntry(String title, String author) {
-            this.title = title;
-            this.author = author;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public String getAuthor() {
-            return title;
-        }
-
-    }
 
     class TestCellRenderer extends JLabel implements ListCellRenderer {
 
@@ -539,6 +544,7 @@ public class ManageTest extends javax.swing.JPanel {
             setOpaque(true);
         }
 
+        @Override
         public Component getListCellRendererComponent(JList list, Object value,
                 int index, boolean isSelected, boolean cellHasFocus) {
             QuestionEntity entry = (QuestionEntity) value;
