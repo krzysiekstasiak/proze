@@ -5,12 +5,16 @@
  */
 package PROZE.GUI;
 
+import EntitiesModels.OpenQuestionEntity;
 import EntitiesModels.QuestionEntity;
+import EntitiesModels.QuestionProposition;
 import EntitiesModels.TestEntity;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.KeyEvent;
+import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -33,9 +37,22 @@ public class ManageTest extends javax.swing.JPanel {
     private TestEntity testEntity;
 
     private final DefaultListModel<QuestionEntity> questionsListModel = new DefaultListModel<>();
+    private final DefaultComboBoxModel<String> categoriesComboBoxModel = new DefaultComboBoxModel<>();
+    private final DefaultListModel<QuestionProposition> questionPropositionsListModel = new DefaultListModel<>();
 
     private void initTestContent() {
+        TestEntity test1 = new TestEntity(1, "Nazwa testu", "Nazwa grupy", new Date(), "Ja", true);
+        try {
+            test1.setDescription("Krótki opis");
+            QuestionEntity question1 = new OpenQuestionEntity();
+            question1.setContent("Pytanie1");
+            test1.addQuestion(question1);
+            test1.setCategory("Kategoria2");
+        } catch (IllegalAccessException ex) {
 
+        }
+        this.setAllowedCategories(new String[]{"Kategoria1", "Kategoria2"});
+        this.loadTest(test1);
     }
 
     /**
@@ -44,6 +61,7 @@ public class ManageTest extends javax.swing.JPanel {
     public ManageTest() {
         initComponents();
         this.setEditorState(EditorState.NO_TEST_LOADED);
+        this.initTestContent();
     }
 
     private void setEditorState(EditorState state) {
@@ -79,7 +97,7 @@ public class ManageTest extends javax.swing.JPanel {
             throw new NullPointerException("TestEntity object cannot be null");
         }
         this.testEntity = testEntity;
-        this.initComponentsWithTestEntity();
+        this.initComponentsWithTestEntity(testEntity);
         this.setEditorState(EditorState.TEST_EDITED);
     }
 
@@ -98,14 +116,37 @@ public class ManageTest extends javax.swing.JPanel {
     private void restoreComponentsState() {
         this.nameField.setText("");
         this.questionsListModel.removeAllElements();
+        throw new UnsupportedOperationException("Not implemented yet");
+        //TODO: Pytania proponowane - trzeba zrobić klasę i model
     }
 
-    private void initComponentsWithTestEntity() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    private void initComponentsWithTestEntity(TestEntity testEntity) {
+        this.nameField.setText(testEntity.getName());
+        selectCategoryFromTest(testEntity);
+        this.questionsListModel.removeAllElements();
+        for (QuestionEntity question : testEntity.getQuestions()) {
+            this.questionsListModel.addElement(question);
+        }
+    }
+
+    private void selectCategoryFromTest(TestEntity testEntity) throws IllegalArgumentException {
+        boolean found = false;
+        for (int i = 0; i < this.categoriesComboBoxModel.getSize(); ++i) {
+            if (this.categoriesComboBoxModel.getElementAt(i).equals(testEntity.getCategory())) {
+                this.categoriesComboBoxModel.setSelectedItem(this.categoriesComboBoxModel.getElementAt(i));
+                found = true;
+            }
+        }
+        if (!found) {
+            throw new IllegalArgumentException("Cannot find matching category in allowed categories list");
+        }
     }
 
     public void setAllowedCategories(String[] categories) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        this.categoriesComboBoxModel.removeAllElements();
+        for (String category : categories) {
+            this.categoriesComboBoxModel.addElement(category);
+        }
     }
 
     /**
@@ -402,6 +443,7 @@ public class ManageTest extends javax.swing.JPanel {
         jLabel3.setText("Kategoria:");
         jPanel5.add(jLabel3);
 
+        categoryBox.setModel(this.categoriesComboBoxModel);
         jPanel5.add(categoryBox);
 
         addQuestionButton.setText("Dodaj pytanie");
@@ -428,10 +470,15 @@ public class ManageTest extends javax.swing.JPanel {
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
 
         jTabbedPane1.setDoubleBuffered(true);
+        jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane1StateChanged(evt);
+            }
+        });
 
         jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
 
-        questionsList.setCellRenderer(new TestCellRenderer());
+        questionsList.setCellRenderer(new QuestionCellRenderer());
         questionsList.setModel(this.questionsListModel);
         jScrollPane1.setViewportView(questionsList);
 
@@ -441,6 +488,7 @@ public class ManageTest extends javax.swing.JPanel {
 
         jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.LINE_AXIS));
 
+        proposedQuestionsList.setModel(this.questionPropositionsListModel);
         jScrollPane2.setViewportView(proposedQuestionsList);
 
         jPanel4.add(jScrollPane2);
@@ -491,6 +539,13 @@ public class ManageTest extends javax.swing.JPanel {
         this.editDescriptionDialog.setSize(this.editDescriptionDialog.getPreferredSize());
     }//GEN-LAST:event_editDescriptionButtonActionPerformed
 
+    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
+        if (this.jTabbedPane1.getSelectedIndex() == 1) {
+            //TODO: Pobrać z bazy propozycje pytań (zajmę się tym) i usunąć kolejną linijkę ;)
+            System.out.println("Wybrano propozycje pytań");
+        }
+    }//GEN-LAST:event_jTabbedPane1StateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addQuestionButton;
     private javax.swing.JComboBox categoryBox;
@@ -536,19 +591,19 @@ public class ManageTest extends javax.swing.JPanel {
     private javax.swing.JButton saveNameButton;
     // End of variables declaration//GEN-END:variables
 
-    class TestCellRenderer extends JLabel implements ListCellRenderer {
+    class QuestionCellRenderer extends JLabel implements ListCellRenderer {
 
         private final Color HIGHLIGHT_COLOR = new Color(0, 0, 128);
 
-        public TestCellRenderer() {
+        public QuestionCellRenderer() {
             setOpaque(true);
         }
 
         @Override
         public Component getListCellRendererComponent(JList list, Object value,
                 int index, boolean isSelected, boolean cellHasFocus) {
-            QuestionEntity entry = (QuestionEntity) value;
-            setText(entry.getContent());
+            QuestionEntity question = (QuestionEntity) value;
+            setText(question.getContent());
             if (isSelected) {
                 setBackground(HIGHLIGHT_COLOR);
                 setForeground(Color.white);
