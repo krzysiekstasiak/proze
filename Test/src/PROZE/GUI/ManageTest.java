@@ -9,6 +9,7 @@ import EntitiesModels.OpenQuestionEntity;
 import EntitiesModels.QuestionEntity;
 import EntitiesModels.QuestionProposition;
 import EntitiesModels.TestEntity;
+import PROZE.GUI.EventListeners.TestEditorListener;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
@@ -18,6 +19,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
@@ -45,6 +48,7 @@ public class ManageTest extends javax.swing.JPanel {
     private final DefaultListModel<QuestionEntity> questionsListModel = new DefaultListModel<>();
     private final DefaultComboBoxModel<String> categoriesComboBoxModel = new DefaultComboBoxModel<>();
     private final DefaultListModel<QuestionProposition> questionPropositionsListModel = new DefaultListModel<>();
+    private final Set<TestEditorListener> testEditorListeners = new HashSet<>();
 
     private void initTestContent() {
         TestEntity test1 = new TestEntity(1, "Nazwa testu", "Nazwa grupy", new Date(), "Ja", true);
@@ -69,6 +73,14 @@ public class ManageTest extends javax.swing.JPanel {
         addQuestionPopupMenu();
         this.setEditorState(EditorState.NO_TEST_LOADED);
         this.initTestContent();
+    }
+
+    public void addTestEditorListener(TestEditorListener listener) {
+        this.testEditorListeners.add(listener);
+    }
+
+    public void removeTestEditorListener(TestEditorListener listener) {
+        this.testEditorListeners.remove(listener);
     }
 
     private void addQuestionPopupMenu() {
