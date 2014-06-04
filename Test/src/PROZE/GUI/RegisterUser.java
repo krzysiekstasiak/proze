@@ -10,12 +10,12 @@ package PROZE.GUI;
  *
  * @author Krzysztof
  */
-public class UserRegister extends javax.swing.JPanel {
+public class RegisterUser extends javax.swing.JPanel {
 
     /**
      * Creates new form UserRegister
      */
-    public UserRegister() {
+    public RegisterUser() {
         initComponents();
     }
     

@@ -9,12 +9,12 @@ package PROZE.GUI;
  *
  * @author Maciek
  */
-public class ProfileView extends javax.swing.JPanel {
+public class ViewProfile extends javax.swing.JPanel {
 
     /**
      * Creates new form ProfilViev
      */
-    public ProfileView() {
+    public ViewProfile() {
         initComponents();
     }
 
@@ -114,7 +114,7 @@ public class ProfileView extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator4;
     // End of variables declaration//GEN-END:variables
 
-    public ProfileView(String login, String name, String sureName, String email) {
+    public ViewProfile(String login, String name, String sureName, String email) {
         initComponents();
         jLabel1.setText(login);
         jLabel2.setText(name);

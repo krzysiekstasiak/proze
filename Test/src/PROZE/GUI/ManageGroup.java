@@ -69,7 +69,7 @@ public class ManageGroup extends javax.swing.JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 UserEntity userEntity = (UserEntity) jList2.getSelectedValue();
-                ProfileView profileView = new ProfileView(userEntity.getLogin(), userEntity.getFirstName(), userEntity.getLastName(), userEntity.getMailAddress());
+                ViewProfile profileView = new ViewProfile(userEntity.getLogin(), userEntity.getFirstName(), userEntity.getLastName(), userEntity.getMailAddress());
                 profileView.setVisible(true);
                 JFrame frame = new JFrame();
                 frame.add(profileView);
