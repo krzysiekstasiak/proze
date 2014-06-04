@@ -63,7 +63,7 @@ class EntitiesStoringManager {
 
     //TODO: Sensowna obsługa wyjątków
     private void writeTestEntityToFile(Path pathToTest, TestEntity testEntity) throws IOException {
-        if (!Files.exists(pathToTest)) {
+        if (!Files.exists(pathToTest, LinkOption.NOFOLLOW_LINKS)) {
             try {
                 this.fileCreateSemaphore.acquire();
             } catch (InterruptedException ex) {
@@ -88,7 +88,6 @@ class EntitiesStoringManager {
     }
 
     //Do poprawienia jak storeTestEntity()
-
     public Future<TestEntity> readTestEntity(long testID, String groupName) throws FileNotFoundException, IOException {
 
         Path pathToGroup = getPathToGroup(groupName, false);
