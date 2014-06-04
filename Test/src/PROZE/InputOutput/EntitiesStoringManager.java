@@ -9,7 +9,7 @@ package PROZE.InputOutput;
  *
  * @author Krzysztof
  */
-public class EntitiesStoringManager {
+class EntitiesStoringManager {
 
     private EntitiesStoringManager() {
     }

@@ -60,17 +60,17 @@ public class ManageTest extends javax.swing.JPanel {
         this.loadTest(test1);
     }
 
-        /**
+    /**
      * Creates new form MenageTest
      */
-               
-        public ManageTest() {
+    public ManageTest() {
         initComponents();
         addQuestionPopupMenu();
         this.setEditorState(EditorState.NO_TEST_LOADED);
         this.initTestContent();
     }
-              private void addQuestionPopupMenu() {
+
+    private void addQuestionPopupMenu() {
         JPopupMenu popupMenu1 = new JPopupMenu() {
 
             @Override
@@ -102,8 +102,9 @@ public class ManageTest extends javax.swing.JPanel {
         });
         popupMenu1.add(removeQuestion);
         this.questionsList.setComponentPopupMenu(popupMenu1);
-          
-              }
+
+    }
+
     private void setEditorState(EditorState state) {
         switch (state) {
             case NO_TEST_LOADED:
@@ -122,7 +123,8 @@ public class ManageTest extends javax.swing.JPanel {
                 this.nameField.setEditable(false);
         }
     }
-            private void addProposeQuestionPopupMenu() {
+
+    private void addProposeQuestionPopupMenu() {
         JPopupMenu popupMenu2 = new JPopupMenu() {
 
             @Override
@@ -154,7 +156,7 @@ public class ManageTest extends javax.swing.JPanel {
         });
         popupMenu2.add(addProposeQuestion);
         this.proposedQuestionsList.setComponentPopupMenu(popupMenu2);
-        
+
         JMenuItem removeProposeQuestion = new JMenuItem("Usuń pytanie");
         removeProposeQuestion.addActionListener(new ActionListener() {
 
@@ -231,6 +233,10 @@ public class ManageTest extends javax.swing.JPanel {
         for (String category : categories) {
             this.categoriesComboBoxModel.addElement(category);
         }
+    }
+
+    private void saveComponentsStateToTest() {
+
     }
 
     /**

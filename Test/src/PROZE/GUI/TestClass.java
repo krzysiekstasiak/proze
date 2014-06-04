@@ -18,6 +18,7 @@ public class TestClass {
     public static void main(String[] args) throws NamingException {
         InitialContext ic = new InitialContext();
         ServerAccessBeanRemote server = (ServerAccessBeanRemote) ic.lookup(ServerAccessBeanRemote.class.getCanonicalName());
+
     }
 
 }
