@@ -6,6 +6,13 @@
 
 package PROZE.GUI;
 
+import java.awt.Component;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+
 /**
  *
  * @author Maciek
@@ -17,8 +24,77 @@ public class Search extends javax.swing.JPanel {
      */
     public Search() {
         initComponents();
+        addGroupPopupMenu();
+        addTestPopupMenu();
     }
+     private void addGroupPopupMenu() {
+        JPopupMenu popupMenu1 = new JPopupMenu() {
 
+            @Override
+            public void show(Component invoker, int x, int y) {
+                int selectedIndex = jList3.getSelectedIndex();
+                if (selectedIndex == jList3.locationToIndex(new Point(x, y))) {
+                    super.show(invoker, x, y);
+                }
+            }
+
+        };
+
+        JMenuItem openGroup = new JMenuItem("Przeglądaj grupę");
+        openGroup.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        popupMenu1.add(openGroup);
+        JMenuItem joinGroup = new JMenuItem("Dołacz do grupy");
+        joinGroup.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        popupMenu1.add(joinGroup);
+        this.jList3.setComponentPopupMenu(popupMenu1);
+
+    }
+          private void addTestPopupMenu() {
+        JPopupMenu popupMenu2 = new JPopupMenu() {
+
+            @Override
+            public void show(Component invoker, int x, int y) {
+                int selectedIndex = jList2.getSelectedIndex();
+                if (selectedIndex == jList2.locationToIndex(new Point(x, y))) {
+                    super.show(invoker, x, y);
+                }
+            }
+
+        };
+
+        JMenuItem openTest = new JMenuItem("Rozwiąż test");
+        openTest.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        popupMenu2.add(openTest);
+        JMenuItem saveTest = new JMenuItem("Ściągnij test");
+        saveTest.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        popupMenu2.add(saveTest);
+        this.jList2.setComponentPopupMenu(popupMenu2);
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
