@@ -92,6 +92,17 @@ public class Search extends javax.swing.JPanel {
             }
         });
         popupMenu2.add(saveTest);
+//        if(editPermitted() == true){
+//            JMenuItem editTest = new JMenuItem("Edytuj test");
+//            editTest.addActionListener(new ActionListener() {
+//
+//                @Override
+//                public void actionPerformed(ActionEvent e) {
+//                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//                }
+//            });
+//            popupMenu2.add(editTest);
+//        }
         this.jList2.setComponentPopupMenu(popupMenu2);
 
     }
