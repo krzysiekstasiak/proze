@@ -48,7 +48,7 @@ class EntitiesStoringManager {
         }
     }
 
-    public Future<Boolean> storeTestEntity(final TestEntity testEntity) throws IOException {
+    public Future<Boolean> saveTestEntity(final TestEntity testEntity) throws IOException {
         return this.threadPool.submit(new Callable<Boolean>() {
 
             @Override
@@ -88,7 +88,7 @@ class EntitiesStoringManager {
     }
 
     //Do poprawienia jak storeTestEntity()
-    public Future<TestEntity> readTestEntity(long testID, String groupName) throws FileNotFoundException, IOException {
+    public Future<TestEntity> loadTestEntity(long testID, String groupName) throws FileNotFoundException, IOException {
 
         Path pathToGroup = getPathToGroup(groupName, false);
         Path pathToTest = pathToGroup.resolve(testID + ".dat");
@@ -122,7 +122,7 @@ class EntitiesStoringManager {
         return pathToGroup;
     }
 
-    public static EntitiesStoringManager getInstance() throws IOException {
+    public static synchronized EntitiesStoringManager getInstance() throws IOException {
         if (EntitiesStoringManagerHolder.INSTANCE == null) {
             EntitiesStoringManagerHolder.INSTANCE = new EntitiesStoringManager();
         }
