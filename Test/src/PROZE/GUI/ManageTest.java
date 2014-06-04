@@ -71,6 +71,7 @@ public class ManageTest extends javax.swing.JPanel {
     public ManageTest() {
         initComponents();
         addQuestionPopupMenu();
+        addProposeQuestionPopupMenu();
         this.setEditorState(EditorState.NO_TEST_LOADED);
         this.initTestContent();
     }
