@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package PROZE.GUI;
+
+import PROZE.GUI.EventListeners.NavigationListener;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -12,11 +15,21 @@ package PROZE.GUI;
  */
 public class LeftPanel extends javax.swing.JPanel {
 
+    private final Set<NavigationListener> navigationListeners = new HashSet<>();
+
     /**
      * Creates new form LeftPanel
      */
     public LeftPanel() {
         initComponents();
+    }
+
+    public void addNavigationListener(NavigationListener listener) {
+        this.navigationListeners.add(listener);
+    }
+
+    public void removeNavitaionListener(NavigationListener listener) {
+        this.navigationListeners.remove(listener);
     }
 
     /**
@@ -29,29 +42,59 @@ public class LeftPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        viewProfileButton = new javax.swing.JButton();
+        logoutButton = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        myGroupsButton = new javax.swing.JButton();
+        myTestsButton = new javax.swing.JButton();
+        searchButton = new javax.swing.JButton();
+        notificationsButton = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("<Nazwa użytkownika>");
 
-        jButton1.setText("Mój profil");
+        viewProfileButton.setText("Mój profil");
+        viewProfileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewProfileButtonActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Wyloguj");
+        logoutButton.setText("Wyloguj");
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Moje grupy");
+        myGroupsButton.setText("Moje grupy");
+        myGroupsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                myGroupsButtonActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Moje testy");
+        myTestsButton.setText("Moje testy");
+        myTestsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                myTestsButtonActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("Wyszukaj...");
+        searchButton.setText("Wyszukaj...");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
-        jButton6.setText("Brak powiadomień");
+        notificationsButton.setText("Brak powiadomień");
+        notificationsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                notificationsButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -64,12 +107,12 @@ public class LeftPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3)
-                            .addComponent(jButton4)
-                            .addComponent(jButton5)
-                            .addComponent(jButton6))
+                            .addComponent(viewProfileButton)
+                            .addComponent(logoutButton)
+                            .addComponent(myGroupsButton)
+                            .addComponent(myTestsButton)
+                            .addComponent(searchButton)
+                            .addComponent(notificationsButton))
                         .addGap(0, 109, Short.MAX_VALUE))
                     .addComponent(jSeparator2))
                 .addContainerGap())
@@ -80,35 +123,70 @@ public class LeftPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(viewProfileButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(logoutButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(myGroupsButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(myTestsButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
+                .addComponent(searchButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 273, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton6)
+                .addComponent(notificationsButton)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void viewProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewProfileButtonActionPerformed
+        for (NavigationListener listener : navigationListeners) {
+            listener.navigatedToViewProfile();
+        }
+    }//GEN-LAST:event_viewProfileButtonActionPerformed
+
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+        for (NavigationListener listener : navigationListeners) {
+            listener.navigatedToLogout();
+        }
+    }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void myGroupsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myGroupsButtonActionPerformed
+        for (NavigationListener listener : navigationListeners) {
+            listener.navigatedToMyGroups();
+        }
+    }//GEN-LAST:event_myGroupsButtonActionPerformed
+
+    private void myTestsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myTestsButtonActionPerformed
+        for (NavigationListener listener : navigationListeners) {
+            listener.navigatedToMyTests();
+        }
+    }//GEN-LAST:event_myTestsButtonActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        for (NavigationListener listener : navigationListeners) {
+            listener.navigatedToSearch();
+        }
+    }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void notificationsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationsButtonActionPerformed
+        for (NavigationListener listener : navigationListeners) {
+            listener.navigatedToNotifications();
+        }
+    }//GEN-LAST:event_notificationsButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JButton logoutButton;
+    private javax.swing.JButton myGroupsButton;
+    private javax.swing.JButton myTestsButton;
+    private javax.swing.JButton notificationsButton;
+    private javax.swing.JButton searchButton;
+    private javax.swing.JButton viewProfileButton;
     // End of variables declaration//GEN-END:variables
 }
