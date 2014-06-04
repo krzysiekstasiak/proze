@@ -29,9 +29,9 @@ public class EntitiesStoringManagerTest {
     @Test
     public void test1() throws IOException, InterruptedException, ExecutionException {
         TestEntity test = new TestEntity(1, "test", "grupa1", new Date(), "loginautora", true);
-        Future<Boolean> future = EntitiesStoringManager.getInstance().storeTestEntity(test);
+        Future<Boolean> future = EntitiesStoringManager.getInstance().saveTestEntity(test);
         future.get();
-        TestEntity gotTest = EntitiesStoringManager.getInstance().readTestEntity(1, "grupa1").get();
+        TestEntity gotTest = EntitiesStoringManager.getInstance().loadTestEntity(1, "grupa1").get();
         assert (gotTest.getAuthorLogin() == null ? test.getAuthorLogin() == null : gotTest.getAuthorLogin().equals(test.getAuthorLogin()));
     }
 }

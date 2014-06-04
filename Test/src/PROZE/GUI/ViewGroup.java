@@ -17,12 +17,12 @@ import javax.swing.JPopupMenu;
  *
  * @author Maciek
  */
-public class GrupView extends javax.swing.JPanel {
+public class ViewGroup extends javax.swing.JPanel {
 
     /**
      * Creates new form GrupView
      */
-    public GrupView() {
+    public ViewGroup() {
         initComponents();
         addTestPopupMenu();
     }

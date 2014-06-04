@@ -27,6 +27,7 @@ public class TestForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        grupView1 = new PROZE.GUI.ViewGroup();
         manageTest1 = new PROZE.GUI.ManageTest();
         manageGroup1 = new PROZE.GUI.ManageGroup();
 
@@ -74,6 +75,7 @@ public class TestForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private PROZE.GUI.ViewGroup grupView1;
     private PROZE.GUI.ManageGroup manageGroup1;
     private PROZE.GUI.ManageTest manageTest1;
     // End of variables declaration//GEN-END:variables
