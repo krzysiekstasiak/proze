@@ -6,6 +6,13 @@
 
 package PROZE.GUI;
 
+import java.awt.Component;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+
 /**
  *
  * @author Maciek
@@ -17,8 +24,53 @@ public class GrupView extends javax.swing.JPanel {
      */
     public GrupView() {
         initComponents();
+        addTestPopupMenu();
     }
+          private void addTestPopupMenu() {
+        JPopupMenu popupMenu = new JPopupMenu() {
 
+            @Override
+            public void show(Component invoker, int x, int y) {
+                int selectedIndex = jList1.getSelectedIndex();
+                if (selectedIndex == jList1.locationToIndex(new Point(x, y))) {
+                    super.show(invoker, x, y);
+                }
+            }
+
+        };
+
+        JMenuItem openTest = new JMenuItem("Rozwiąż test");
+        openTest.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        popupMenu.add(openTest);
+        JMenuItem saveTest = new JMenuItem("Ściągnij test");
+        saveTest.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        popupMenu.add(saveTest);
+//        if(editPermitted() == true){
+//            JMenuItem editTest = new JMenuItem("Edytuj test");
+//            editTest.addActionListener(new ActionListener() {
+//
+//                @Override
+//                public void actionPerformed(ActionEvent e) {
+//                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//                }
+//            });
+//            popupMenu.add(editTest);
+//        }
+        this.jList1.setComponentPopupMenu(popupMenu);
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,7 +79,6 @@ public class GrupView extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jSeparator2 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
@@ -40,8 +91,8 @@ public class GrupView extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jSeparator5 = new javax.swing.JSeparator();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
 
@@ -109,52 +160,16 @@ public class GrupView extends javax.swing.JPanel {
         jSeparator5.setPreferredSize(new java.awt.Dimension(5, 10));
         jPanel2.add(jSeparator5);
 
-        jScrollPane1.setBorder(new javax.swing.border.MatteBorder(null));
-        jScrollPane1.setAlignmentX(0.0F);
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(452, 402));
 
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jLabel1, org.jdesktop.beansbinding.ELProperty.create("${background}"), jScrollPane1, org.jdesktop.beansbinding.BeanProperty.create("foreground"));
-        bindingGroup.addBinding(binding);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Nazwa", "Autor", "Opis"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
+        jList1.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
-        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(100);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(100);
-            jTable1.getColumnModel().getColumn(1).setMinWidth(100);
-            jTable1.getColumnModel().getColumn(1).setMaxWidth(100);
-        }
+        jScrollPane2.setViewportView(jList1);
 
-        jPanel2.add(jScrollPane1);
+        jPanel2.add(jScrollPane2);
 
         jSeparator4.setBackground(new java.awt.Color(0, 204, 51));
         jSeparator4.setForeground(new java.awt.Color(0, 204, 51));
@@ -171,33 +186,24 @@ public class GrupView extends javax.swing.JPanel {
         jSeparator6.setMinimumSize(new java.awt.Dimension(0, 5));
         jSeparator6.setPreferredSize(new java.awt.Dimension(0, 5));
         add(jSeparator6);
-
-        bindingGroup.bind();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        if(evt.getClickCount()==2){
-            //TODO: Otworzyć edytor testu
-        }
-    }//GEN-LAST:event_jTable1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JTable jTable1;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
