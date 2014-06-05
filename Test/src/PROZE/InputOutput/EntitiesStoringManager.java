@@ -6,6 +6,7 @@
 package PROZE.InputOutput;
 
 import EntitiesModels.TestEntity;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -84,24 +85,44 @@ class EntitiesStoringManager {
             buffer.put(byteArray);
             lock.release();
         }
-
     }
 
     //Do poprawienia jak storeTestEntity()
-    public Future<TestEntity> loadTestEntity(long testID, String groupName) throws FileNotFoundException, IOException {
-
-        Path pathToGroup = getPathToGroup(groupName, false);
-        Path pathToTest = pathToGroup.resolve(testID + ".dat");
-        final ObjectInputStream inputStream = new ObjectInputStream(Files.newInputStream(pathToTest));
+    public Future<TestEntity> loadTestEntity(final long testID, final String groupName) throws FileNotFoundException, IOException {
         return this.threadPool.submit(new Callable<TestEntity>() {
 
             @Override
             public TestEntity call() throws Exception {
-                inputStream.readObject();
-                return (TestEntity) inputStream.readObject();
+                Path pathToGroup = getPathToGroup(groupName, false);
+                Path pathToTest = pathToGroup.resolve(testID + ".dat");
+                return readTestEntityFromFile(pathToTest);
             }
-        });
 
+        });
+    }
+
+    private TestEntity readTestEntityFromFile(Path pathToTest) throws IOException, ClassNotFoundException {
+        if (!Files.exists(pathToTest, LinkOption.NOFOLLOW_LINKS)) {
+            try {
+                this.fileCreateSemaphore.acquire();
+            } catch (InterruptedException ex) {
+            }
+            Files.createFile(pathToTest);
+            this.fileCreateSemaphore.release();
+        }
+        byte[] byteArray;
+        try (FileChannel fileChannel = FileChannel.open(pathToTest, StandardOpenOption.READ, StandardOpenOption.WRITE)) {
+            FileLock lock = fileChannel.lock();
+            ByteBuffer buffer = fileChannel.map(FileChannel.MapMode.READ_WRITE, 0, fileChannel.size());
+            byteArray = new byte[(int) fileChannel.size()];
+            buffer.get(byteArray);
+            lock.release();
+        }
+        try (ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArray);
+                ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream)) {
+            objectInputStream.readObject();
+            return (TestEntity) objectInputStream.readObject();
+        }
     }
 
     private Path getPathToGroup(String groupName, boolean create) throws FileNotFoundException, IOException {
