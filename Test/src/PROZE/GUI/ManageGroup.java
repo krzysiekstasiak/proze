@@ -13,7 +13,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JMenuItem;
@@ -68,12 +67,7 @@ public class ManageGroup extends javax.swing.JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                UserEntity userEntity = (UserEntity) jList2.getSelectedValue();
-                ViewProfile profileView = new ViewProfile(userEntity.getLogin(), userEntity.getFirstName(), userEntity.getLastName(), userEntity.getMailAddress());
-                profileView.setVisible(true);
-                JFrame frame = new JFrame();
-                frame.add(profileView);
-                frame.setVisible(true);
+                viewProfileDialog.setVisible(true);
             }
         });
         popupMenu.add(viewProfileMenuItem);
@@ -99,7 +93,7 @@ public class ManageGroup extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 = new javax.swing.JDialog();
+        addMemberDialog = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
@@ -115,6 +109,21 @@ public class ManageGroup extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
+        viewProfileDialog = new javax.swing.JDialog();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        Login = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        Name = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        SureName = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        Email = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        closeViewProfileDialog = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -125,7 +134,7 @@ public class ManageGroup extends javax.swing.JPanel {
         jScrollPane4 = new javax.swing.JScrollPane();
         jList3 = new javax.swing.JList();
 
-        jDialog1.getContentPane().setLayout(new javax.swing.BoxLayout(jDialog1.getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
+        addMemberDialog.getContentPane().setLayout(new javax.swing.BoxLayout(addMemberDialog.getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 51));
         jPanel1.setForeground(new java.awt.Color(0, 204, 51));
@@ -214,7 +223,85 @@ public class ManageGroup extends javax.swing.JPanel {
         jSeparator2.setPreferredSize(new java.awt.Dimension(0, 10));
         jPanel1.add(jSeparator2);
 
-        jDialog1.getContentPane().add(jPanel1);
+        addMemberDialog.getContentPane().add(jPanel1);
+
+        viewProfileDialog.setTitle("Zobacz profil");
+        viewProfileDialog.setMaximumSize(new java.awt.Dimension(280, 400));
+        viewProfileDialog.setMinimumSize(new java.awt.Dimension(280, 400));
+        viewProfileDialog.setPreferredSize(new java.awt.Dimension(280, 400));
+        viewProfileDialog.setResizable(false);
+
+        jPanel5.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel5.setMaximumSize(new java.awt.Dimension(283, 361));
+        jPanel5.setMinimumSize(new java.awt.Dimension(283, 361));
+        jPanel5.setPreferredSize(new java.awt.Dimension(283, 361));
+        jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.Y_AXIS));
+
+        jPanel6.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel6.setLayout(new java.awt.GridLayout());
+
+        Login.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Login.setText("            Login:");
+        jPanel6.add(Login);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel6.add(jLabel5);
+
+        jPanel5.add(jPanel6);
+
+        jPanel7.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel7.setLayout(new java.awt.GridLayout());
+
+        Name.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Name.setText("            Imie:");
+        jPanel7.add(Name);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel7.add(jLabel6);
+
+        jPanel5.add(jPanel7);
+
+        jPanel8.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel8.setLayout(new java.awt.GridLayout());
+
+        SureName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        SureName.setText("            Nazwisko:");
+        jPanel8.add(SureName);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel8.add(jLabel7);
+
+        jPanel5.add(jPanel8);
+
+        jPanel9.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel9.setLayout(new java.awt.GridLayout());
+
+        Email.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Email.setText("            Email:");
+        jPanel9.add(Email);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel9.add(jLabel8);
+
+        jPanel5.add(jPanel9);
+
+        closeViewProfileDialog.setText("Zamknij");
+        jPanel5.add(closeViewProfileDialog);
+
+        javax.swing.GroupLayout viewProfileDialogLayout = new javax.swing.GroupLayout(viewProfileDialog.getContentPane());
+        viewProfileDialog.getContentPane().setLayout(viewProfileDialogLayout);
+        viewProfileDialogLayout.setHorizontalGroup(
+            viewProfileDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 283, Short.MAX_VALUE)
+            .addGroup(viewProfileDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        viewProfileDialogLayout.setVerticalGroup(
+            viewProfileDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 361, Short.MAX_VALUE)
+            .addGroup(viewProfileDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         setBackground(new java.awt.Color(0, 204, 51));
         setMinimumSize(new java.awt.Dimension(300, 300));
@@ -304,15 +391,24 @@ public class ManageGroup extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Email;
+    private javax.swing.JLabel Login;
+    private javax.swing.JLabel Name;
+    private javax.swing.JLabel SureName;
+    private javax.swing.JDialog addMemberDialog;
+    private javax.swing.JButton closeViewProfileDialog;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JList jList1;
     private javax.swing.JList jList2;
     private javax.swing.JList jList3;
@@ -320,6 +416,11 @@ public class ManageGroup extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -329,6 +430,7 @@ public class ManageGroup extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JDialog viewProfileDialog;
     // End of variables declaration//GEN-END:variables
 
     class UserCellRenderer extends JLabel implements ListCellRenderer {
