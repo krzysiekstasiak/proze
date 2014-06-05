@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package PROZE.GUI;
 
+import EntitiesModels.TestDescription;
 import java.awt.Component;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.DefaultListModel;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
@@ -19,6 +20,9 @@ import javax.swing.JPopupMenu;
  */
 public class ViewGroup extends javax.swing.JPanel {
 
+    private final DefaultListModel<TestDescription> testsListModel = new DefaultListModel<>();
+    private JMenuItem editTestPopupOption;
+
     /**
      * Creates new form GrupView
      */
@@ -26,13 +30,14 @@ public class ViewGroup extends javax.swing.JPanel {
         initComponents();
         addTestPopupMenu();
     }
-          private void addTestPopupMenu() {
+
+    private void addTestPopupMenu() {
         JPopupMenu popupMenu = new JPopupMenu() {
 
             @Override
             public void show(Component invoker, int x, int y) {
-                int selectedIndex = jList1.getSelectedIndex();
-                if (selectedIndex == jList1.locationToIndex(new Point(x, y))) {
+                int selectedIndex = testsList.getSelectedIndex();
+                if (selectedIndex == testsList.locationToIndex(new Point(x, y))) {
                     super.show(invoker, x, y);
                 }
             }
@@ -57,20 +62,20 @@ public class ViewGroup extends javax.swing.JPanel {
             }
         });
         popupMenu.add(saveTest);
-//        if(editPermitted() == true){
-//            JMenuItem editTest = new JMenuItem("Edytuj test");
-//            editTest.addActionListener(new ActionListener() {
-//
-//                @Override
-//                public void actionPerformed(ActionEvent e) {
-//                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//                }
-//            });
-//            popupMenu.add(editTest);
-//        }
-        this.jList1.setComponentPopupMenu(popupMenu);
+
+        this.editTestPopupOption = new JMenuItem("Edytuj test");
+        this.editTestPopupOption.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+
+        this.testsList.setComponentPopupMenu(popupMenu);
 
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,12 +92,14 @@ public class ViewGroup extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        addTestButton = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jSeparator5 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        testsList = new javax.swing.JList();
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
 
@@ -139,14 +146,39 @@ public class ViewGroup extends javax.swing.JPanel {
         jSeparator3.setPreferredSize(new java.awt.Dimension(0, 10));
         add(jSeparator3);
 
-        jPanel4.setBackground(new java.awt.Color(0, 204, 51));
-        jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.LINE_AXIS));
-
         jLabel3.setBackground(new java.awt.Color(0, 204, 51));
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Testy");
-        jPanel4.add(jLabel3);
 
+        addTestButton.setText("Dodaj test");
+        addTestButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addTestButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
+                .addComponent(addTestButton, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addTestButton)))
+        );
+
+        add(jPanel5);
+
+        jPanel4.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.LINE_AXIS));
         add(jPanel4);
 
         jPanel2.setBackground(new java.awt.Color(0, 204, 51));
@@ -162,12 +194,13 @@ public class ViewGroup extends javax.swing.JPanel {
 
         jScrollPane2.setPreferredSize(new java.awt.Dimension(452, 402));
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+        testsList.setModel(this.testsListModel);
+        testsList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                testsListValueChanged(evt);
+            }
         });
-        jScrollPane2.setViewportView(jList1);
+        jScrollPane2.setViewportView(testsList);
 
         jPanel2.add(jScrollPane2);
 
@@ -188,16 +221,29 @@ public class ViewGroup extends javax.swing.JPanel {
         add(jSeparator6);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addTestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTestButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addTestButtonActionPerformed
+
+    //Nie wiem, czy to będzie dobrze działało
+    private void testsListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_testsListValueChanged
+        if (this.testsListModel.elementAt(this.testsList.getSelectedIndex()).isEditable()) {
+            this.testsList.getComponentPopupMenu().add(this.editTestPopupOption);
+        } else {
+            this.testsList.getComponentPopupMenu().remove(this.editTestPopupOption);
+        }
+    }//GEN-LAST:event_testsListValueChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addTestButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -205,5 +251,6 @@ public class ViewGroup extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JList testsList;
     // End of variables declaration//GEN-END:variables
 }

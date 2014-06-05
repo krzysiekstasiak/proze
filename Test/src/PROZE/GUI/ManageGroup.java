@@ -102,12 +102,12 @@ public class ManageGroup extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jSeparator6 = new javax.swing.JSeparator();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        allUsersList = new javax.swing.JList();
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jPanel4 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        addMemberButton = new javax.swing.JButton();
+        cancelAddingMemberButton = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         viewProfileDialog = new javax.swing.JDialog();
         jPanel5 = new javax.swing.JPanel();
@@ -126,11 +126,11 @@ public class ManageGroup extends javax.swing.JPanel {
         closeViewProfileDialog = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        createNewTestButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList(this.members.toArray());
-        jButton2 = new javax.swing.JButton();
+        chooseMemberButton = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jList3 = new javax.swing.JList();
 
@@ -174,12 +174,12 @@ public class ManageGroup extends javax.swing.JPanel {
         jSeparator6.setPreferredSize(new java.awt.Dimension(10, 10));
         jPanel3.add(jSeparator6);
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
+        allUsersList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane3.setViewportView(jList1);
+        jScrollPane3.setViewportView(allUsersList);
 
         jPanel3.add(jScrollPane3);
 
@@ -203,16 +203,21 @@ public class ManageGroup extends javax.swing.JPanel {
         jPanel4.setForeground(new java.awt.Color(0, 204, 51));
         jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.LINE_AXIS));
 
-        jButton3.setText("Dodaj");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        addMemberButton.setText("Dodaj");
+        addMemberButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                addMemberButtonActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton3);
+        jPanel4.add(addMemberButton);
 
-        jButton4.setText("Anuluj");
-        jPanel4.add(jButton4);
+        cancelAddingMemberButton.setText("Anuluj");
+        cancelAddingMemberButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelAddingMemberButtonActionPerformed(evt);
+            }
+        });
+        jPanel4.add(cancelAddingMemberButton);
 
         jPanel1.add(jPanel4);
 
@@ -286,6 +291,11 @@ public class ManageGroup extends javax.swing.JPanel {
         jPanel5.add(jPanel9);
 
         closeViewProfileDialog.setText("Zamknij");
+        closeViewProfileDialog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeViewProfileDialogActionPerformed(evt);
+            }
+        });
         jPanel5.add(closeViewProfileDialog);
 
         javax.swing.GroupLayout viewProfileDialogLayout = new javax.swing.GroupLayout(viewProfileDialog.getContentPane());
@@ -298,7 +308,7 @@ public class ManageGroup extends javax.swing.JPanel {
         );
         viewProfileDialogLayout.setVerticalGroup(
             viewProfileDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 361, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
             .addGroup(viewProfileDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -312,10 +322,10 @@ public class ManageGroup extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Nazwa grupy");
 
-        jButton1.setText("Dodaj nowy test");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        createNewTestButton.setText("Dodaj nowy test");
+        createNewTestButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                createNewTestButtonActionPerformed(evt);
             }
         });
 
@@ -324,10 +334,10 @@ public class ManageGroup extends javax.swing.JPanel {
         jList2.setCellRenderer(new UserCellRenderer());
         jScrollPane2.setViewportView(jList2);
 
-        jButton2.setText("Dodaj użytkownika");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        chooseMemberButton.setText("Dodaj użytkownika");
+        chooseMemberButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                chooseMemberButtonActionPerformed(evt);
             }
         });
 
@@ -349,11 +359,11 @@ public class ManageGroup extends javax.swing.JPanel {
                                 .addGap(39, 39, 39)
                                 .addComponent(jLabel1)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addComponent(createNewTestButton))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)))
+                        .addComponent(chooseMemberButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -365,42 +375,51 @@ public class ManageGroup extends javax.swing.JPanel {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1))
-                    .addComponent(jButton1))
+                    .addComponent(createNewTestButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jButton2))
+                    .addComponent(chooseMemberButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void createNewTestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewTestButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_createNewTestButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void chooseMemberButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseMemberButtonActionPerformed
+        this.addMemberDialog.setVisible(true);
+    }//GEN-LAST:event_chooseMemberButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void addMemberButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMemberButtonActionPerformed
+        this.addMemberDialog.setVisible(false);
+    }//GEN-LAST:event_addMemberButtonActionPerformed
+
+    private void closeViewProfileDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeViewProfileDialogActionPerformed
+        this.viewProfileDialog.setVisible(false);
+    }//GEN-LAST:event_closeViewProfileDialogActionPerformed
+
+    private void cancelAddingMemberButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelAddingMemberButtonActionPerformed
+        this.addMemberDialog.setVisible(false);
+    }//GEN-LAST:event_cancelAddingMemberButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Email;
     private javax.swing.JLabel Login;
     private javax.swing.JLabel Name;
     private javax.swing.JLabel SureName;
+    private javax.swing.JButton addMemberButton;
     private javax.swing.JDialog addMemberDialog;
+    private javax.swing.JList allUsersList;
+    private javax.swing.JButton cancelAddingMemberButton;
+    private javax.swing.JButton chooseMemberButton;
     private javax.swing.JButton closeViewProfileDialog;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton createNewTestButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -409,7 +428,6 @@ public class ManageGroup extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JList jList1;
     private javax.swing.JList jList2;
     private javax.swing.JList jList3;
     private javax.swing.JPanel jPanel1;
