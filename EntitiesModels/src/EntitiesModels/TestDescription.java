@@ -24,6 +24,7 @@ public class TestDescription implements Serializable {
     private final String category;
     private final String description;
     private final int rating;
+    private final boolean editable;
 
     /**
      * Konstruktor utworzony w celu testowania GUI. Nie należy tworzyć obiektów
@@ -40,7 +41,7 @@ public class TestDescription implements Serializable {
      * @param description Opis testu.
      * @param rating Ocena testu (zapisana zostanie w skali od 1 do 10).
      */
-    public TestDescription(long ID, String name, Date lastModification, String groupName, String authorLogin, String category, String description, int rating) {
+    public TestDescription(long ID, String name, Date lastModification, String groupName, String authorLogin, String category, String description, int rating, boolean editable) {
         this.ID = ID;
         this.name = name;
         this.lastModification = lastModification;
@@ -49,6 +50,7 @@ public class TestDescription implements Serializable {
         this.category = category;
         this.description = description;
         this.rating = ((rating - 1) % 10) + 1;
+        this.editable = editable;
     }
 
     /**
@@ -121,6 +123,10 @@ public class TestDescription implements Serializable {
      */
     public int getRating() {
         return rating;
+    }
+
+    public boolean isEditable() {
+        return editable;
     }
 
 }
