@@ -83,7 +83,40 @@ public class ManageGroup extends javax.swing.JPanel {
         popupMenu.add(removeMemberMenuItem);
         this.jList2.setComponentPopupMenu(popupMenu);
     }
+    
+    private void addTestListPopupMenu(){
+         JPopupMenu popupMenu2 = new JPopupMenu() {
 
+            @Override
+            public void show(Component invoker, int x, int y) {
+                int selectedIndex = jList3.getSelectedIndex();
+                if (selectedIndex == jList3.locationToIndex(new Point(x, y))) {
+                    super.show(invoker, x, y);
+                }
+            }
+
+        };
+
+        JMenuItem menageTestMenuItem = new JMenuItem("Edytuj test");
+        menageTestMenuItem.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); 
+            }
+        });
+        popupMenu2.add(menageTestMenuItem);
+        
+        JMenuItem removeTestMenuItem = new JMenuItem("Usuń test");
+        removeTestMenuItem.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); 
+            }
+        });
+        popupMenu2.add(removeTestMenuItem);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
