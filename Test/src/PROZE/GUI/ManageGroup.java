@@ -47,7 +47,7 @@ public class ManageGroup extends javax.swing.JPanel {
 
     private enum ManagerState {
 
-        NO_GROUP_LOADED, GROUP_CREATED, GROUP_MANAGED
+        NO_GROUP_LOADED, GROUP_CREATED, GROUP_MANAGED, WAITING
 
     }
 
@@ -58,6 +58,7 @@ public class ManageGroup extends javax.swing.JPanel {
     private final Set<GroupManagerListener> groupManagerListeners = new HashSet<>();
     private final Set<NavigationListener> navigationListeners = new HashSet<>();
     private String temporaryDescription;
+    private WaitingThread waitingThread = new WaitingThread();
 
     /**
      * Creates new form MenageGroup
@@ -194,6 +195,7 @@ public class ManageGroup extends javax.swing.JPanel {
             case NO_GROUP_LOADED:
                 setContainerEnabled(this, false);
                 this.nameField.setText("");
+                this.waitingThread.deactivate();
                 break;
             case GROUP_CREATED:
                 setContainerEnabled(this, false);
@@ -201,12 +203,19 @@ public class ManageGroup extends javax.swing.JPanel {
                 this.nameField.setEditable(true);
                 this.nameField.setText("<Nazwa grupy>");
                 this.saveButton.setEnabled(true);
+                this.waitingThread.deactivate();
                 break;
             case GROUP_MANAGED:
                 setContainerEnabled(this, true);
                 this.nameField.setEditable(false);
+                this.waitingThread.deactivate();
                 break;
+            case WAITING:
+                setContainerEnabled(this, false);
+                this.waitingThread = new WaitingThread();
+                this.waitingThread.start();
         }
+        this.managerState = state;
     }
 
     private void restoreComponentsState() {
@@ -214,6 +223,7 @@ public class ManageGroup extends javax.swing.JPanel {
         this.descriptionTextArea.setText("");
         this.usersListModel.clear();
         this.testsListModel.clear();
+        this.progressBar.setValue(0);
     }
 
     public void resetGroupEntity() {
@@ -307,6 +317,7 @@ public class ManageGroup extends javax.swing.JPanel {
         editDescriptionButton = new javax.swing.JButton();
         saveButton = new javax.swing.JButton();
         nameField = new javax.swing.JTextField();
+        progressBar = new javax.swing.JProgressBar();
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 51));
         jPanel1.setForeground(new java.awt.Color(0, 204, 51));
@@ -594,6 +605,7 @@ public class ManageGroup extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(progressBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane2)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
@@ -631,13 +643,16 @@ public class ManageGroup extends javax.swing.JPanel {
                     .addComponent(chooseMemberButton)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void createNewTestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewTestButtonActionPerformed
-        // TODO add your handling code here:
+        for (NavigationListener listener : this.navigationListeners) {
+            listener.navigatedToTestEditor(null, true);
+        }
     }//GEN-LAST:event_createNewTestButtonActionPerformed
 
     private void chooseMemberButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseMemberButtonActionPerformed
@@ -717,6 +732,7 @@ public class ManageGroup extends javax.swing.JPanel {
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JButton okDescriptionDialogButton;
+    private javax.swing.JProgressBar progressBar;
     private javax.swing.JButton saveButton;
     private javax.swing.JList testsList;
     private javax.swing.JList usersList;
@@ -744,6 +760,33 @@ public class ManageGroup extends javax.swing.JPanel {
                 setForeground(Color.black);
             }
             return this;
+        }
+    }
+
+    class WaitingThread extends Thread {
+
+        boolean active;
+
+        @Override
+        public void run() {
+            this.active = true;
+            int value = 0;
+            while (active) {
+                if (value == 100) {
+                    value = 0;
+                }
+                progressBar.setValue(value);
+                value += 4;
+                progressBar.repaint();
+                try {
+                    sleep(20);
+                } catch (InterruptedException ex) {
+                }
+            }
+        }
+
+        public void deactivate() {
+            this.active = false;
         }
     }
 }

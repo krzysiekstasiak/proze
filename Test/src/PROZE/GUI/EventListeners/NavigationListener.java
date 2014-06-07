@@ -6,7 +6,7 @@
 package PROZE.GUI.EventListeners;
 
 import EntitiesModels.GroupEntity;
-import EntitiesModels.TestEntity;
+import EntitiesModels.TestDescription;
 
 /**
  *
@@ -24,7 +24,7 @@ public interface NavigationListener {
 
     public void navigatedToNotifications();
 
-    public void navigatedToTestEditor(TestEntity editedTest, boolean createNewTest);
+    public void navigatedToTestEditor(TestDescription editedTest, boolean createNewTest);
 
     public void navigatedToManageGroup(GroupEntity group);
 
