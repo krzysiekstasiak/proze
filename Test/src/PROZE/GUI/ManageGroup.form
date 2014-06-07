@@ -427,6 +427,9 @@
           <Color blue="33" green="cc" red="0" type="rgb"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="windowActivated" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="editDescriptionDialogWindowActivated"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -434,10 +437,10 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace pref="254" max="32767" attributes="0"/>
-                          <Component id="saveDescriptionButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="270" max="32767" attributes="0"/>
+                          <Component id="okDescriptionDialogButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="cancelEditingDescriptionButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="canelDescriptionDialogButton" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                   </Group>
@@ -452,8 +455,8 @@
                   <Component id="jScrollPane1" pref="249" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="cancelEditingDescriptionButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="saveDescriptionButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="canelDescriptionDialogButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="okDescriptionDialogButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -476,15 +479,21 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="cancelEditingDescriptionButton">
+        <Component class="javax.swing.JButton" name="canelDescriptionDialogButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Anuluj"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="canelDescriptionDialogButtonActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="saveDescriptionButton">
+        <Component class="javax.swing.JButton" name="okDescriptionDialogButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Zapisz"/>
+            <Property name="text" type="java.lang.String" value="OK"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="okDescriptionDialogButtonActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -637,6 +646,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Opis"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editDescriptionButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="saveButton">
       <Properties>

@@ -57,6 +57,7 @@ public class ManageGroup extends javax.swing.JPanel {
     private final DefaultListModel<UserEntity> usersListModel = new DefaultListModel<>();
     private final Set<GroupManagerListener> groupManagerListeners = new HashSet<>();
     private final Set<NavigationListener> navigationListeners = new HashSet<>();
+    private String temporaryDescription;
 
     /**
      * Creates new form MenageGroup
@@ -293,8 +294,8 @@ public class ManageGroup extends javax.swing.JPanel {
         editDescriptionDialog = new javax.swing.JDialog();
         jScrollPane1 = new javax.swing.JScrollPane();
         descriptionTextArea = new javax.swing.JTextArea();
-        cancelEditingDescriptionButton = new javax.swing.JButton();
-        saveDescriptionButton = new javax.swing.JButton();
+        canelDescriptionDialogButton = new javax.swing.JButton();
+        okDescriptionDialogButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         createNewTestButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -494,14 +495,29 @@ public class ManageGroup extends javax.swing.JPanel {
         );
 
         editDescriptionDialog.setBackground(new java.awt.Color(0, 204, 51));
+        editDescriptionDialog.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                editDescriptionDialogWindowActivated(evt);
+            }
+        });
 
         descriptionTextArea.setColumns(20);
         descriptionTextArea.setRows(5);
         jScrollPane1.setViewportView(descriptionTextArea);
 
-        cancelEditingDescriptionButton.setText("Anuluj");
+        canelDescriptionDialogButton.setText("Anuluj");
+        canelDescriptionDialogButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                canelDescriptionDialogButtonActionPerformed(evt);
+            }
+        });
 
-        saveDescriptionButton.setText("Zapisz");
+        okDescriptionDialogButton.setText("OK");
+        okDescriptionDialogButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okDescriptionDialogButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout editDescriptionDialogLayout = new javax.swing.GroupLayout(editDescriptionDialog.getContentPane());
         editDescriptionDialog.getContentPane().setLayout(editDescriptionDialogLayout);
@@ -510,10 +526,10 @@ public class ManageGroup extends javax.swing.JPanel {
             .addGroup(editDescriptionDialogLayout.createSequentialGroup()
                 .addGroup(editDescriptionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(editDescriptionDialogLayout.createSequentialGroup()
-                        .addContainerGap(254, Short.MAX_VALUE)
-                        .addComponent(saveDescriptionButton)
+                        .addContainerGap(270, Short.MAX_VALUE)
+                        .addComponent(okDescriptionDialogButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cancelEditingDescriptionButton))
+                        .addComponent(canelDescriptionDialogButton))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -524,8 +540,8 @@ public class ManageGroup extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(editDescriptionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelEditingDescriptionButton)
-                    .addComponent(saveDescriptionButton))
+                    .addComponent(canelDescriptionDialogButton)
+                    .addComponent(okDescriptionDialogButton))
                 .addContainerGap())
         );
 
@@ -559,6 +575,11 @@ public class ManageGroup extends javax.swing.JPanel {
         jScrollPane4.setViewportView(testsList);
 
         editDescriptionButton.setText("Opis");
+        editDescriptionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editDescriptionButtonActionPerformed(evt);
+            }
+        });
 
         saveButton.setText("Zapisz");
 
@@ -635,12 +656,29 @@ public class ManageGroup extends javax.swing.JPanel {
         this.addMemberDialog.setVisible(false);
     }//GEN-LAST:event_cancelAddingMemberButtonActionPerformed
 
+    private void editDescriptionDialogWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_editDescriptionDialogWindowActivated
+        this.temporaryDescription = this.descriptionTextArea.getText();
+    }//GEN-LAST:event_editDescriptionDialogWindowActivated
+
+    private void canelDescriptionDialogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_canelDescriptionDialogButtonActionPerformed
+        this.descriptionTextArea.setText(this.temporaryDescription);
+        this.editDescriptionDialog.setVisible(false);
+    }//GEN-LAST:event_canelDescriptionDialogButtonActionPerformed
+
+    private void okDescriptionDialogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okDescriptionDialogButtonActionPerformed
+        this.editDescriptionDialog.setVisible(false);
+    }//GEN-LAST:event_okDescriptionDialogButtonActionPerformed
+
+    private void editDescriptionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editDescriptionButtonActionPerformed
+        this.editDescriptionDialog.setVisible(true);
+    }//GEN-LAST:event_editDescriptionButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addMemberButton;
     private javax.swing.JDialog addMemberDialog;
     private javax.swing.JList allUsersList;
     private javax.swing.JButton cancelAddingMemberButton;
-    private javax.swing.JButton cancelEditingDescriptionButton;
+    private javax.swing.JButton canelDescriptionDialogButton;
     private javax.swing.JButton chooseMemberButton;
     private javax.swing.JButton closeViewProfileDialog;
     private javax.swing.JButton createNewTestButton;
@@ -678,8 +716,8 @@ public class ManageGroup extends javax.swing.JPanel {
     private javax.swing.JLabel loginLabel;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel nameLabel;
+    private javax.swing.JButton okDescriptionDialogButton;
     private javax.swing.JButton saveButton;
-    private javax.swing.JButton saveDescriptionButton;
     private javax.swing.JList testsList;
     private javax.swing.JList usersList;
     private javax.swing.JDialog viewProfileDialog;
