@@ -21,7 +21,7 @@ import javax.swing.ListCellRenderer;
 
 /*
  Rzeczy do zrobienia:
- -Model listy dla testów - właśnie to robię
+ -Model listy dla testów i użytkowników - właśnie to robię
  -Okienko dodawnania do grupy (źle się wyświetla)
  -Zdefiniowanie eventListenera dla tego panelu oraz dodanie metod dodawania i usuwania tych listenerów
  -Obsługa kliknięć (wywoływanie metod listenerów)
