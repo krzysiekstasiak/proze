@@ -5,16 +5,20 @@
  */
 package PROZE.GUI;
 
+import EntitiesModels.GroupEntity;
 import EntitiesModels.TestDescription;
 import EntitiesModels.UserEntity;
 import PROZE.GUI.EventListeners.GroupManagerListener;
 import PROZE.GUI.EventListeners.NavigationListener;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -41,8 +45,14 @@ import javax.swing.ListCellRenderer;
  */
 public class ManageGroup extends javax.swing.JPanel {
 
-    private List<UserEntity> members = new ArrayList<>(); // do wywalenia
+    private enum ManagerState {
 
+        NO_GROUP_LOADED, GROUP_CREATED, GROUP_MANAGED
+
+    }
+
+    private ManagerState managerState;
+    private GroupEntity groupEntity;
     private final DefaultListModel<TestDescription> testsListModel = new DefaultListModel<>();
     private final DefaultListModel<UserEntity> usersListModel = new DefaultListModel<>();
     private final Set<GroupManagerListener> groupManagerListeners = new HashSet<>();
@@ -52,23 +62,30 @@ public class ManageGroup extends javax.swing.JPanel {
      * Creates new form MenageGroup
      */
     private void initTestContent() {
-        UserEntity user1 = new UserEntity("User1", true);
-
+        GroupEntity group = new GroupEntity("Grupa", true);
         try {
-            user1.setFirstName("Jan");
-            user1.setSecondName("Kowalski");
-            user1.setMailAddress("jkowal@mail.com");
-        } catch (IllegalAccessException exc) {
-
+            group.setDescription("Opis grupy");
+        } catch (IllegalAccessException ex) {
         }
-        this.members.add(user1);
+        UserEntity member = new UserEntity("Login1", true);
+        UserEntity member2 = new UserEntity("Login2", true);
+        TestDescription test = new TestDescription(1, "Nazwatestu", new Date(), "Nazwa grupy", "member1", "Kateogria2", "Opis testu", 5, true);
+        this.loadGroupEntity(group);
+        List<UserEntity> users = new ArrayList<>();
+        users.add(member);
+        users.add(member2);
+        this.setMembersDisplayed(users);
+        List<TestDescription> tests = new ArrayList<>();
+        tests.add(test);
+        this.setTestsDisplayed(tests);
     }
 
     public ManageGroup() {
-        this.initTestContent();
         initComponents();
         this.addUserListPopupMenu();
         this.addTestListPopupMenu();
+        this.setManagerState(ManagerState.NO_GROUP_LOADED);
+        this.initTestContent();
     }
 
     private void addUserListPopupMenu() {
@@ -76,8 +93,8 @@ public class ManageGroup extends javax.swing.JPanel {
 
             @Override
             public void show(Component invoker, int x, int y) {
-                int selectedIndex = jList2.getSelectedIndex();
-                if (selectedIndex == jList2.locationToIndex(new Point(x, y))) {
+                int selectedIndex = usersList.getSelectedIndex();
+                if (selectedIndex == usersList.locationToIndex(new Point(x, y))) {
                     super.show(invoker, x, y);
                 }
             }
@@ -98,12 +115,12 @@ public class ManageGroup extends javax.swing.JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(jList2.getSelectedValue());
+                System.out.println(usersList.getSelectedValue());
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
         popupMenu.add(removeMemberMenuItem);
-        this.jList2.setComponentPopupMenu(popupMenu);
+        this.usersList.setComponentPopupMenu(popupMenu);
     }
 
     private void addTestListPopupMenu() {
@@ -111,8 +128,8 @@ public class ManageGroup extends javax.swing.JPanel {
 
             @Override
             public void show(Component invoker, int x, int y) {
-                int selectedIndex = jList3.getSelectedIndex();
-                if (selectedIndex == jList3.locationToIndex(new Point(x, y))) {
+                int selectedIndex = testsList.getSelectedIndex();
+                if (selectedIndex == testsList.locationToIndex(new Point(x, y))) {
                     super.show(invoker, x, y);
                 }
             }
@@ -138,6 +155,7 @@ public class ManageGroup extends javax.swing.JPanel {
             }
         });
         popupMenu2.add(removeTestMenuItem);
+
     }
 
     public void addGroupManagerListener(GroupManagerListener listener) {
@@ -154,6 +172,77 @@ public class ManageGroup extends javax.swing.JPanel {
 
     public void removeNavigationListener(NavigationListener listener) {
         this.navigationListeners.remove(listener);
+    }
+
+    private static void setContainerEnabled(Container container, boolean enabled) {
+        for (Component c : container.getComponents()) {
+            c.setEnabled(enabled);
+            if (c instanceof Container) {
+                setContainerEnabled((Container) c, enabled);
+            }
+        }
+    }
+
+    private void setManagerState(ManagerState state) {
+        switch (state) {
+            case NO_GROUP_LOADED:
+                setContainerEnabled(this, false);
+                this.nameField.setText("");
+                break;
+            case GROUP_CREATED:
+                setContainerEnabled(this, false);
+                this.nameField.setEnabled(true);
+                this.nameField.setEditable(true);
+                this.nameField.setText("<Nazwa grupy>");
+                this.saveButton.setEnabled(true);
+                break;
+            case GROUP_MANAGED:
+                setContainerEnabled(this, true);
+                this.nameField.setEditable(false);
+                break;
+        }
+    }
+
+    private void restoreComponentsState() {
+        this.nameField.setText("");
+        this.descriptionTextArea.setText("");
+        this.usersListModel.clear();
+        this.testsListModel.clear();
+    }
+
+    public void resetGroupEntity() {
+        this.restoreComponentsState();
+        this.setManagerState(ManagerState.NO_GROUP_LOADED);
+    }
+
+    public void loadGroupEntity(GroupEntity groupEntity) {
+        this.groupEntity = groupEntity;
+        this.setManagerState(ManagerState.GROUP_MANAGED);
+    }
+
+    public void createNewGroup() {
+        this.groupEntity = null;
+        this.restoreComponentsState();
+        this.setManagerState(ManagerState.GROUP_CREATED);
+    }
+
+    private void initComponentsWithGroupEntity(GroupEntity groupEntity) {
+        this.nameField.setText(groupEntity.getName());
+        this.descriptionTextArea.setText(groupEntity.getDescription());
+    }
+
+    public void setMembersDisplayed(Collection<UserEntity> users) {
+        this.usersListModel.clear();
+        for (UserEntity user : users) {
+            this.usersListModel.addElement(user);
+        }
+    }
+
+    public void setTestsDisplayed(Collection<TestDescription> tests) {
+        this.testsListModel.clear();
+        for (TestDescription test : tests) {
+            this.testsListModel.addElement(test);
+        }
     }
 
     /**
@@ -196,15 +285,22 @@ public class ManageGroup extends javax.swing.JPanel {
         emailLabel = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         closeViewProfileDialog = new javax.swing.JButton();
+        editDescriptionDialog = new javax.swing.JDialog();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        descriptionTextArea = new javax.swing.JTextArea();
+        cancelEditingDescriptionButton = new javax.swing.JButton();
+        saveDescriptionButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         createNewTestButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList(this.members.toArray());
+        usersList = new javax.swing.JList();
         chooseMemberButton = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList();
+        testsList = new javax.swing.JList();
+        editDescriptionButton = new javax.swing.JButton();
+        saveButton = new javax.swing.JButton();
+        nameField = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 51));
         jPanel1.setForeground(new java.awt.Color(0, 204, 51));
@@ -392,14 +488,47 @@ public class ManageGroup extends javax.swing.JPanel {
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        editDescriptionDialog.setBackground(new java.awt.Color(0, 204, 51));
+
+        descriptionTextArea.setColumns(20);
+        descriptionTextArea.setRows(5);
+        jScrollPane1.setViewportView(descriptionTextArea);
+
+        cancelEditingDescriptionButton.setText("Anuluj");
+
+        saveDescriptionButton.setText("Zapisz");
+
+        javax.swing.GroupLayout editDescriptionDialogLayout = new javax.swing.GroupLayout(editDescriptionDialog.getContentPane());
+        editDescriptionDialog.getContentPane().setLayout(editDescriptionDialogLayout);
+        editDescriptionDialogLayout.setHorizontalGroup(
+            editDescriptionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editDescriptionDialogLayout.createSequentialGroup()
+                .addGroup(editDescriptionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editDescriptionDialogLayout.createSequentialGroup()
+                        .addContainerGap(254, Short.MAX_VALUE)
+                        .addComponent(saveDescriptionButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cancelEditingDescriptionButton))
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
+        );
+        editDescriptionDialogLayout.setVerticalGroup(
+            editDescriptionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editDescriptionDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(editDescriptionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelEditingDescriptionButton)
+                    .addComponent(saveDescriptionButton))
+                .addContainerGap())
+        );
+
         setBackground(new java.awt.Color(0, 204, 51));
         setMinimumSize(new java.awt.Dimension(300, 300));
         setPreferredSize(new java.awt.Dimension(500, 500));
 
         jLabel1.setText("Testy w grupie:");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("Nazwa grupy");
 
         createNewTestButton.setText("Dodaj nowy test");
         createNewTestButton.addActionListener(new java.awt.event.ActionListener() {
@@ -410,9 +539,9 @@ public class ManageGroup extends javax.swing.JPanel {
 
         jLabel3.setText("Członkowie grupy:");
 
-        jList2.setModel(this.usersListModel);
-        jList2.setCellRenderer(new UserCellRenderer());
-        jScrollPane2.setViewportView(jList2);
+        usersList.setModel(this.usersListModel);
+        usersList.setCellRenderer(new UserCellRenderer());
+        jScrollPane2.setViewportView(usersList);
 
         chooseMemberButton.setText("Dodaj użytkownika");
         chooseMemberButton.addActionListener(new java.awt.event.ActionListener() {
@@ -421,50 +550,62 @@ public class ManageGroup extends javax.swing.JPanel {
             }
         });
 
-        jList3.setModel(this.testsListModel);
-        jScrollPane4.setViewportView(jList3);
+        testsList.setModel(this.testsListModel);
+        jScrollPane4.setViewportView(testsList);
+
+        editDescriptionButton.setText("Opis");
+
+        saveButton.setText("Zapisz");
+
+        nameField.setBackground(new java.awt.Color(0, 204, 51));
+        nameField.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        nameField.setBorder(null);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(jLabel1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
-                        .addComponent(createNewTestButton))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(nameField)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(saveButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(editDescriptionButton))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(chooseMemberButton)))
+                        .addComponent(chooseMemberButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(createNewTestButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1))
-                    .addComponent(createNewTestButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editDescriptionButton)
+                    .addComponent(saveButton)
+                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(chooseMemberButton))
+                    .addComponent(jLabel1)
+                    .addComponent(createNewTestButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chooseMemberButton)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -494,20 +635,21 @@ public class ManageGroup extends javax.swing.JPanel {
     private javax.swing.JDialog addMemberDialog;
     private javax.swing.JList allUsersList;
     private javax.swing.JButton cancelAddingMemberButton;
+    private javax.swing.JButton cancelEditingDescriptionButton;
     private javax.swing.JButton chooseMemberButton;
     private javax.swing.JButton closeViewProfileDialog;
     private javax.swing.JButton createNewTestButton;
+    private javax.swing.JTextArea descriptionTextArea;
+    private javax.swing.JButton editDescriptionButton;
+    private javax.swing.JDialog editDescriptionDialog;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JList jList2;
-    private javax.swing.JList jList3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -517,6 +659,7 @@ public class ManageGroup extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -527,8 +670,13 @@ public class ManageGroup extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JLabel loginLabel;
+    private javax.swing.JTextField nameField;
     private javax.swing.JLabel nameLabel;
+    private javax.swing.JButton saveButton;
+    private javax.swing.JButton saveDescriptionButton;
     private javax.swing.JLabel secondNameLabel;
+    private javax.swing.JList testsList;
+    private javax.swing.JList usersList;
     private javax.swing.JDialog viewProfileDialog;
     // End of variables declaration//GEN-END:variables
 

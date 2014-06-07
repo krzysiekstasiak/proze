@@ -18,4 +18,6 @@ public interface GroupManagerListener {
     public void addedUser();
 
     public void removedUser();
+
+    public void removedTest();
 }

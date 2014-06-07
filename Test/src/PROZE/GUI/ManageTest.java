@@ -71,7 +71,7 @@ public class ManageTest extends javax.swing.JPanel {
     public ManageTest() {
         initComponents();
         addQuestionPopupMenu();
-        addProposeQuestionPopupMenu();
+        addProposedQuestionPopupMenu();
         this.setEditorState(EditorState.NO_TEST_LOADED);
         this.initTestContent();
     }
@@ -123,13 +123,12 @@ public class ManageTest extends javax.swing.JPanel {
         switch (state) {
             case NO_TEST_LOADED:
                 setContainerEnabled(this, false);
+                this.nameField.setText("");
                 break;
             case TEST_CREATED:
                 setContainerEnabled(this, false);
-                this.saveNameButton.setVisible(true);
                 this.nameField.setEditable(true);
                 this.nameField.setText("<Nazwa testu>");
-                this.saveNameButton.setEnabled(true);
                 this.nameField.setEnabled(true);
                 break;
             case TEST_EDITED:
@@ -138,7 +137,7 @@ public class ManageTest extends javax.swing.JPanel {
         }
     }
 
-    private void addProposeQuestionPopupMenu() {
+    private void addProposedQuestionPopupMenu() {
         JPopupMenu popupMenu2 = new JPopupMenu() {
 
             @Override
@@ -299,7 +298,7 @@ public class ManageTest extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         nameField = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
-        saveNameButton = new javax.swing.JButton();
+        saveButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         categoryBox = new javax.swing.JComboBox();
         addQuestionButton = new javax.swing.JButton();
@@ -544,13 +543,13 @@ public class ManageTest extends javax.swing.JPanel {
 
         jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
-        saveNameButton.setText("Zapisz");
-        saveNameButton.addActionListener(new java.awt.event.ActionListener() {
+        saveButton.setText("Zapisz");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveNameButtonActionPerformed(evt);
+                saveButtonActionPerformed(evt);
             }
         });
-        jPanel5.add(saveNameButton);
+        jPanel5.add(saveButton);
 
         jLabel3.setText("Kategoria:");
         jPanel5.add(jLabel3);
@@ -641,10 +640,10 @@ public class ManageTest extends javax.swing.JPanel {
         this.editQuestionDialog.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void saveNameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveNameButtonActionPerformed
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         this.nameField.setEditable(false);
 
-    }//GEN-LAST:event_saveNameButtonActionPerformed
+    }//GEN-LAST:event_saveButtonActionPerformed
 
     private void editDescriptionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editDescriptionButtonActionPerformed
         this.editDescriptionDialog.setVisible(true);
@@ -700,7 +699,7 @@ public class ManageTest extends javax.swing.JPanel {
     private javax.swing.JTextField nameField;
     private javax.swing.JList proposedQuestionsList;
     private javax.swing.JList questionsList;
-    private javax.swing.JButton saveNameButton;
+    private javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
 
     class QuestionCellRenderer extends JLabel implements ListCellRenderer {
@@ -727,8 +726,8 @@ public class ManageTest extends javax.swing.JPanel {
             return this;
         }
     }
-    
-        class ProposeQuestionCellRenderer extends JLabel implements ListCellRenderer {
+
+    class ProposeQuestionCellRenderer extends JLabel implements ListCellRenderer {
 
         private final Color HIGHLIGHT_COLOR = new Color(0, 0, 128);
 
@@ -740,7 +739,7 @@ public class ManageTest extends javax.swing.JPanel {
         public Component getListCellRendererComponent(JList list, Object value,
                 int index, boolean isSelected, boolean cellHasFocus) {
             QuestionProposition proposeQuestion = (QuestionProposition) value;
-            setText((proposeQuestion.getProposedQuestion()).getContent() + "Autor: " + proposeQuestion.getUserLogin());
+            setText((proposeQuestion.getProposedQuestion()).getContent() + ", Autor: " + proposeQuestion.getUserLogin());
             if (isSelected) {
                 setBackground(HIGHLIGHT_COLOR);
                 setForeground(Color.white);
