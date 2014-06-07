@@ -16,9 +16,15 @@ import javax.swing.JSplitPane;
  * @author Maciek
  */
 public class MainFrame extends javax.swing.JFrame implements Runnable {
-    
+
     private Timer hideLeftPanelTimer;
     private boolean leftPanelVisible;
+    private LeftPanel leftPanel = new LeftPanel();
+    private ManageGroup manageGroupPanel = new ManageGroup();
+    private ManageTest manageTestPanel = new ManageTest();
+    private MyAccount myAccountPanel = new MyAccount();
+    private ViewGroup viewGroupPanel = new ViewGroup();
+    private Search searchPanel = new Search();
 
     /**
      * Creates new form MainFrame
@@ -27,12 +33,12 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         initComponents();
         initHidingLeftPanel();
     }
-    
+
     private void initHidingLeftPanel() {
         this.hideLeftPanelTimer = new Timer();
         this.leftPanelVisible = true;
         this.jSplitPane1.getLeftComponent().addMouseListener(new MouseAdapter() {
-            
+
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
@@ -41,14 +47,14 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
                 }
                 hideLeftPanelTimer.cancel();
             }
-            
+
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
                 hideLeftPanelTimer.cancel();
                 hideLeftPanelTimer = new Timer();
                 TimerTask hideLeftPanelTask = new TimerTask() {
-                    
+
                     @Override
                     public void run() {
                         hideLeftPanel();
@@ -68,7 +74,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSplitPane1 = new javax.swing.JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new LeftPanel(), new ManageTest());
+        jSplitPane1 = new javax.swing.JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -77,6 +83,8 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
             }
         });
 
+        jSplitPane1.setLeftComponent(this.leftPanel);
+        jSplitPane1.setRightComponent(this.searchPanel);
         jSplitPane1.setDividerLocation(250);
         jSplitPane1.setDividerSize(0);
         jSplitPane1.setDoubleBuffered(true);
@@ -103,10 +111,10 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
         this.jSplitPane1.setDividerLocation((this.leftPanelVisible) ? 10 + this.dividerLocation : 10);
     }//GEN-LAST:event_formComponentResized
-    
+
     private void hideLeftPanel() {
         Thread hideThread = new Thread(new Runnable() {
-            
+
             @Override
             public void run() {
                 for (int i = 49; i > 0; --i) {
@@ -122,11 +130,11 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         });
         hideThread.start();
     }
-    
+
     private void showLeftPanel() {
         Thread showThread;
         showThread = new Thread(new Runnable() {
-            
+
             @Override
             public void run() {
                 leftPanelVisible = true;
@@ -136,12 +144,56 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
                     try {
                         Thread.sleep(5);
                     } catch (InterruptedException ex) {
-                        
+
                     }
                 }
             }
         });
         showThread.start();
+    }
+
+    public LeftPanel getLeftPanel() {
+        return leftPanel;
+    }
+
+    public ManageGroup getManageGroupPanel() {
+        return manageGroupPanel;
+    }
+
+    public ManageTest getManageTestPanel() {
+        return manageTestPanel;
+    }
+
+    public MyAccount getMyAccountPanel() {
+        return myAccountPanel;
+    }
+
+    public ViewGroup getViewGroupPanel() {
+        return viewGroupPanel;
+    }
+
+    public Search getSearchPanel() {
+        return searchPanel;
+    }
+
+    public void navigateToGroupManager() {
+        this.jSplitPane1.setRightComponent(this.manageGroupPanel);
+    }
+
+    public void navigateToTestManager() {
+        this.jSplitPane1.setRightComponent(this.manageTestPanel);
+    }
+
+    public void navigateToSearch() {
+        this.jSplitPane1.setRightComponent(this.searchPanel);
+    }
+
+    public void navigateToMyAccount() {
+        this.jSplitPane1.setRightComponent(this.myAccountPanel);
+    }
+
+    public void navigateToViewGroup() {
+        this.jSplitPane1.setRightComponent(this.viewGroupPanel);
     }
 
     /**
@@ -151,7 +203,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -179,7 +231,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
             }
         });
     }
-    
+
     private final int dividerLocation = 250;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -190,5 +242,5 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
     public void run() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

@@ -9,7 +9,6 @@ import PROZE.GUI.EventListeners.NavigationListener;
 import java.util.HashSet;
 import java.util.Set;
 
-//Nie edytować teraz !!!!!!
 /**
  *
  * @author Krzysztof
