@@ -12,7 +12,7 @@ import EntitiesModels.TestEntity;
  *
  * @author Krzysztof
  */
-public interface TestEditorListener {
+public interface TestManagerListener {
 
     public void testCreated(String testName, String groupName);
 

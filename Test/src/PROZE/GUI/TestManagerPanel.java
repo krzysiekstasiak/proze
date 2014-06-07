@@ -9,7 +9,7 @@ import EntitiesModels.OpenQuestionEntity;
 import EntitiesModels.QuestionEntity;
 import EntitiesModels.QuestionProposition;
 import EntitiesModels.TestEntity;
-import PROZE.GUI.EventListeners.TestEditorListener;
+import PROZE.GUI.EventListeners.TestManagerListener;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
@@ -48,7 +48,7 @@ public class TestManagerPanel extends javax.swing.JPanel {
     private final DefaultListModel<QuestionEntity> questionsListModel = new DefaultListModel<>();
     private final DefaultComboBoxModel<String> categoriesComboBoxModel = new DefaultComboBoxModel<>();
     private final DefaultListModel<QuestionProposition> questionPropositionsListModel = new DefaultListModel<>();
-    private final Set<TestEditorListener> testEditorListeners = new HashSet<>();
+    private final Set<TestManagerListener> testEditorListeners = new HashSet<>();
 
     private void initTestContent() {
         TestEntity test1 = new TestEntity(1, "Nazwa testu", "Nazwa grupy", new Date(), "Ja", true);
@@ -76,11 +76,11 @@ public class TestManagerPanel extends javax.swing.JPanel {
         this.initTestContent();
     }
 
-    public void addTestEditorListener(TestEditorListener listener) {
+    public void addTestEditorListener(TestManagerListener listener) {
         this.testEditorListeners.add(listener);
     }
 
-    public void removeTestEditorListener(TestEditorListener listener) {
+    public void removeTestEditorListener(TestManagerListener listener) {
         this.testEditorListeners.remove(listener);
     }
 
