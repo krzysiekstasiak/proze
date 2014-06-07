@@ -641,6 +641,9 @@
               <Connection code="this.testsListModel" type="code"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="testsList.setCellRenderer(new TestDescriptionCellRenderer());"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

@@ -6,6 +6,8 @@
 package PROZE.GUI.EventListeners;
 
 import EntitiesModels.GroupEntity;
+import EntitiesModels.TestDescription;
+import EntitiesModels.UserEntity;
 
 /**
  *
@@ -17,9 +19,9 @@ public interface GroupManagerListener {
 
     public void groupUpdated(GroupEntity group);
 
-    public void addedUser();
+    public void userAdded(UserEntity user);
 
-    public void removedUser();
+    public void userRemoved(UserEntity user);
 
-    public void removedTest();
+    public void testRemoved(TestDescription test);
 }

@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Formatter;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -101,7 +102,6 @@ public class ManageGroup extends javax.swing.JPanel {
                     super.show(invoker, x, y);
                 }
             }
-
         };
 
         JMenuItem viewProfileMenuItem = new JMenuItem("Zobacz profil");
@@ -123,8 +123,9 @@ public class ManageGroup extends javax.swing.JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(usersList.getSelectedValue());
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                for (GroupManagerListener listener : groupManagerListeners) {
+                    listener.userRemoved(usersListModel.elementAt(usersList.getSelectedIndex()));
+                }
             }
         });
         popupMenu.add(removeMemberMenuItem);
@@ -149,7 +150,11 @@ public class ManageGroup extends javax.swing.JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                throw new UnsupportedOperationException("Not supported yet.");
+                if (chceckIfCanExit()) {
+                    for (NavigationListener listener : navigationListeners) {
+                        listener.navigatedToTestEditor(testsListModel.get(testsList.getSelectedIndex()), false);
+                    }
+                }
             }
         });
         popupMenu2.add(menageTestMenuItem);
@@ -169,7 +174,9 @@ public class ManageGroup extends javax.swing.JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                throw new UnsupportedOperationException("Not supported yet.");
+                for (GroupManagerListener listener : groupManagerListeners) {
+                    listener.testRemoved(testsListModel.getElementAt(testsList.getSelectedIndex()));
+                }
             }
         });
         popupMenu2.add(removeTestMenuItem);
@@ -274,7 +281,7 @@ public class ManageGroup extends javax.swing.JPanel {
     }
 
     private boolean chceckIfCanExit() {
-        if (this.descriptionTextArea.getText().equals(this.groupEntity.getDescription())) {
+        if (!this.descriptionTextArea.getText().equals(this.groupEntity.getDescription())) {
             int dialogResult = JOptionPane.showConfirmDialog(this, "Nie zapisano zmian. Czy na pewno chces kontynuować?", "Niezapisane zmiany", JOptionPane.OK_CANCEL_OPTION);
             if (dialogResult == JOptionPane.CANCEL_OPTION) {
                 return false;
@@ -604,6 +611,7 @@ public class ManageGroup extends javax.swing.JPanel {
             }
         });
 
+        testsList.setCellRenderer(new TestDescriptionCellRenderer());
         testsList.setModel(this.testsListModel);
         jScrollPane4.setViewportView(testsList);
 
@@ -718,12 +726,15 @@ public class ManageGroup extends javax.swing.JPanel {
     }//GEN-LAST:event_editDescriptionButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        if (!this.chceckIfCanExit()) {
+            return;
+        }
         if (this.managerState == ManagerState.GROUP_CREATED) {
             for (GroupManagerListener listener : this.groupManagerListeners) {
                 listener.groupCreated(this.nameField.getText());
                 this.setManagerState(ManagerState.WAITING);
             }
-        } else if (this.managerState == managerState.GROUP_MANAGED) {
+        } else if (this.managerState == ManagerState.GROUP_MANAGED) {
             for (GroupManagerListener listener : this.groupManagerListeners) {
                 listener.groupUpdated(this.groupEntity);
             }
@@ -818,6 +829,8 @@ public class ManageGroup extends javax.swing.JPanel {
         public Component getListCellRendererComponent(JList list, Object value,
                 int index, boolean isSelected, boolean cellHasFocus) {
             TestDescription testDescription = (TestDescription) value;
+            Formatter formatter = new Formatter();
+            //formatter.format("", args) - zaraz dokończę
             setText(testDescription.getCategory() + "|" + testDescription.getName() + "|Autor:" + testDescription.getAuthorLogin() + "|Ocena" + testDescription.getRating());
             if (isSelected) {
                 setBackground(HIGHLIGHT_COLOR);
