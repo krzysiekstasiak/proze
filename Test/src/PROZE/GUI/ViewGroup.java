@@ -6,13 +6,17 @@
 package PROZE.GUI;
 
 import EntitiesModels.TestDescription;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.ListCellRenderer;
 
 /**
  *
@@ -62,6 +66,16 @@ public class ViewGroup extends javax.swing.JPanel {
             }
         });
         popupMenu.add(saveTest);
+        
+        JMenuItem seeDescription = new JMenuItem("Zobacz opis");
+        seeDescription .addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        popupMenu.add(seeDescription );
 
         this.editTestPopupOption = new JMenuItem("Edytuj test");
         this.editTestPopupOption.addActionListener(new ActionListener() {
@@ -253,4 +267,29 @@ public class ViewGroup extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JList testsList;
     // End of variables declaration//GEN-END:variables
+    class TestCellRenderer extends JLabel implements ListCellRenderer {
+
+        private final Color HIGHLIGHT_COLOR = new Color(0, 0, 128);
+
+        public TestCellRenderer() {
+            setOpaque(true);
+        }
+
+        public Component getListCellRendererComponent(JList list, Object value,
+                int index, boolean isSelected, boolean cellHasFocus) {
+            TestDescription description = (TestDescription) value;
+            setText(description.getCategory() + "|" + description.getName() + "|Autor:" + description.getAuthorLogin()  + "|Ocena" + description.getRating() );
+            if (isSelected) {
+                setBackground(HIGHLIGHT_COLOR);
+                setForeground(Color.white);
+
+            } else {
+                setBackground(Color.white);
+                setForeground(Color.black);
+            }
+            return this;
+        }
+    }
+
+
 }
