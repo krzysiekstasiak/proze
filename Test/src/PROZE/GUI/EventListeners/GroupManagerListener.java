@@ -11,6 +11,8 @@ package PROZE.GUI.EventListeners;
  */
 public interface GroupManagerListener {
 
+    public void groupCreated(String name);
+
     public void updatedGroupEntity();
 
     public void addedUser();

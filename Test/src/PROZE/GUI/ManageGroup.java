@@ -8,6 +8,7 @@ package PROZE.GUI;
 import EntitiesModels.TestDescription;
 import EntitiesModels.UserEntity;
 import PROZE.GUI.EventListeners.GroupManagerListener;
+import PROZE.GUI.EventListeners.NavigationListener;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Point;
@@ -31,6 +32,8 @@ import javax.swing.ListCellRenderer;
  -Okienko dodawnania do grupy (źle się wyświetla)
  -Zdefiniowanie eventListenera dla tego panelu oraz dodanie metod dodawania i usuwania tych listenerów - ZROBIONE
  -Obsługa kliknięć (wywoływanie metod listenerów)
+ -Umożliwienie edytowania opisu - właśnie to robię
+ -Stan edytora i metody pozwalajace określić grupę, którą zarządza - właśnie to robię
  */
 /**
  *
@@ -43,6 +46,7 @@ public class ManageGroup extends javax.swing.JPanel {
     private final DefaultListModel<TestDescription> testsListModel = new DefaultListModel<>();
     private final DefaultListModel<UserEntity> usersListModel = new DefaultListModel<>();
     private final Set<GroupManagerListener> groupManagerListeners = new HashSet<>();
+    private final Set<NavigationListener> navigationListeners = new HashSet<>();
 
     /**
      * Creates new form MenageGroup
@@ -142,6 +146,14 @@ public class ManageGroup extends javax.swing.JPanel {
 
     public void removeGroupManagerListener(GroupManagerListener listener) {
         this.groupManagerListeners.remove(listener);
+    }
+
+    public void addNavigationListener(NavigationListener listener) {
+        this.navigationListeners.add(listener);
+    }
+
+    public void removeNavigationListener(NavigationListener listener) {
+        this.navigationListeners.remove(listener);
     }
 
     /**
