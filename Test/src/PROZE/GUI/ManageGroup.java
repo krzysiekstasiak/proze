@@ -26,6 +26,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.ListCellRenderer;
 
@@ -153,7 +154,6 @@ public class ManageGroup extends javax.swing.JPanel {
         });
         popupMenu2.add(menageTestMenuItem);
 
-
         JMenuItem seeDescription = new JMenuItem("Zobacz opis");
         seeDescription.addActionListener(new ActionListener() {
 
@@ -163,7 +163,7 @@ public class ManageGroup extends javax.swing.JPanel {
             }
         });
         popupMenu2.add(seeDescription);
-        
+
         JMenuItem removeTestMenuItem = new JMenuItem("Usuń test");
         removeTestMenuItem.addActionListener(new ActionListener() {
 
@@ -270,6 +270,16 @@ public class ManageGroup extends javax.swing.JPanel {
         for (TestDescription test : tests) {
             this.testsListModel.addElement(test);
         }
+    }
+
+    private boolean chceckIfCanExit() {
+        if (this.descriptionTextArea.getText().equals(this.groupEntity.getDescription())) {
+            int dialogResult = JOptionPane.showConfirmDialog(this, "Nie zapisano zmian. Czy na pewno chces kontynuować?", "Niezapisane zmiany", JOptionPane.OK_CANCEL_OPTION);
+            if (dialogResult == JOptionPane.CANCEL_OPTION) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -786,7 +796,7 @@ public class ManageGroup extends javax.swing.JPanel {
         public Component getListCellRendererComponent(JList list, Object value,
                 int index, boolean isSelected, boolean cellHasFocus) {
             TestDescription testDescription = (TestDescription) value;
-            setText(testDescription.getCategory() + "|" + testDescription.getName() + "|Autor:" + testDescription.getAuthorLogin()  + "|Ocena" + testDescription.getRating() );
+            setText(testDescription.getCategory() + "|" + testDescription.getName() + "|Autor:" + testDescription.getAuthorLogin() + "|Ocena" + testDescription.getRating());
             if (isSelected) {
                 setBackground(HIGHLIGHT_COLOR);
                 setForeground(Color.white);
@@ -796,9 +806,9 @@ public class ManageGroup extends javax.swing.JPanel {
             }
             return this;
         }
-        
+
     }
-    
+
     class WaitingThread extends Thread {
 
         boolean active;
