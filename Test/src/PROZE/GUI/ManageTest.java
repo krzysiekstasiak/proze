@@ -727,5 +727,30 @@ public class ManageTest extends javax.swing.JPanel {
             return this;
         }
     }
+    
+        class ProposeQuestionCellRenderer extends JLabel implements ListCellRenderer {
+
+        private final Color HIGHLIGHT_COLOR = new Color(0, 0, 128);
+
+        public ProposeQuestionCellRenderer() {
+            setOpaque(true);
+        }
+
+        @Override
+        public Component getListCellRendererComponent(JList list, Object value,
+                int index, boolean isSelected, boolean cellHasFocus) {
+            QuestionProposition proposeQuestion = (QuestionProposition) value;
+            setText((proposeQuestion.getProposedQuestion()).getContent() + "Autor: " + proposeQuestion.getUserLogin());
+            if (isSelected) {
+                setBackground(HIGHLIGHT_COLOR);
+                setForeground(Color.white);
+
+            } else {
+                setBackground(Color.white);
+                setForeground(Color.black);
+            }
+            return this;
+        }
+    }
 
 }
