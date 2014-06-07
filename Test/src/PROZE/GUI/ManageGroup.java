@@ -106,6 +106,11 @@ public class ManageGroup extends javax.swing.JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                UserEntity selectedUser = usersListModel.getElementAt(usersList.getSelectedIndex());
+                loginLabel.setText(selectedUser.getLogin());
+                nameLabel.setText(selectedUser.getFirstName());
+                lastNameLabel.setText(selectedUser.getLastName());
+                emailLabel.setText(selectedUser.getMailAddress());
                 viewProfileDialog.setVisible(true);
             }
         });
@@ -155,7 +160,7 @@ public class ManageGroup extends javax.swing.JPanel {
             }
         });
         popupMenu2.add(removeTestMenuItem);
-
+        this.testsList.setComponentPopupMenu(popupMenu2);
     }
 
     public void addGroupManagerListener(GroupManagerListener listener) {
@@ -273,17 +278,17 @@ public class ManageGroup extends javax.swing.JPanel {
         viewProfileDialog = new javax.swing.JDialog();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        loginLabel = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        loginLabel = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        nameLabel = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        secondNameLabel = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        lastNameLabel = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        emailLabel = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        emailLabel = new javax.swing.JLabel();
         closeViewProfileDialog = new javax.swing.JButton();
         editDescriptionDialog = new javax.swing.JDialog();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -420,48 +425,48 @@ public class ManageGroup extends javax.swing.JPanel {
         jPanel6.setBackground(new java.awt.Color(0, 204, 51));
         jPanel6.setLayout(new java.awt.GridLayout(1, 0));
 
-        loginLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        loginLabel.setText("            Login:");
-        jPanel6.add(loginLabel);
-
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setText("            Login:");
         jPanel6.add(jLabel5);
+
+        loginLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel6.add(loginLabel);
 
         jPanel5.add(jPanel6);
 
         jPanel7.setBackground(new java.awt.Color(0, 204, 51));
         jPanel7.setLayout(new java.awt.GridLayout(1, 0));
 
-        nameLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nameLabel.setText("            Imie:");
-        jPanel7.add(nameLabel);
-
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("            Imie:");
         jPanel7.add(jLabel6);
+
+        nameLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel7.add(nameLabel);
 
         jPanel5.add(jPanel7);
 
         jPanel8.setBackground(new java.awt.Color(0, 204, 51));
         jPanel8.setLayout(new java.awt.GridLayout(1, 0));
 
-        secondNameLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        secondNameLabel.setText("            Nazwisko:");
-        jPanel8.add(secondNameLabel);
-
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("            Nazwisko:");
         jPanel8.add(jLabel7);
+
+        lastNameLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel8.add(lastNameLabel);
 
         jPanel5.add(jPanel8);
 
         jPanel9.setBackground(new java.awt.Color(0, 204, 51));
         jPanel9.setLayout(new java.awt.GridLayout(1, 0));
 
-        emailLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        emailLabel.setText("            Email:");
-        jPanel9.add(emailLabel);
-
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setText("            Email:");
         jPanel9.add(jLabel8);
+
+        emailLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel9.add(emailLabel);
 
         jPanel5.add(jPanel9);
 
@@ -669,12 +674,12 @@ public class ManageGroup extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JLabel lastNameLabel;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JButton saveButton;
     private javax.swing.JButton saveDescriptionButton;
-    private javax.swing.JLabel secondNameLabel;
     private javax.swing.JList testsList;
     private javax.swing.JList usersList;
     private javax.swing.JDialog viewProfileDialog;

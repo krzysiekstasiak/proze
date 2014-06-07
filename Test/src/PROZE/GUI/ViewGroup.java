@@ -66,16 +66,16 @@ public class ViewGroup extends javax.swing.JPanel {
             }
         });
         popupMenu.add(saveTest);
-        
+
         JMenuItem seeDescription = new JMenuItem("Zobacz opis");
-        seeDescription .addActionListener(new ActionListener() {
+        seeDescription.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
-        popupMenu.add(seeDescription );
+        popupMenu.add(seeDescription);
 
         this.editTestPopupOption = new JMenuItem("Edytuj test");
         this.editTestPopupOption.addActionListener(new ActionListener() {
@@ -267,6 +267,7 @@ public class ViewGroup extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JList testsList;
     // End of variables declaration//GEN-END:variables
+
     class TestCellRenderer extends JLabel implements ListCellRenderer {
 
         private final Color HIGHLIGHT_COLOR = new Color(0, 0, 128);
@@ -275,10 +276,11 @@ public class ViewGroup extends javax.swing.JPanel {
             setOpaque(true);
         }
 
+        @Override
         public Component getListCellRendererComponent(JList list, Object value,
                 int index, boolean isSelected, boolean cellHasFocus) {
             TestDescription description = (TestDescription) value;
-            setText(description.getCategory() + "|" + description.getName() + "|Autor:" + description.getAuthorLogin()  + "|Ocena" + description.getRating() );
+            setText(description.getCategory() + "|" + description.getName() + "|Autor:" + description.getAuthorLogin() + "|Ocena" + description.getRating());
             if (isSelected) {
                 setBackground(HIGHLIGHT_COLOR);
                 setForeground(Color.white);
@@ -290,6 +292,5 @@ public class ViewGroup extends javax.swing.JPanel {
             return this;
         }
     }
-
 
 }
