@@ -7,13 +7,16 @@ package PROZE.GUI;
 
 import EntitiesModels.TestDescription;
 import EntitiesModels.UserEntity;
+import PROZE.GUI.EventListeners.GroupManagerListener;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -26,7 +29,7 @@ import javax.swing.ListCellRenderer;
  -Model listy dla testów i użytkowników - ZROBIONE
  -ListCellRenderer dla testów (ma być dla obiektów typu TestDescription
  -Okienko dodawnania do grupy (źle się wyświetla)
- -Zdefiniowanie eventListenera dla tego panelu oraz dodanie metod dodawania i usuwania tych listenerów - właśnie robię
+ -Zdefiniowanie eventListenera dla tego panelu oraz dodanie metod dodawania i usuwania tych listenerów - ZROBIONE
  -Obsługa kliknięć (wywoływanie metod listenerów)
  */
 /**
@@ -39,6 +42,7 @@ public class ManageGroup extends javax.swing.JPanel {
 
     private final DefaultListModel<TestDescription> testsListModel = new DefaultListModel<>();
     private final DefaultListModel<UserEntity> usersListModel = new DefaultListModel<>();
+    private final Set<GroupManagerListener> groupManagerListeners = new HashSet<>();
 
     /**
      * Creates new form MenageGroup
@@ -130,6 +134,14 @@ public class ManageGroup extends javax.swing.JPanel {
             }
         });
         popupMenu2.add(removeTestMenuItem);
+    }
+
+    public void addGroupManagerListener(GroupManagerListener listener) {
+        this.groupManagerListeners.add(listener);
+    }
+
+    public void removeGroupManagerListener(GroupManagerListener listener) {
+        this.groupManagerListeners.remove(listener);
     }
 
     /**
