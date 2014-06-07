@@ -5,6 +5,7 @@
  */
 package PROZE.GUI;
 
+import EntitiesModels.TestDescription;
 import EntitiesModels.UserEntity;
 import java.awt.Color;
 import java.awt.Component;
@@ -13,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JMenuItem;
@@ -21,9 +23,10 @@ import javax.swing.ListCellRenderer;
 
 /*
  Rzeczy do zrobienia:
- -Model listy dla testów i użytkowników - właśnie to robię
+ -Model listy dla testów i użytkowników - ZROBIONE
+ -ListCellRenderer dla testów (ma być dla obiektów typu TestDescription
  -Okienko dodawnania do grupy (źle się wyświetla)
- -Zdefiniowanie eventListenera dla tego panelu oraz dodanie metod dodawania i usuwania tych listenerów
+ -Zdefiniowanie eventListenera dla tego panelu oraz dodanie metod dodawania i usuwania tych listenerów - właśnie robię
  -Obsługa kliknięć (wywoływanie metod listenerów)
  */
 /**
@@ -32,7 +35,10 @@ import javax.swing.ListCellRenderer;
  */
 public class ManageGroup extends javax.swing.JPanel {
 
-    private List<UserEntity> members = new ArrayList<>();
+    private List<UserEntity> members = new ArrayList<>(); // do wywalenia
+
+    private final DefaultListModel<TestDescription> testsListModel = new DefaultListModel<>();
+    private final DefaultListModel<UserEntity> usersListModel = new DefaultListModel<>();
 
     /**
      * Creates new form MenageGroup
@@ -53,7 +59,8 @@ public class ManageGroup extends javax.swing.JPanel {
     public ManageGroup() {
         this.initTestContent();
         initComponents();
-        addUserListPopupMenu();
+        this.addUserListPopupMenu();
+        this.addTestListPopupMenu();
     }
 
     private void addUserListPopupMenu() {
@@ -174,9 +181,6 @@ public class ManageGroup extends javax.swing.JPanel {
         chooseMemberButton = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jList3 = new javax.swing.JList();
-
-        addMemberDialog.setMaximumSize(new java.awt.Dimension(124, 100));
-        addMemberDialog.setPreferredSize(new java.awt.Dimension(124, 100));
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 51));
         jPanel1.setForeground(new java.awt.Color(0, 204, 51));
@@ -382,6 +386,7 @@ public class ManageGroup extends javax.swing.JPanel {
 
         jLabel3.setText("Członkowie grupy:");
 
+        jList2.setModel(this.usersListModel);
         jList2.setCellRenderer(new UserCellRenderer());
         jScrollPane2.setViewportView(jList2);
 
@@ -392,6 +397,7 @@ public class ManageGroup extends javax.swing.JPanel {
             }
         });
 
+        jList3.setModel(this.testsListModel);
         jScrollPane4.setViewportView(jList3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
