@@ -9,6 +9,7 @@ import PROZE.GUI.EventListeners.NavigationListener;
 import java.util.HashSet;
 import java.util.Set;
 
+//Nie edytować teraz !!!!!!
 /**
  *
  * @author Krzysztof
@@ -32,6 +33,10 @@ public class LeftPanel extends javax.swing.JPanel {
         this.navigationListeners.remove(listener);
     }
 
+    public void setDisplayedUserName(String displayedUserName) {
+        this.userNameLabel.setText(displayedUserName);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,7 +46,7 @@ public class LeftPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        userNameLabel = new javax.swing.JLabel();
         viewProfileButton = new javax.swing.JButton();
         logoutButton = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -51,8 +56,8 @@ public class LeftPanel extends javax.swing.JPanel {
         notificationsButton = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("<Nazwa użytkownika>");
+        userNameLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        userNameLabel.setText("<Nazwa użytkownika>");
 
         viewProfileButton.setText("Mój profil");
         viewProfileButton.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +111,7 @@ public class LeftPanel extends javax.swing.JPanel {
                     .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
+                            .addComponent(userNameLabel)
                             .addComponent(viewProfileButton)
                             .addComponent(logoutButton)
                             .addComponent(myGroupsButton)
@@ -121,7 +126,7 @@ public class LeftPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(userNameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(viewProfileButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -179,7 +184,6 @@ public class LeftPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_notificationsButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton logoutButton;
@@ -187,6 +191,7 @@ public class LeftPanel extends javax.swing.JPanel {
     private javax.swing.JButton myTestsButton;
     private javax.swing.JButton notificationsButton;
     private javax.swing.JButton searchButton;
+    private javax.swing.JLabel userNameLabel;
     private javax.swing.JButton viewProfileButton;
     // End of variables declaration//GEN-END:variables
 }
