@@ -22,7 +22,7 @@ import javax.swing.ListCellRenderer;
  *
  * @author Maciek
  */
-public class ViewGroup extends javax.swing.JPanel {
+public class ViewGroupPanel extends javax.swing.JPanel {
 
     private final DefaultListModel<TestDescription> testsListModel = new DefaultListModel<>();
     private JMenuItem editTestPopupOption;
@@ -30,7 +30,7 @@ public class ViewGroup extends javax.swing.JPanel {
     /**
      * Creates new form GrupView
      */
-    public ViewGroup() {
+    public ViewGroupPanel() {
         initComponents();
         addTestPopupMenu();
     }

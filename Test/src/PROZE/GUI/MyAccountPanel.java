@@ -10,12 +10,12 @@ package PROZE.GUI;
  *
  * @author Maciek
  */
-public class MyAccount extends javax.swing.JPanel {
+public class MyAccountPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form MainWindow
      */
-    public MyAccount() {
+    public MyAccountPanel() {
         initComponents();
     }
 

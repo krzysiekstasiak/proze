@@ -17,12 +17,12 @@ import javax.swing.JPopupMenu;
  *
  * @author Maciek
  */
-public class Search extends javax.swing.JPanel {
+public class SearchPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form Search
      */
-    public Search() {
+    public SearchPanel() {
         initComponents();
         addGroupPopupMenu();
         addTestPopupMenu();

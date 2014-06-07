@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package PROZE.GUI;
 
 /**
@@ -28,8 +27,6 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        manageTest1 = new PROZE.GUI.ManageTest();
-        manageTest2 = new PROZE.GUI.ManageTest();
         jLabel1 = new javax.swing.JLabel();
         loginField = new javax.swing.JTextField();
         registerButton = new javax.swing.JButton();
@@ -127,7 +124,7 @@ public class Login extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -161,8 +158,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField loginField;
-    private PROZE.GUI.ManageTest manageTest1;
-    private PROZE.GUI.ManageTest manageTest2;
     private javax.swing.JButton offlineButton;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JButton registerButton;

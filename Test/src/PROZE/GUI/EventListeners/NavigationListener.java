@@ -24,7 +24,7 @@ public interface NavigationListener {
 
     public void navigatedToNotifications();
 
-    public void navigatedToTestEditor(TestDescription editedTest, boolean createNewTest);
+    public void navigatedToGroupManager(TestDescription editedTest, boolean createNewTest);
 
     public void navigatedToManageGroup(GroupEntity group);
 

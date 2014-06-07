@@ -20,11 +20,11 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
     private Timer hideLeftPanelTimer;
     private boolean leftPanelVisible;
     private LeftPanel leftPanel = new LeftPanel();
-    private ManageGroup manageGroupPanel = new ManageGroup();
-    private ManageTest manageTestPanel = new ManageTest();
-    private MyAccount myAccountPanel = new MyAccount();
-    private ViewGroup viewGroupPanel = new ViewGroup();
-    private Search searchPanel = new Search();
+    private GroupManagerPanel manageGroupPanel = new GroupManagerPanel();
+    private TestManagerPanel manageTestPanel = new TestManagerPanel();
+    private MyAccountPanel myAccountPanel = new MyAccountPanel();
+    private ViewGroupPanel viewGroupPanel = new ViewGroupPanel();
+    private SearchPanel searchPanel = new SearchPanel();
 
     /**
      * Creates new form MainFrame
@@ -156,23 +156,23 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         return leftPanel;
     }
 
-    public ManageGroup getManageGroupPanel() {
+    public GroupManagerPanel getManageGroupPanel() {
         return manageGroupPanel;
     }
 
-    public ManageTest getManageTestPanel() {
-        return manageTestPanel;
+    public TestManagerPanel getManageTest() {
+        return this.manageTestPanel;
     }
 
-    public MyAccount getMyAccountPanel() {
+    public MyAccountPanel getMyAccountPanel() {
         return myAccountPanel;
     }
 
-    public ViewGroup getViewGroupPanel() {
+    public ViewGroupPanel getViewGroupPanel() {
         return viewGroupPanel;
     }
 
-    public Search getSearchPanel() {
+    public SearchPanel getSearchPanel() {
         return searchPanel;
     }
 

@@ -22,10 +22,4 @@
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
-  <SubComponents>
-    <Component class="PROZE.GUI.ManageTest" name="manageTest1">
-    </Component>
-    <Component class="PROZE.GUI.ManageGroup" name="manageGroup1">
-    </Component>
-  </SubComponents>
 </Form>

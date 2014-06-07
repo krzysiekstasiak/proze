@@ -45,7 +45,7 @@ import javax.swing.ListCellRenderer;
  *
  * @author Maciek
  */
-public class ManageGroup extends javax.swing.JPanel {
+public class GroupManagerPanel extends javax.swing.JPanel {
 
     private enum ManagerState {
 
@@ -88,7 +88,7 @@ public class ManageGroup extends javax.swing.JPanel {
         this.setTestsDisplayed(tests);
     }
 
-    public ManageGroup() {
+    public GroupManagerPanel() {
         initComponents();
         this.addUserListPopupMenu();
         this.addTestListPopupMenu();
@@ -156,7 +156,7 @@ public class ManageGroup extends javax.swing.JPanel {
             public void actionPerformed(ActionEvent e) {
                 if (chceckIfCanExit()) {
                     for (NavigationListener listener : navigationListeners) {
-                        listener.navigatedToTestEditor(testsListModel.get(testsList.getSelectedIndex()), false);
+                        listener.navigatedToGroupManager(testsListModel.get(testsList.getSelectedIndex()), false);
                     }
                 }
             }
@@ -743,7 +743,7 @@ public class ManageGroup extends javax.swing.JPanel {
     private void createNewTestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewTestButtonActionPerformed
         if (this.chceckIfCanExit()) {
             for (NavigationListener listener : this.navigationListeners) {
-                listener.navigatedToTestEditor(null, true);
+                listener.navigatedToGroupManager(null, true);
             }
         }
     }//GEN-LAST:event_createNewTestButtonActionPerformed

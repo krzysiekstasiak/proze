@@ -34,7 +34,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Maciek
  */
-public class ManageTest extends javax.swing.JPanel {
+public class TestManagerPanel extends javax.swing.JPanel {
 
     private enum EditorState {
 
@@ -68,7 +68,7 @@ public class ManageTest extends javax.swing.JPanel {
     /**
      * Creates new form MenageTest
      */
-    public ManageTest() {
+    public TestManagerPanel() {
         initComponents();
         addQuestionPopupMenu();
         addProposedQuestionPopupMenu();
