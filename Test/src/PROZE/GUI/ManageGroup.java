@@ -33,11 +33,11 @@ import javax.swing.ListCellRenderer;
  Rzeczy do zrobienia:
  -Model listy dla testów i użytkowników - ZROBIONE
  -ListCellRenderer dla testów (ma być dla obiektów typu TestDescription
- -Okienko dodawnania do grupy (źle się wyświetla)
+ -Okienko dodawnania do grupy (źle się wyświetla) tak samo jak okieno edycji opisu.
  -Zdefiniowanie eventListenera dla tego panelu oraz dodanie metod dodawania i usuwania tych listenerów - ZROBIONE
  -Obsługa kliknięć (wywoływanie metod listenerów)
- -Umożliwienie edytowania opisu - właśnie to robię
- -Stan edytora i metody pozwalajace określić grupę, którą zarządza - właśnie to robię
+ -Umożliwienie edytowania opisu - ZROBIONE
+ -Stan edytora i metody pozwalajace określić grupę, którą zarządza - ZROBIONE
  */
 /**
  *
