@@ -55,6 +55,7 @@ public class ManageGroup extends javax.swing.JPanel {
 
     private ManagerState managerState;
     private GroupEntity groupEntity;
+    private final DefaultListModel<UserEntity> allUsersListModel = new DefaultListModel<UserEntity>();
     private final DefaultListModel<TestDescription> testsListModel = new DefaultListModel<>();
     private final DefaultListModel<UserEntity> usersListModel = new DefaultListModel<>();
     private final Set<GroupManagerListener> groupManagerListeners = new HashSet<>();
@@ -73,12 +74,15 @@ public class ManageGroup extends javax.swing.JPanel {
         }
         UserEntity member = new UserEntity("Login1", true);
         UserEntity member2 = new UserEntity("Login2", true);
+        UserEntity member3 = new UserEntity("Login3", true);
         TestDescription test = new TestDescription(1, "Nazwatestu", new Date(), "Nazwa grupy", "member1", "Kateogria2", "Opis testu", 5, true);
         this.loadGroupEntity(group);
         List<UserEntity> users = new ArrayList<>();
         users.add(member);
         users.add(member2);
         this.setMembersDisplayed(users);
+        users.add(member3);
+        this.setUsersDisplayed(users);
         List<TestDescription> tests = new ArrayList<>();
         tests.add(test);
         this.setTestsDisplayed(tests);
@@ -89,7 +93,7 @@ public class ManageGroup extends javax.swing.JPanel {
         this.addUserListPopupMenu();
         this.addTestListPopupMenu();
         this.setManagerState(ManagerState.NO_GROUP_LOADED);
-        this.initTestContent();
+        //this.initTestContent();
     }
 
     private void addUserListPopupMenu() {
@@ -182,6 +186,15 @@ public class ManageGroup extends javax.swing.JPanel {
         });
         popupMenu2.add(removeTestMenuItem);
         this.testsList.setComponentPopupMenu(popupMenu2);
+    }
+
+    public void setUsersDisplayed(Collection<UserEntity> users) {
+        this.allUsersListModel.clear();
+        for (UserEntity user : users) {
+            if (!this.usersListModel.contains(user)) {
+                this.allUsersListModel.addElement(user);
+            }
+        }
     }
 
     public void addGroupManagerListener(GroupManagerListener listener) {
@@ -353,10 +366,13 @@ public class ManageGroup extends javax.swing.JPanel {
         nameField = new javax.swing.JTextField();
         progressBar = new javax.swing.JProgressBar();
 
+        addMemberDialog.setMinimumSize(new java.awt.Dimension(240, 400));
+        addMemberDialog.setResizable(false);
+
         jPanel1.setBackground(new java.awt.Color(0, 204, 51));
         jPanel1.setForeground(new java.awt.Color(0, 204, 51));
-        jPanel1.setMaximumSize(new java.awt.Dimension(124, 100));
-        jPanel1.setPreferredSize(new java.awt.Dimension(124, 100));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1240, 1000));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1240, 1000));
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
 
         jSeparator1.setBackground(new java.awt.Color(0, 204, 51));
@@ -393,11 +409,8 @@ public class ManageGroup extends javax.swing.JPanel {
         jSeparator6.setPreferredSize(new java.awt.Dimension(10, 10));
         jPanel3.add(jSeparator6);
 
-        allUsersList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        allUsersList.setCellRenderer(new UserCellRenderer());
+        allUsersList.setModel(this.allUsersListModel);
         jScrollPane3.setViewportView(allUsersList);
 
         jPanel3.add(jScrollPane3);
@@ -451,11 +464,11 @@ public class ManageGroup extends javax.swing.JPanel {
         addMemberDialog.getContentPane().setLayout(addMemberDialogLayout);
         addMemberDialogLayout.setHorizontalGroup(
             addMemberDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
         );
         addMemberDialogLayout.setVerticalGroup(
             addMemberDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
         );
 
         viewProfileDialog.setTitle("Zobacz profil");
@@ -540,6 +553,8 @@ public class ManageGroup extends javax.swing.JPanel {
         );
 
         editDescriptionDialog.setBackground(new java.awt.Color(0, 204, 51));
+        editDescriptionDialog.setMinimumSize(new java.awt.Dimension(400, 300));
+        editDescriptionDialog.setResizable(false);
         editDescriptionDialog.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 editDescriptionDialogWindowActivated(evt);
@@ -589,6 +604,9 @@ public class ManageGroup extends javax.swing.JPanel {
                     .addComponent(okDescriptionDialogButton))
                 .addContainerGap())
         );
+
+        testDescriptionViewer.setMinimumSize(new java.awt.Dimension(400, 300));
+        testDescriptionViewer.setResizable(false);
 
         testDescriptionTextArea.setEditable(false);
         jScrollPane5.setViewportView(testDescriptionTextArea);
@@ -735,6 +753,9 @@ public class ManageGroup extends javax.swing.JPanel {
     }//GEN-LAST:event_chooseMemberButtonActionPerformed
 
     private void addMemberButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMemberButtonActionPerformed
+        for (GroupManagerListener listener : this.groupManagerListeners) {
+            listener.userAdded(this.allUsersListModel.get(this.allUsersList.getSelectedIndex()));
+        }
         this.addMemberDialog.setVisible(false);
     }//GEN-LAST:event_addMemberButtonActionPerformed
 
@@ -851,7 +872,7 @@ public class ManageGroup extends javax.swing.JPanel {
         public Component getListCellRendererComponent(JList list, Object value,
                 int index, boolean isSelected, boolean cellHasFocus) {
             UserEntity userEntity = (UserEntity) value;
-            setText(userEntity.getLogin() + " " + userEntity.getFirstName() + " " + userEntity.getLastName());
+            setText(userEntity.getLogin() + ": " + userEntity.getFirstName() + " " + userEntity.getLastName());
             if (isSelected) {
                 setBackground(HIGHLIGHT_COLOR);
                 setForeground(Color.white);
@@ -876,7 +897,7 @@ public class ManageGroup extends javax.swing.JPanel {
                 int index, boolean isSelected, boolean cellHasFocus) {
             TestDescription testDescription = (TestDescription) value;
             Formatter formatter = new Formatter();
-            formatter.format("%s \t %s \t %s \t %d", testDescription.getName(), testDescription.getCategory(), testDescription.getAuthorLogin(), testDescription.getRating());
+            formatter.format("%s \t, w kategorii %s \t, dodany przez: %s \t, ocena: %d", testDescription.getName(), testDescription.getCategory(), testDescription.getAuthorLogin(), testDescription.getRating());
             setText(formatter.toString());
             if (isSelected) {
                 setBackground(HIGHLIGHT_COLOR);
