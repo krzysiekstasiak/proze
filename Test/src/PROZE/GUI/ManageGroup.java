@@ -172,16 +172,16 @@ public class ManageGroup extends javax.swing.JPanel {
         viewProfileDialog = new javax.swing.JDialog();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        Login = new javax.swing.JLabel();
+        loginLabel = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        Name = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        SureName = new javax.swing.JLabel();
+        secondNameLabel = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        Email = new javax.swing.JLabel();
+        emailLabel = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         closeViewProfileDialog = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -312,9 +312,9 @@ public class ManageGroup extends javax.swing.JPanel {
         jPanel6.setBackground(new java.awt.Color(0, 204, 51));
         jPanel6.setLayout(new java.awt.GridLayout(1, 0));
 
-        Login.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Login.setText("            Login:");
-        jPanel6.add(Login);
+        loginLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        loginLabel.setText("            Login:");
+        jPanel6.add(loginLabel);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jPanel6.add(jLabel5);
@@ -324,9 +324,9 @@ public class ManageGroup extends javax.swing.JPanel {
         jPanel7.setBackground(new java.awt.Color(0, 204, 51));
         jPanel7.setLayout(new java.awt.GridLayout(1, 0));
 
-        Name.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Name.setText("            Imie:");
-        jPanel7.add(Name);
+        nameLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nameLabel.setText("            Imie:");
+        jPanel7.add(nameLabel);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jPanel7.add(jLabel6);
@@ -336,9 +336,9 @@ public class ManageGroup extends javax.swing.JPanel {
         jPanel8.setBackground(new java.awt.Color(0, 204, 51));
         jPanel8.setLayout(new java.awt.GridLayout(1, 0));
 
-        SureName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        SureName.setText("            Nazwisko:");
-        jPanel8.add(SureName);
+        secondNameLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        secondNameLabel.setText("            Nazwisko:");
+        jPanel8.add(secondNameLabel);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jPanel8.add(jLabel7);
@@ -348,9 +348,9 @@ public class ManageGroup extends javax.swing.JPanel {
         jPanel9.setBackground(new java.awt.Color(0, 204, 51));
         jPanel9.setLayout(new java.awt.GridLayout(1, 0));
 
-        Email.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Email.setText("            Email:");
-        jPanel9.add(Email);
+        emailLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        emailLabel.setText("            Email:");
+        jPanel9.add(emailLabel);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jPanel9.add(jLabel8);
@@ -478,10 +478,6 @@ public class ManageGroup extends javax.swing.JPanel {
     }//GEN-LAST:event_cancelAddingMemberButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Email;
-    private javax.swing.JLabel Login;
-    private javax.swing.JLabel Name;
-    private javax.swing.JLabel SureName;
     private javax.swing.JButton addMemberButton;
     private javax.swing.JDialog addMemberDialog;
     private javax.swing.JList allUsersList;
@@ -489,6 +485,7 @@ public class ManageGroup extends javax.swing.JPanel {
     private javax.swing.JButton chooseMemberButton;
     private javax.swing.JButton closeViewProfileDialog;
     private javax.swing.JButton createNewTestButton;
+    private javax.swing.JLabel emailLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -517,6 +514,9 @@ public class ManageGroup extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JLabel loginLabel;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JLabel secondNameLabel;
     private javax.swing.JDialog viewProfileDialog;
     // End of variables declaration//GEN-END:variables
 
