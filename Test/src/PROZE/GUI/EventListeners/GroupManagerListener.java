@@ -5,6 +5,8 @@
  */
 package PROZE.GUI.EventListeners;
 
+import EntitiesModels.GroupEntity;
+
 /**
  *
  * @author Krzysztof
@@ -13,7 +15,7 @@ public interface GroupManagerListener {
 
     public void groupCreated(String name);
 
-    public void updatedGroupEntity();
+    public void groupUpdated(GroupEntity group);
 
     public void addedUser();
 

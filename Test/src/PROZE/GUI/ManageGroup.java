@@ -245,6 +245,7 @@ public class ManageGroup extends javax.swing.JPanel {
     public void loadGroupEntity(GroupEntity groupEntity) {
         this.groupEntity = groupEntity;
         this.setManagerState(ManagerState.GROUP_MANAGED);
+        this.initComponentsWithGroupEntity(groupEntity);
     }
 
     public void createNewGroup() {
@@ -614,6 +615,11 @@ public class ManageGroup extends javax.swing.JPanel {
         });
 
         saveButton.setText("Zapisz");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
 
         nameField.setBackground(new java.awt.Color(0, 204, 51));
         nameField.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -671,8 +677,10 @@ public class ManageGroup extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createNewTestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewTestButtonActionPerformed
-        for (NavigationListener listener : this.navigationListeners) {
-            listener.navigatedToTestEditor(null, true);
+        if (this.chceckIfCanExit()) {
+            for (NavigationListener listener : this.navigationListeners) {
+                listener.navigatedToTestEditor(null, true);
+            }
         }
     }//GEN-LAST:event_createNewTestButtonActionPerformed
 
@@ -708,6 +716,20 @@ public class ManageGroup extends javax.swing.JPanel {
     private void editDescriptionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editDescriptionButtonActionPerformed
         this.editDescriptionDialog.setVisible(true);
     }//GEN-LAST:event_editDescriptionButtonActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        if (this.managerState == ManagerState.GROUP_CREATED) {
+            for (GroupManagerListener listener : this.groupManagerListeners) {
+                listener.groupCreated(this.nameField.getText());
+                this.setManagerState(ManagerState.WAITING);
+            }
+        } else if (this.managerState == managerState.GROUP_MANAGED) {
+            for (GroupManagerListener listener : this.groupManagerListeners) {
+                listener.groupUpdated(this.groupEntity);
+            }
+            this.setManagerState(ManagerState.WAITING);
+        }
+    }//GEN-LAST:event_saveButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addMemberButton;
