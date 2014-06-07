@@ -153,6 +153,17 @@ public class ManageGroup extends javax.swing.JPanel {
         });
         popupMenu2.add(menageTestMenuItem);
 
+
+        JMenuItem seeDescription = new JMenuItem("Zobacz opis");
+        seeDescription.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        popupMenu2.add(seeDescription);
+        
         JMenuItem removeTestMenuItem = new JMenuItem("Usuń test");
         removeTestMenuItem.addActionListener(new ActionListener() {
 
@@ -763,6 +774,31 @@ public class ManageGroup extends javax.swing.JPanel {
         }
     }
 
+    class TestDescriptionCellRenderer extends JLabel implements ListCellRenderer {
+
+        private final Color HIGHLIGHT_COLOR = new Color(102, 255, 51);
+
+        public TestDescriptionCellRenderer() {
+            setOpaque(true);
+        }
+
+        @Override
+        public Component getListCellRendererComponent(JList list, Object value,
+                int index, boolean isSelected, boolean cellHasFocus) {
+            TestDescription testDescription = (TestDescription) value;
+            setText(testDescription.getCategory() + "|" + testDescription.getName() + "|Autor:" + testDescription.getAuthorLogin()  + "|Ocena" + testDescription.getRating() );
+            if (isSelected) {
+                setBackground(HIGHLIGHT_COLOR);
+                setForeground(Color.white);
+            } else {
+                setBackground(Color.white);
+                setForeground(Color.black);
+            }
+            return this;
+        }
+        
+    }
+    
     class WaitingThread extends Thread {
 
         boolean active;
