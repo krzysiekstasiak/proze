@@ -34,10 +34,10 @@ import javax.swing.ListCellRenderer;
 /*
  Rzeczy do zrobienia:
  -Model listy dla testów i użytkowników - ZROBIONE
- -ListCellRenderer dla testów (ma być dla obiektów typu TestDescription
+ -ListCellRenderer dla testów (ma być dla obiektów typu TestDescription -ZROBIONE
  -Okienko dodawnania do grupy (źle się wyświetla) tak samo jak okieno edycji opisu.
  -Zdefiniowanie eventListenera dla tego panelu oraz dodanie metod dodawania i usuwania tych listenerów - ZROBIONE
- -Obsługa kliknięć (wywoływanie metod listenerów)
+ -Obsługa kliknięć (wywoływanie metod listenerów) - ZROBIONE
  -Umożliwienie edytowania opisu - ZROBIONE
  -Stan edytora i metody pozwalajace określić grupę, którą zarządza - ZROBIONE
  */
@@ -164,7 +164,8 @@ public class ManageGroup extends javax.swing.JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                testDescriptionTextArea.setText(testsListModel.get(testsList.getSelectedIndex()).getDescription());
+                testDescriptionViewer.setVisible(true);
             }
         });
         popupMenu2.add(seeDescription);
@@ -335,6 +336,10 @@ public class ManageGroup extends javax.swing.JPanel {
         descriptionTextArea = new javax.swing.JTextArea();
         canelDescriptionDialogButton = new javax.swing.JButton();
         okDescriptionDialogButton = new javax.swing.JButton();
+        testDescriptionViewer = new javax.swing.JDialog();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        testDescriptionTextArea = new javax.swing.JTextPane();
+        closeViewTestDescriptionButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         createNewTestButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -585,6 +590,39 @@ public class ManageGroup extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        testDescriptionTextArea.setEditable(false);
+        jScrollPane5.setViewportView(testDescriptionTextArea);
+
+        closeViewTestDescriptionButton.setText("Zamknij");
+        closeViewTestDescriptionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeViewTestDescriptionButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout testDescriptionViewerLayout = new javax.swing.GroupLayout(testDescriptionViewer.getContentPane());
+        testDescriptionViewer.getContentPane().setLayout(testDescriptionViewerLayout);
+        testDescriptionViewerLayout.setHorizontalGroup(
+            testDescriptionViewerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(testDescriptionViewerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(testDescriptionViewerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, testDescriptionViewerLayout.createSequentialGroup()
+                        .addGap(0, 311, Short.MAX_VALUE)
+                        .addComponent(closeViewTestDescriptionButton))
+                    .addComponent(jScrollPane5))
+                .addContainerGap())
+        );
+        testDescriptionViewerLayout.setVerticalGroup(
+            testDescriptionViewerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(testDescriptionViewerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(closeViewTestDescriptionButton)
+                .addContainerGap())
+        );
+
         setBackground(new java.awt.Color(0, 204, 51));
         setMinimumSize(new java.awt.Dimension(300, 300));
         setPreferredSize(new java.awt.Dimension(500, 500));
@@ -742,6 +780,10 @@ public class ManageGroup extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_saveButtonActionPerformed
 
+    private void closeViewTestDescriptionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeViewTestDescriptionButtonActionPerformed
+        testDescriptionViewer.setVisible(false);
+    }//GEN-LAST:event_closeViewTestDescriptionButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addMemberButton;
     private javax.swing.JDialog addMemberDialog;
@@ -750,6 +792,7 @@ public class ManageGroup extends javax.swing.JPanel {
     private javax.swing.JButton canelDescriptionDialogButton;
     private javax.swing.JButton chooseMemberButton;
     private javax.swing.JButton closeViewProfileDialog;
+    private javax.swing.JButton closeViewTestDescriptionButton;
     private javax.swing.JButton createNewTestButton;
     private javax.swing.JTextArea descriptionTextArea;
     private javax.swing.JButton editDescriptionButton;
@@ -775,6 +818,7 @@ public class ManageGroup extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -788,6 +832,8 @@ public class ManageGroup extends javax.swing.JPanel {
     private javax.swing.JButton okDescriptionDialogButton;
     private javax.swing.JProgressBar progressBar;
     private javax.swing.JButton saveButton;
+    private javax.swing.JTextPane testDescriptionTextArea;
+    private javax.swing.JDialog testDescriptionViewer;
     private javax.swing.JList testsList;
     private javax.swing.JList usersList;
     private javax.swing.JDialog viewProfileDialog;
@@ -830,8 +876,8 @@ public class ManageGroup extends javax.swing.JPanel {
                 int index, boolean isSelected, boolean cellHasFocus) {
             TestDescription testDescription = (TestDescription) value;
             Formatter formatter = new Formatter();
-            //formatter.format("", args) - zaraz dokończę
-            setText(testDescription.getCategory() + "|" + testDescription.getName() + "|Autor:" + testDescription.getAuthorLogin() + "|Ocena" + testDescription.getRating());
+            formatter.format("%s \t %s \t %s \t %d", testDescription.getName(), testDescription.getCategory(), testDescription.getAuthorLogin(), testDescription.getRating());
+            setText(formatter.toString());
             if (isSelected) {
                 setBackground(HIGHLIGHT_COLOR);
                 setForeground(Color.white);
