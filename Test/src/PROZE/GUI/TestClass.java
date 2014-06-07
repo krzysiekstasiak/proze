@@ -5,19 +5,13 @@
  */
 package PROZE.GUI;
 
-import ServerAccess.ServerAccessBeanRemote;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-
 /**
  *
  * @author Krzysztof
  */
 public class TestClass {
 
-    public static void main(String[] args) throws NamingException {
-        InitialContext ic = new InitialContext();
-        ServerAccessBeanRemote server = (ServerAccessBeanRemote) ic.lookup(ServerAccessBeanRemote.class.getCanonicalName());
+    public static void main(String[] args) {
 
     }
 

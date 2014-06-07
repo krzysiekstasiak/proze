@@ -19,6 +19,13 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.ListCellRenderer;
 
+/*
+ Rzeczy do zrobienia:
+ -Model listy dla testów - właśnie to robię
+ -Okienko dodawnania do grupy (źle się wyświetla)
+ -Zdefiniowanie eventListenera dla tego panelu oraz dodanie metod dodawania i usuwania tych listenerów
+ -Obsługa kliknięć (wywoływanie metod listenerów)
+ */
 /**
  *
  * @author Maciek
@@ -83,9 +90,9 @@ public class ManageGroup extends javax.swing.JPanel {
         popupMenu.add(removeMemberMenuItem);
         this.jList2.setComponentPopupMenu(popupMenu);
     }
-    
-    private void addTestListPopupMenu(){
-         JPopupMenu popupMenu2 = new JPopupMenu() {
+
+    private void addTestListPopupMenu() {
+        JPopupMenu popupMenu2 = new JPopupMenu() {
 
             @Override
             public void show(Component invoker, int x, int y) {
@@ -102,21 +109,22 @@ public class ManageGroup extends javax.swing.JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); 
+                throw new UnsupportedOperationException("Not supported yet.");
             }
         });
         popupMenu2.add(menageTestMenuItem);
-        
+
         JMenuItem removeTestMenuItem = new JMenuItem("Usuń test");
         removeTestMenuItem.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); 
+                throw new UnsupportedOperationException("Not supported yet.");
             }
         });
         popupMenu2.add(removeTestMenuItem);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -167,10 +175,13 @@ public class ManageGroup extends javax.swing.JPanel {
         jScrollPane4 = new javax.swing.JScrollPane();
         jList3 = new javax.swing.JList();
 
-        addMemberDialog.getContentPane().setLayout(new javax.swing.BoxLayout(addMemberDialog.getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
+        addMemberDialog.setMaximumSize(new java.awt.Dimension(124, 100));
+        addMemberDialog.setPreferredSize(new java.awt.Dimension(124, 100));
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 51));
         jPanel1.setForeground(new java.awt.Color(0, 204, 51));
+        jPanel1.setMaximumSize(new java.awt.Dimension(124, 100));
+        jPanel1.setPreferredSize(new java.awt.Dimension(124, 100));
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
 
         jSeparator1.setBackground(new java.awt.Color(0, 204, 51));
@@ -261,12 +272,19 @@ public class ManageGroup extends javax.swing.JPanel {
         jSeparator2.setPreferredSize(new java.awt.Dimension(0, 10));
         jPanel1.add(jSeparator2);
 
-        addMemberDialog.getContentPane().add(jPanel1);
+        javax.swing.GroupLayout addMemberDialogLayout = new javax.swing.GroupLayout(addMemberDialog.getContentPane());
+        addMemberDialog.getContentPane().setLayout(addMemberDialogLayout);
+        addMemberDialogLayout.setHorizontalGroup(
+            addMemberDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        addMemberDialogLayout.setVerticalGroup(
+            addMemberDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         viewProfileDialog.setTitle("Zobacz profil");
-        viewProfileDialog.setMaximumSize(new java.awt.Dimension(280, 400));
         viewProfileDialog.setMinimumSize(new java.awt.Dimension(280, 400));
-        viewProfileDialog.setPreferredSize(new java.awt.Dimension(280, 400));
         viewProfileDialog.setResizable(false);
 
         jPanel5.setBackground(new java.awt.Color(0, 204, 51));
@@ -276,7 +294,7 @@ public class ManageGroup extends javax.swing.JPanel {
         jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.Y_AXIS));
 
         jPanel6.setBackground(new java.awt.Color(0, 204, 51));
-        jPanel6.setLayout(new java.awt.GridLayout());
+        jPanel6.setLayout(new java.awt.GridLayout(1, 0));
 
         Login.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Login.setText("            Login:");
@@ -288,7 +306,7 @@ public class ManageGroup extends javax.swing.JPanel {
         jPanel5.add(jPanel6);
 
         jPanel7.setBackground(new java.awt.Color(0, 204, 51));
-        jPanel7.setLayout(new java.awt.GridLayout());
+        jPanel7.setLayout(new java.awt.GridLayout(1, 0));
 
         Name.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Name.setText("            Imie:");
@@ -300,7 +318,7 @@ public class ManageGroup extends javax.swing.JPanel {
         jPanel5.add(jPanel7);
 
         jPanel8.setBackground(new java.awt.Color(0, 204, 51));
-        jPanel8.setLayout(new java.awt.GridLayout());
+        jPanel8.setLayout(new java.awt.GridLayout(1, 0));
 
         SureName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         SureName.setText("            Nazwisko:");
@@ -312,7 +330,7 @@ public class ManageGroup extends javax.swing.JPanel {
         jPanel5.add(jPanel8);
 
         jPanel9.setBackground(new java.awt.Color(0, 204, 51));
-        jPanel9.setLayout(new java.awt.GridLayout());
+        jPanel9.setLayout(new java.awt.GridLayout(1, 0));
 
         Email.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Email.setText("            Email:");
