@@ -11,9 +11,33 @@
                     <file>${reference.WebServiceModule.dist-ear}</file>
                     <path-in-war>/</path-in-war>
                 </library>
+                <library>
+                    <file>${reference.WebService.dist-ear}</file>
+                    <path-in-war>/</path-in-war>
+                </library>
+                <library>
+                    <file>${reference.ServerEJB.dist-ear}</file>
+                    <path-in-war>/</path-in-war>
+                </library>
             </web-module-additional-libraries>
         </data>
         <references xmlns="http://www.netbeans.org/ns/ant-project-references/1">
+            <reference>
+                <foreign-project>ServerEJB</foreign-project>
+                <artifact-type>j2ee_ear_archive</artifact-type>
+                <script>build.xml</script>
+                <target>dist-ear</target>
+                <clean-target>clean-ear</clean-target>
+                <id>dist-ear</id>
+            </reference>
+            <reference>
+                <foreign-project>WebService</foreign-project>
+                <artifact-type>j2ee_ear_archive</artifact-type>
+                <script>build.xml</script>
+                <target>dist-ear</target>
+                <clean-target>clean-ear</clean-target>
+                <id>dist-ear</id>
+            </reference>
             <reference>
                 <foreign-project>WebServiceModule</foreign-project>
                 <artifact-type>j2ee_ear_archive</artifact-type>
