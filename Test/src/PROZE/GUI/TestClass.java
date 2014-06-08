@@ -5,9 +5,10 @@
  */
 package PROZE.GUI;
 
-import javax.naming.NamingException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -16,10 +17,16 @@ import javax.ws.rs.core.MediaType;
  */
 public class TestClass {
 
-    public static void main(String[] args) throws NamingException {
+    public static void main(String[] args) {
         Client client = ClientBuilder.newClient();
 
-        System.out.println(client.target("http://localhost:8080/services/webresources/session/").request(MediaType.TEXT_PLAIN).get(String.class));
+        WebTarget target = client.target("http://localhost:8080/WebService/webresources/session/");
+        target = target.queryParam("login", "Użytkownik");
+        target = target.queryParam("password", "Hasło");
+        Invocation.Builder request = target.request(MediaType.TEXT_PLAIN);
+        Invocation buildGet = request.buildGet();
+        String get = buildGet.invoke(String.class);
+        System.out.println(get);
     }
 
 }
