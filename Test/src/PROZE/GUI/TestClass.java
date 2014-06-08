@@ -5,14 +5,21 @@
  */
 package PROZE.GUI;
 
+import javax.naming.NamingException;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.core.MediaType;
+
 /**
  *
  * @author Krzysztof
  */
 public class TestClass {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NamingException {
+        Client client = ClientBuilder.newClient();
 
+        System.out.println(client.target("http://localhost:8080/services/webresources/session/").request(MediaType.TEXT_PLAIN).get(String.class));
     }
 
 }
