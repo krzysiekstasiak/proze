@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package PROZE.GUI;
 
+import EntitiesModels.GroupEntity;
+import EntitiesModels.TestDescription;
 import java.awt.Component;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.DefaultListModel;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
@@ -19,6 +21,9 @@ import javax.swing.JPopupMenu;
  */
 public class SearchPanel extends javax.swing.JPanel {
 
+    private final DefaultListModel<GroupEntity> groupListModel = new DefaultListModel<GroupEntity>();
+    private final DefaultListModel<TestDescription> testListModel = new DefaultListModel<TestDescription>();
+
     /**
      * Creates new form Search
      */
@@ -27,7 +32,8 @@ public class SearchPanel extends javax.swing.JPanel {
         addGroupPopupMenu();
         addTestPopupMenu();
     }
-     private void addGroupPopupMenu() {
+
+    private void addGroupPopupMenu() {
         JPopupMenu popupMenu1 = new JPopupMenu() {
 
             @Override
@@ -61,7 +67,8 @@ public class SearchPanel extends javax.swing.JPanel {
         this.jList3.setComponentPopupMenu(popupMenu1);
 
     }
-          private void addTestPopupMenu() {
+
+    private void addTestPopupMenu() {
         JPopupMenu popupMenu2 = new JPopupMenu() {
 
             @Override
@@ -106,6 +113,7 @@ public class SearchPanel extends javax.swing.JPanel {
         this.jList2.setComponentPopupMenu(popupMenu2);
 
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -216,11 +224,7 @@ public class SearchPanel extends javax.swing.JPanel {
 
         jPanel11.setLayout(new javax.swing.BoxLayout(jPanel11, javax.swing.BoxLayout.Y_AXIS));
 
-        jList3.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        jList3.setModel(this.testListModel);
         jScrollPane3.setViewportView(jList3);
 
         jPanel11.add(jScrollPane3);
@@ -263,7 +267,7 @@ public class SearchPanel extends javax.swing.JPanel {
         jSeparator25.setMaximumSize(new java.awt.Dimension(32767, 5));
         jPanel1.add(jSeparator25);
 
-        jTabbedPane1.addTab("Wyszykaj grupę", jPanel1);
+        jTabbedPane1.addTab("Wyszukaj grupę", jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(0, 204, 51));
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.Y_AXIS));
@@ -319,11 +323,7 @@ public class SearchPanel extends javax.swing.JPanel {
 
         jPanel6.setLayout(new javax.swing.BoxLayout(jPanel6, javax.swing.BoxLayout.Y_AXIS));
 
-        jList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        jList2.setModel(this.groupListModel);
         jScrollPane2.setViewportView(jList2);
 
         jPanel6.add(jScrollPane2);
@@ -387,7 +387,6 @@ public class SearchPanel extends javax.swing.JPanel {
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox jComboBox1;

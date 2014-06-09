@@ -54,6 +54,7 @@ public class LeftPanel extends javax.swing.JPanel {
         searchButton = new javax.swing.JButton();
         notificationsButton = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
+        newGroupButton = new javax.swing.JButton();
 
         userNameLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         userNameLabel.setText("<Nazwa użytkownika>");
@@ -100,6 +101,13 @@ public class LeftPanel extends javax.swing.JPanel {
             }
         });
 
+        newGroupButton.setText("Nowa grupa");
+        newGroupButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newGroupButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,8 +116,10 @@ public class LeftPanel extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1)
+                    .addComponent(jSeparator2)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(newGroupButton)
                             .addComponent(userNameLabel)
                             .addComponent(viewProfileButton)
                             .addComponent(logoutButton)
@@ -117,8 +127,7 @@ public class LeftPanel extends javax.swing.JPanel {
                             .addComponent(myTestsButton)
                             .addComponent(searchButton)
                             .addComponent(notificationsButton))
-                        .addGap(0, 109, Short.MAX_VALUE))
-                    .addComponent(jSeparator2))
+                        .addGap(0, 109, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -138,7 +147,9 @@ public class LeftPanel extends javax.swing.JPanel {
                 .addComponent(myTestsButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(searchButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 273, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(newGroupButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 244, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(notificationsButton)
@@ -182,12 +193,19 @@ public class LeftPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_notificationsButtonActionPerformed
 
+    private void newGroupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGroupButtonActionPerformed
+        for (NavigationListener listener : navigationListeners) {
+            listener.navigatedToGroupManager(null, true);
+        }
+    }//GEN-LAST:event_newGroupButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton logoutButton;
     private javax.swing.JButton myGroupsButton;
     private javax.swing.JButton myTestsButton;
+    private javax.swing.JButton newGroupButton;
     private javax.swing.JButton notificationsButton;
     private javax.swing.JButton searchButton;
     private javax.swing.JLabel userNameLabel;

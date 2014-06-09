@@ -16,12 +16,14 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jSeparator1" max="32767" attributes="0"/>
+                  <Component id="jSeparator2" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="newGroupButton" min="-2" max="-2" attributes="0"/>
                           <Component id="userNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="viewProfileButton" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="logoutButton" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -32,7 +34,6 @@
                       </Group>
                       <EmptySpace min="0" pref="109" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jSeparator2" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -55,7 +56,9 @@
               <Component id="myTestsButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="searchButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="273" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="newGroupButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="244" max="32767" attributes="0"/>
               <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="notificationsButton" min="-2" max="-2" attributes="0"/>
@@ -124,6 +127,14 @@
       </Events>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator2">
+    </Component>
+    <Component class="javax.swing.JButton" name="newGroupButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nowa grupa"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newGroupButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

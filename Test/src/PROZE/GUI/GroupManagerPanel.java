@@ -55,7 +55,7 @@ public class GroupManagerPanel extends javax.swing.JPanel {
 
     private ManagerState managerState;
     private GroupEntity groupEntity;
-    private final DefaultListModel<UserEntity> allUsersListModel = new DefaultListModel<UserEntity>();
+    private final DefaultListModel<UserEntity> allUsersListModel = new DefaultListModel<>();
     private final DefaultListModel<TestDescription> testsListModel = new DefaultListModel<>();
     private final DefaultListModel<UserEntity> usersListModel = new DefaultListModel<>();
     private final Set<GroupManagerListener> groupManagerListeners = new HashSet<>();
@@ -156,7 +156,7 @@ public class GroupManagerPanel extends javax.swing.JPanel {
             public void actionPerformed(ActionEvent e) {
                 if (chceckIfCanExit()) {
                     for (NavigationListener listener : navigationListeners) {
-                        listener.navigatedToGroupManager(testsListModel.get(testsList.getSelectedIndex()), false);
+                        listener.navigatedToTestManager(testsListModel.get(testsList.getSelectedIndex()), false);
                     }
                 }
             }
@@ -295,7 +295,9 @@ public class GroupManagerPanel extends javax.swing.JPanel {
     }
 
     private boolean chceckIfCanExit() {
-        if (!this.descriptionTextArea.getText().equals(this.groupEntity.getDescription())) {
+        if (this.managerState == ManagerState.GROUP_CREATED) {
+            return true;
+        } else if (!this.descriptionTextArea.getText().equals(this.groupEntity.getDescription())) {
             int dialogResult = JOptionPane.showConfirmDialog(this, "Nie zapisano zmian. Czy na pewno chces kontynuować?", "Niezapisane zmiany", JOptionPane.OK_CANCEL_OPTION);
             if (dialogResult == JOptionPane.CANCEL_OPTION) {
                 return false;
@@ -743,7 +745,7 @@ public class GroupManagerPanel extends javax.swing.JPanel {
     private void createNewTestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewTestButtonActionPerformed
         if (this.chceckIfCanExit()) {
             for (NavigationListener listener : this.navigationListeners) {
-                listener.navigatedToGroupManager(null, true);
+                listener.navigatedToTestManager(null, true);
             }
         }
     }//GEN-LAST:event_createNewTestButtonActionPerformed
@@ -797,8 +799,8 @@ public class GroupManagerPanel extends javax.swing.JPanel {
             for (GroupManagerListener listener : this.groupManagerListeners) {
                 listener.groupUpdated(this.groupEntity);
             }
-            this.setManagerState(ManagerState.WAITING);
         }
+        this.setManagerState(ManagerState.WAITING);
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void closeViewTestDescriptionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeViewTestDescriptionButtonActionPerformed

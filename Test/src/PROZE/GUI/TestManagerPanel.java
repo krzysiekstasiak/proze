@@ -30,6 +30,13 @@ import javax.swing.JPopupMenu;
 import javax.swing.ListCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+/*
+ Do zrobienia:
+ -edytor pytań
+ -menu kontekstowe
+ -okienko zmiany opisu
+ -stan oczekiwania w edytorze
+ */
 /**
  *
  * @author Maciek

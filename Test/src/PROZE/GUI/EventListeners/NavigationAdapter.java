@@ -35,11 +35,11 @@ public class NavigationAdapter implements NavigationListener {
     }
 
     @Override
-    public void navigatedToGroupManager(TestDescription editedTest, boolean createNewTest) {
+    public void navigatedToTestManager(TestDescription editedTest, boolean createNewTest) {
     }
 
     @Override
-    public void navigatedToManageGroup(GroupEntity group) {
+    public void navigatedToGroupManager(GroupEntity group, boolean createNewGroup) {
     }
 
     @Override
