@@ -7,13 +7,18 @@ package PROZE.GUI;
 
 import EntitiesModels.GroupEntity;
 import EntitiesModels.TestDescription;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Formatter;
 import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.ListCellRenderer;
 
 /**
  *
@@ -38,8 +43,8 @@ public class SearchPanel extends javax.swing.JPanel {
 
             @Override
             public void show(Component invoker, int x, int y) {
-                int selectedIndex = jList3.getSelectedIndex();
-                if (selectedIndex == jList3.locationToIndex(new Point(x, y))) {
+                int selectedIndex = groupList.getSelectedIndex();
+                if (selectedIndex == groupList.locationToIndex(new Point(x, y))) {
                     super.show(invoker, x, y);
                 }
             }
@@ -64,7 +69,7 @@ public class SearchPanel extends javax.swing.JPanel {
             }
         });
         popupMenu1.add(joinGroup);
-        this.jList3.setComponentPopupMenu(popupMenu1);
+        this.groupList.setComponentPopupMenu(popupMenu1);
 
     }
 
@@ -73,8 +78,8 @@ public class SearchPanel extends javax.swing.JPanel {
 
             @Override
             public void show(Component invoker, int x, int y) {
-                int selectedIndex = jList2.getSelectedIndex();
-                if (selectedIndex == jList2.locationToIndex(new Point(x, y))) {
+                int selectedIndex = testsList.getSelectedIndex();
+                if (selectedIndex == testsList.locationToIndex(new Point(x, y))) {
                     super.show(invoker, x, y);
                 }
             }
@@ -110,7 +115,7 @@ public class SearchPanel extends javax.swing.JPanel {
 //            });
 //            popupMenu2.add(editTest);
 //        }
-        this.jList2.setComponentPopupMenu(popupMenu2);
+        this.testsList.setComponentPopupMenu(popupMenu2);
 
     }
 
@@ -137,7 +142,7 @@ public class SearchPanel extends javax.swing.JPanel {
         jSeparator24 = new javax.swing.JSeparator();
         jPanel11 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList();
+        groupList = new javax.swing.JList();
         jPanel12 = new javax.swing.JPanel();
         jSeparator19 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
@@ -156,7 +161,7 @@ public class SearchPanel extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
+        testsList = new javax.swing.JList();
         jPanel10 = new javax.swing.JPanel();
         jSeparator17 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
@@ -224,8 +229,8 @@ public class SearchPanel extends javax.swing.JPanel {
 
         jPanel11.setLayout(new javax.swing.BoxLayout(jPanel11, javax.swing.BoxLayout.Y_AXIS));
 
-        jList3.setModel(this.testListModel);
-        jScrollPane3.setViewportView(jList3);
+        groupList.setModel(this.testListModel);
+        jScrollPane3.setViewportView(groupList);
 
         jPanel11.add(jScrollPane3);
 
@@ -323,8 +328,8 @@ public class SearchPanel extends javax.swing.JPanel {
 
         jPanel6.setLayout(new javax.swing.BoxLayout(jPanel6, javax.swing.BoxLayout.Y_AXIS));
 
-        jList2.setModel(this.groupListModel);
-        jScrollPane2.setViewportView(jList2);
+        testsList.setModel(this.groupListModel);
+        jScrollPane2.setViewportView(testsList);
 
         jPanel6.add(jScrollPane2);
 
@@ -389,6 +394,7 @@ public class SearchPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList groupList;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox4;
     private javax.swing.JComboBox jComboBox5;
@@ -397,8 +403,6 @@ public class SearchPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JList jList2;
-    private javax.swing.JList jList3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -429,5 +433,58 @@ public class SearchPanel extends javax.swing.JPanel {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JList testsList;
     // End of variables declaration//GEN-END:variables
+    
+    class TestCellRenderer extends JLabel implements ListCellRenderer {
+
+        private final Color HIGHLIGHT_COLOR = new Color(0, 0, 128);
+
+        public TestCellRenderer() {
+            setOpaque(true);
+        }
+
+        @Override
+        public Component getListCellRendererComponent(JList list, Object value,
+                int index, boolean isSelected, boolean cellHasFocus) {
+            TestDescription testDescription = (TestDescription) value;
+            Formatter formatter = new Formatter();
+            formatter.format("%s \t, w kategorii %s \t, dodany przez: %s \t, ocena: %d", testDescription.getName(), testDescription.getCategory(), testDescription.getAuthorLogin(), testDescription.getRating());
+            setText(formatter.toString());
+            if (isSelected) {
+                setBackground(HIGHLIGHT_COLOR);
+                setForeground(Color.white);
+
+            } else {
+                setBackground(Color.white);
+                setForeground(Color.black);
+            }
+            return this;
+        }
+    }
+    class GroupCellRenderer extends JLabel implements ListCellRenderer {
+       
+        private final Color HIGHLIGHT_COLOR = new Color(0, 0, 128);
+            
+        public GroupCellRenderer() {
+            setOpaque(true);
+        }
+
+        @Override
+        public Component getListCellRendererComponent(JList list, Object value,
+                int index, boolean isSelected, boolean cellHasFocus) {
+            GroupEntity groupDescription = (GroupEntity) value;
+            setText(groupDescription.getName());
+            if (isSelected) {
+                setBackground(HIGHLIGHT_COLOR);
+                setForeground(Color.white);
+
+            } else {
+                setBackground(Color.white);
+                setForeground(Color.black);
+            }
+            return this;
+        }
+    }
+    
 }
