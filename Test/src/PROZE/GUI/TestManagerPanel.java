@@ -302,6 +302,16 @@ public class TestManagerPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
+        editExistQuestionDialog = new javax.swing.JDialog();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        quwstionArea = new javax.swing.JTextArea();
+        jPanel8 = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         nameField = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
@@ -534,6 +544,71 @@ public class TestManagerPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        jPanel6.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel6.setMinimumSize(new java.awt.Dimension(501, 341));
+        jPanel6.setPreferredSize(new java.awt.Dimension(501, 341));
+        jPanel6.setLayout(new javax.swing.BoxLayout(jPanel6, javax.swing.BoxLayout.Y_AXIS));
+
+        jPanel7.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel7.setLayout(new javax.swing.BoxLayout(jPanel7, javax.swing.BoxLayout.Y_AXIS));
+
+        jLabel7.setText("Treść pytania:");
+        jPanel7.add(jLabel7);
+
+        quwstionArea.setColumns(20);
+        quwstionArea.setRows(5);
+        jScrollPane7.setViewportView(quwstionArea);
+
+        jPanel7.add(jScrollPane7);
+
+        jPanel6.add(jPanel7);
+
+        jPanel8.setBackground(new java.awt.Color(0, 204, 51));
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 501, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 236, Short.MAX_VALUE)
+        );
+
+        jPanel6.add(jPanel8);
+
+        jPanel9.setLayout(new javax.swing.BoxLayout(jPanel9, javax.swing.BoxLayout.LINE_AXIS));
+
+        jButton1.setText("jButton1");
+        jPanel9.add(jButton1);
+
+        jButton2.setText("jButton2");
+        jPanel9.add(jButton2);
+
+        jPanel6.add(jPanel9);
+
+        javax.swing.GroupLayout editExistQuestionDialogLayout = new javax.swing.GroupLayout(editExistQuestionDialog.getContentPane());
+        editExistQuestionDialog.getContentPane().setLayout(editExistQuestionDialogLayout);
+        editExistQuestionDialogLayout.setHorizontalGroup(
+            editExistQuestionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 501, Short.MAX_VALUE)
+            .addGroup(editExistQuestionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(editExistQuestionDialogLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        editExistQuestionDialogLayout.setVerticalGroup(
+            editExistQuestionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 341, Short.MAX_VALUE)
+            .addGroup(editExistQuestionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(editExistQuestionDialogLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
         setBackground(new java.awt.Color(0, 204, 51));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
@@ -670,7 +745,10 @@ public class TestManagerPanel extends javax.swing.JPanel {
     private javax.swing.JTextArea descriptionField;
     private javax.swing.JButton editDescriptionButton;
     private javax.swing.JDialog editDescriptionDialog;
+    private javax.swing.JDialog editExistQuestionDialog;
     private javax.swing.JDialog editQuestionDialog;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -684,6 +762,7 @@ public class TestManagerPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel16;
@@ -691,12 +770,17 @@ public class TestManagerPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTable jTable2;
@@ -706,6 +790,7 @@ public class TestManagerPanel extends javax.swing.JPanel {
     private javax.swing.JTextField nameField;
     private javax.swing.JList proposedQuestionsList;
     private javax.swing.JList questionsList;
+    private javax.swing.JTextArea quwstionArea;
     private javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
 
