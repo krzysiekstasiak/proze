@@ -15,11 +15,14 @@ import java.io.ObjectOutputStream;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
+import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
 import java.nio.file.StandardOpenOption;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Date;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
@@ -87,7 +90,6 @@ class EntitiesStoringManager {
         }
     }
 
-    //Do poprawienia jak storeTestEntity()
     public Future<TestEntity> loadTestEntity(final long testID, final String groupName) throws FileNotFoundException, IOException {
         return this.threadPool.submit(new Callable<TestEntity>() {
 
@@ -102,14 +104,6 @@ class EntitiesStoringManager {
     }
 
     private TestEntity readTestEntityFromFile(Path pathToTest) throws IOException, ClassNotFoundException {
-        if (!Files.exists(pathToTest, LinkOption.NOFOLLOW_LINKS)) {
-            try {
-                this.fileCreateSemaphore.acquire();
-            } catch (InterruptedException ex) {
-            }
-            Files.createFile(pathToTest);
-            this.fileCreateSemaphore.release();
-        }
         byte[] byteArray;
         try (FileChannel fileChannel = FileChannel.open(pathToTest, StandardOpenOption.READ, StandardOpenOption.WRITE)) {
             FileLock lock = fileChannel.lock();
@@ -141,6 +135,18 @@ class EntitiesStoringManager {
             }
         }
         return pathToGroup;
+    }
+
+    //TODO: Jak starczy czasu
+    public void maintainCataloguesOrder() throws IOException {
+        Files.walkFileTree(storingDirectoryPath, new SimpleFileVisitor<Path>() {
+
+            @Override
+            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                return super.visitFile(file, attrs); //To change body of generated methods, choose Tools | Templates.
+            }
+
+        });
     }
 
     public static synchronized EntitiesStoringManager getInstance() throws IOException {

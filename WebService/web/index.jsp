@@ -9,9 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Brak strony</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Z aplikacji należy korzystać za pomocą odpowiedniego klienta.</h1>
     </body>
 </html>
