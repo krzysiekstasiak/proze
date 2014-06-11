@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package PROZE;
+package PROZE.InputOutput;
 
 import PROZE.InputOutput.AccountSettingsManager;
 import java.io.File;

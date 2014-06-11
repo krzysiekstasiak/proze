@@ -35,14 +35,13 @@ public class FileTestStore implements TestEntityStore {
     private final ExecutorService threadPool = Executors.newWorkStealingPool(Runtime.getRuntime().availableProcessors());
     private final Semaphore temporaryPathSemaphore = new Semaphore(1, true);
 
-    private static Path pathToCatalogue = Paths.get("store");
+    private static final Path pathToCatalogue = Paths.get("store");
 
     private Path temporaryPath;
 
     private FileTestStore() {
     }
 
-    @Override
     public Iterator<TestEntity> getTests() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

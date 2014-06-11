@@ -6,7 +6,6 @@
 package PROZE.InputOutput;
 
 import EntitiesModels.TestEntity;
-import java.util.Iterator;
 import java.util.concurrent.Future;
 
 /**
@@ -14,8 +13,6 @@ import java.util.concurrent.Future;
  * @author Krzysztof
  */
 public interface TestEntityStore {
-
-    public Iterator<TestEntity> getTests();
 
     public Future<Boolean> storeTest(TestEntity testEntity);
 
