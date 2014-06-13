@@ -6,9 +6,8 @@
 package WebServices;
 
 import SessionAuthentication.SessionAuthenticationBeanLocal;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -27,7 +26,8 @@ import javax.ws.rs.core.UriInfo;
 @RequestScoped
 public class SessionResource {
 
-    SessionAuthenticationBeanLocal sessionAuthenticationBean = lookupSessionAuthenticationBeanLocal();
+    @EJB
+    SessionAuthenticationBeanLocal sessionAuthenticationBean;
     @Context
     private UriInfo context;
 
@@ -56,12 +56,4 @@ public class SessionResource {
         return responseString;
     }
 
-    private SessionAuthenticationBeanLocal lookupSessionAuthenticationBeanLocal() {
-        try {
-            javax.naming.Context c = new InitialContext();
-            return (SessionAuthenticationBeanLocal) c.lookup("java:global/Server/ServerEJB/SessionAuthenticationBean!SessionAuthentication.SessionAuthenticationBeanLocal");
-        } catch (NamingException ne) {
-            throw new RuntimeException(ne);
-        }
-    }
 }

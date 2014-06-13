@@ -6,11 +6,8 @@
 package WebServices;
 
 import SessionAuthentication.SessionAuthenticationBeanLocal;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -32,7 +29,8 @@ import javax.ws.rs.core.UriInfo;
 @RequestScoped
 public class TestResource {
 
-    SessionAuthenticationBeanLocal sessionAuthenticationBean = lookupSessionAuthenticationBeanLocal();
+    @EJB
+    SessionAuthenticationBeanLocal sessionAuthenticationBean;
 
     @Context
     private UriInfo context;
@@ -50,8 +48,8 @@ public class TestResource {
      */
     @GET
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    @Path("/{name}")
-    public byte[] getTest(@PathParam("name") String name, @PathParam("sessionID") String sessionID) {
+    @Path("/{testID}")
+    public byte[] getTest(@PathParam("testID") String name, @PathParam("sessionID") String sessionID) {
         //TODO return proper representation object
         throw new UnsupportedOperationException();
     }
@@ -62,9 +60,9 @@ public class TestResource {
      * @param content representation for the resource
      * @return an HTTP response with content of the updated or created resource.
      */
-    @PUT
+    @GET
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    public byte[] createTest(@QueryParam("name") String name, @PathParam("sessionID") String sessionID) {
+    public byte[] createTest(@QueryParam("name") String name, @QueryParam("groupName") String groupName, @PathParam("sessionID") String sessionID) {
         throw new UnsupportedOperationException();
     }
 
@@ -74,56 +72,54 @@ public class TestResource {
     }
 
     @POST
-    @Path("/{name}/solution")
+    @Path("/{testID}/solution")
     @Consumes(MediaType.APPLICATION_OCTET_STREAM)
-    public void sendSolution(@PathParam("name") String name, @PathParam("sessionID") String sessionID, byte[] sentSolution) {
+    public void sendSolution(@PathParam("testID") String name, @PathParam("sessionID") String sessionID, byte[] sentSolution) {
     }
 
-    @POST
-    @Path("/{name}/comment")
+    @PUT
+    @Path("/{testID}/comment")
     @Consumes(MediaType.TEXT_PLAIN)
-    public void postComment(@PathParam("name") String testName, @PathParam("sessionID") String sessionID, String commentContent, @QueryParam("rating") int rating) {
+    public void postComment(@PathParam("testID") String testName, @PathParam("sessionID") String sessionID, String commentContent, @QueryParam("rating") int rating) {
     }
 
     @GET
-    @Path("/{name}/comment")
+    @Path("/{testID}/comment")
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    public byte[] getComments(@PathParam("name") String testName, @PathParam("sessionID") String sessionID) {
+    public byte[] getComments(@PathParam("testID") String testName, @PathParam("sessionID") String sessionID) {
         return null;
     }
 
     @POST
-    @Path("/{name}/proposition")
+    @Path("/{testID}/proposition")
     @Consumes(MediaType.APPLICATION_OCTET_STREAM)
-    public void postQuestionProposition(@PathParam("name") String name, @PathParam("sessionID") String sessionID, byte[] question) {
+    public void postQuestionProposition(@PathParam("testID") String testID, @PathParam("sessionID") String sessionID, byte[] questionProposition) {
     }
 
     @GET
-    @Path("/{name}/proposition")
+    @Path("/{testID}/proposition")
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    public byte[] getQuestionPropositions(@PathParam("name") String name, @PathParam("sessionID") String sessionID) {
+    public byte[] getQuestionPropositions(@PathParam("testID") String testID, @PathParam("sessionID") String sessionID) {
         return null;
     }
 
     @POST
-    @Path("/{name}/error")
-    public void postQuestionError(@PathParam("name") String name, @PathParam("sessionID") String sessionID, @QueryParam("questionIndex") String questionIndex, @QueryParam("problem") String problemDescription, @QueryParam("solution") String possibleSolution) {
+    @Path("/{testID}/error")
+    public void postQuestionError(@PathParam("testID") String testID, @PathParam("sessionID") String sessionID, @QueryParam("questionIndex") String questionIndex, String problemDescription, @QueryParam("solution") String possibleSolution) {
     }
 
     @GET
-    @Path("/{name}/error")
+    @Path("/{testID}/error")
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    public byte[] getQuestionErrors(@PathParam("name") String name, @PathParam("session") String sessionID) {
+    public byte[] getQuestionErrors(@PathParam("testID") String testID, @PathParam("sessionID") String sessionID) {
         return null;
     }
 
-    private SessionAuthenticationBeanLocal lookupSessionAuthenticationBeanLocal() {
-        try {
-            javax.naming.Context c = new InitialContext();
-            return (SessionAuthenticationBeanLocal) c.lookup("java:global/Server/ServerEJB/SessionAuthenticationBean!SessionAuthentication.SessionAuthenticationBeanLocal");
-        } catch (NamingException ne) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
-            throw new RuntimeException(ne);
-        }
+    @GET
+    @Path("/{testID}/date")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getModificationDate(@PathParam("testID") String testID, @PathParam("sessionID") String sessionID) {
+        return null;
     }
+
 }
