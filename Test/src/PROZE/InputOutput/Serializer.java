@@ -25,6 +25,12 @@ public class Serializer {
         }
     }
 
+    public static Object deserializeFromStream(InputStream inputStream) throws IOException, ClassNotFoundException {
+        try (ObjectInputStream objectInput = new ObjectInputStream(inputStream)) {
+            return objectInput.readObject();
+        }
+    }
+
     public static byte[] serializeObject(Object serializedObject) throws IOException {
         try (ByteArrayOutputStream byteOutput = new ByteArrayOutputStream();
                 ObjectOutputStream objectOutput = new ObjectOutputStream(byteOutput)) {
