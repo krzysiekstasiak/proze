@@ -32,7 +32,7 @@ public class TestForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
-        getContentPane().add(testManagerPanel1);
+        getContentPane().add(groupManagerPanel1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

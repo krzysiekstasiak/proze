@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SessionAuthentication;
+package PermissionsValidator;
 
 import javax.ejb.Local;
 
@@ -12,12 +12,8 @@ import javax.ejb.Local;
  * @author Krzysztof
  */
 @Local
-public interface SessionAuthenticationBeanLocal {
+public interface PermissionsValidatorBeanLocal {
 
-    long createSession(String login, String password) throws IllegalAccessException;
-
-    boolean closeSession(long sessionID);
-
-    String getUserLogin(long sessionID);
+    boolean authenticateUser(String login, String password);
 
 }

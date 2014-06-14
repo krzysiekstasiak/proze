@@ -5,18 +5,11 @@
  */
 package PROZE.GUI;
 
-import EntitiesModels.UserEntity;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 /**
  *
@@ -34,14 +27,14 @@ public class TestClass {
 //        Invocation buildGet = request.buildGet();
 //        String get = buildGet.invoke(String.class);
 //        System.out.println(get);
-        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
-        ObjectOutputStream objectOut = new ObjectOutputStream(outStream);
-        objectOut.writeObject(new UserEntity("login2", true));
-        WebTarget target = client.target("http://localhost:8080/WebService/webresources/account/");
-        Response resp = target.request(MediaType.APPLICATION_OCTET_STREAM_TYPE).put(Entity.entity(outStream.toByteArray(), MediaType.APPLICATION_OCTET_STREAM));
-        ObjectInputStream objInstream = new ObjectInputStream((InputStream) resp.getEntity());
-        UserEntity user = (UserEntity) objInstream.readObject();
-        System.out.println(user.getLogin());
+        String login = "test";
+        String password = "test";
+        System.out.println("SELECT * FROM USERS WHERE login = \'" + login + "\' AND password = \'" + password + "\';");
+        WebTarget target = client.target("http://localhost:8080/WebService/webresources/");
+        WebTarget sessionTarget = target.path("session");
+        String response = sessionTarget.queryParam("login", "test").queryParam("password", "test").request(MediaType.TEXT_PLAIN).get(String.class);
+        System.out.println(response);
+        client.close();
     }
 
 }

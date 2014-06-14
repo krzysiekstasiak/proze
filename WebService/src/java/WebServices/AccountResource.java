@@ -5,7 +5,10 @@
  */
 package WebServices;
 
+import Auxiliary.SerializerBeanLocal;
+import SessionAuthentication.SessionAuthenticationBeanLocal;
 import java.io.IOException;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -26,6 +29,12 @@ import javax.ws.rs.core.UriInfo;
 @Path("account")
 @RequestScoped
 public class AccountResource {
+
+    @EJB
+    SerializerBeanLocal serializerBean;
+
+    @EJB
+    SessionAuthenticationBeanLocal sessionAuthenticationBean;
 
     @Context
     private UriInfo context;
