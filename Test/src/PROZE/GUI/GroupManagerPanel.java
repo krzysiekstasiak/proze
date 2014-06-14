@@ -35,7 +35,7 @@ import javax.swing.ListCellRenderer;
  Rzeczy do zrobienia:
  -Model listy dla testów i użytkowników - ZROBIONE
  -ListCellRenderer dla testów (ma być dla obiektów typu TestDescription -ZROBIONE
- -Okienko dodawnania do grupy (źle się wyświetla) tak samo jak okieno edycji opisu.
+ -Okienko dodawnania do grupy (źle się wyświetla) tak samo jak okieno edycji opisu. - ZROBIONE
  -Zdefiniowanie eventListenera dla tego panelu oraz dodanie metod dodawania i usuwania tych listenerów - ZROBIONE
  -Obsługa kliknięć (wywoływanie metod listenerów) - ZROBIONE
  -Umożliwienie edytowania opisu - ZROBIONE
@@ -787,13 +787,14 @@ public class GroupManagerPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_editDescriptionButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        if (!this.chceckIfCanExit()) {
-            return;
+        try {
+            this.groupEntity.setDescription(this.temporaryDescription);
+        } catch (IllegalAccessException ex) {
+            throw new UnsupportedOperationException(ex);
         }
         if (this.managerState == ManagerState.GROUP_CREATED) {
             for (GroupManagerListener listener : this.groupManagerListeners) {
                 listener.groupCreated(this.nameField.getText());
-                this.setManagerState(ManagerState.WAITING);
             }
         } else if (this.managerState == ManagerState.GROUP_MANAGED) {
             for (GroupManagerListener listener : this.groupManagerListeners) {
