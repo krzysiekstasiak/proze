@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package PROZE.GUI;
 
 import EntitiesModels.UserEntity;
@@ -21,11 +20,16 @@ public class MyAccountPanel extends javax.swing.JPanel {
     /**
      * Creates new form MainWindow
      */
-    private final UserEntity currentUser;
+    private UserEntity currentUser;
     private final Set<MyAccountListener> myAccountListeners = new HashSet<>();
-    public MyAccountPanel(UserEntity User) {
-        currentUser = User;
+
+    public MyAccountPanel() {
         initComponents();
+    }
+
+    public void loadUserEntity(UserEntity user) {
+        this.currentUser = user;
+        this.setupFieldsWithCurrentUser();
     }
 
     /**
@@ -49,9 +53,6 @@ public class MyAccountPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         secondNameTextField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        loginTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         emailTextField = new javax.swing.JTextField();
@@ -65,6 +66,24 @@ public class MyAccountPanel extends javax.swing.JPanel {
         cancelButton = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         editButton = new javax.swing.JButton();
+
+        jPanel9.setMaximumSize(new java.awt.Dimension(400, 233));
+        jPanel9.setMinimumSize(new java.awt.Dimension(400, 233));
+
+        jPanel9.setMaximumSize(new java.awt.Dimension(400, 233));
+        jPanel9.setMinimumSize(new java.awt.Dimension(400, 233));
+
+        jPanel9.setMaximumSize(new java.awt.Dimension(400, 233));
+        jPanel9.setMinimumSize(new java.awt.Dimension(400, 233));
+
+        jPanel9.setMaximumSize(new java.awt.Dimension(400, 233));
+        jPanel9.setMinimumSize(new java.awt.Dimension(400, 233));
+
+        jPanel9.setMaximumSize(new java.awt.Dimension(400, 233));
+        jPanel9.setMinimumSize(new java.awt.Dimension(400, 233));
+
+        jPanel9.setMaximumSize(new java.awt.Dimension(400, 233));
+        jPanel9.setMinimumSize(new java.awt.Dimension(400, 233));
 
         jPanel9.setMaximumSize(new java.awt.Dimension(400, 233));
         jPanel9.setMinimumSize(new java.awt.Dimension(400, 233));
@@ -143,19 +162,6 @@ public class MyAccountPanel extends javax.swing.JPanel {
 
         add(jPanel2);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel2.setText("Login:");
-        add(jLabel2);
-
-        jPanel3.setBackground(new java.awt.Color(0, 204, 51));
-        jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
-
-        loginTextField.setMaximumSize(new java.awt.Dimension(259, 25));
-        loginTextField.setPreferredSize(new java.awt.Dimension(150, 25));
-        jPanel3.add(loginTextField);
-
-        add(jPanel3);
-
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Adres E-mail:");
         add(jLabel3);
@@ -229,30 +235,38 @@ public class MyAccountPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        this.firstNameTextField.setText(null);
-        this.secondNameTextField.setText(null);
-        this.loginTextField.setText(null);
-        this.emailTextField.setText(null);
+        this.setupFieldsWithCurrentUser();
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void setupFieldsWithCurrentUser() {
+        this.firstNameTextField.setText(this.currentUser.getFirstName());
+        this.secondNameTextField.setText(this.currentUser.getLastName());
+        this.emailTextField.setText(this.currentUser.getMailAddress());
         this.secondPasswordField.setText(null);
         this.firstPasswordField.setText(null);
-    }//GEN-LAST:event_cancelButtonActionPerformed
+    }
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         String name = firstNameTextField.getText();
         String secondName = secondNameTextField.getText();
-        String login = loginTextField.getText();
         String email = emailTextField.getText();
         char[] secondPassword = secondPasswordField.getPassword();
         char[] firstPassword = firstPasswordField.getPassword();
         if (Arrays.equals(firstPassword, secondPassword)) {
-            for (MyAccountListener listener : this.myAccountListeners) {
-                listener.changesConfirmed(name, secondName, login, email, firstPassword);
+            try {
+                this.currentUser.setFirstName(name);
+                this.currentUser.setSecondName(secondName);
+                this.currentUser.setMailAddress(email);
+            } catch (IllegalAccessException ex) {
+                throw new UnsupportedOperationException(ex);
             }
-        }
-        else{
+            for (MyAccountListener listener : this.myAccountListeners) {
+                listener.accountUpdated(this.currentUser);
+            }
+        } else {
             this.warningMessage.setVisible(true);
         }
-   
+
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void buttonWarningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonWarningActionPerformed
@@ -260,7 +274,6 @@ public class MyAccountPanel extends javax.swing.JPanel {
         this.secondPasswordField.setText(null);
         this.warningMessage.setVisible(false);
     }//GEN-LAST:event_buttonWarningActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton buttonWarning;
@@ -270,7 +283,6 @@ public class MyAccountPanel extends javax.swing.JPanel {
     private javax.swing.JTextField firstNameTextField;
     private javax.swing.JPasswordField firstPasswordField;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -278,7 +290,6 @@ public class MyAccountPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -287,7 +298,6 @@ public class MyAccountPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField loginTextField;
     private javax.swing.JTextField secondNameTextField;
     private javax.swing.JPasswordField secondPasswordField;
     private javax.swing.JDialog warningMessage;
