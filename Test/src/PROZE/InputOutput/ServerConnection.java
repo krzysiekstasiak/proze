@@ -6,10 +6,14 @@
 package PROZE.InputOutput;
 
 import EntitiesModels.Comment;
+import EntitiesModels.GroupEntity;
+import EntitiesModels.Notifications.Notification;
 import EntitiesModels.QuestionError;
 import EntitiesModels.QuestionProposition;
+import EntitiesModels.TestDescription;
 import EntitiesModels.TestEntity;
 import EntitiesModels.TestSolution;
+import EntitiesModels.UserEntity;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.text.DateFormat;
@@ -55,7 +59,7 @@ public class ServerConnection implements TestEntityStore {
 
     public Future<Boolean> login(final String login, final String password) {
         if (this.logged) {
-            throw new IllegalStateException("User must be logged out.");
+            throw new IllegalStateException("User must be logged out");
         }
         return this.threadPool.submit(new Callable<Boolean>() {
 
@@ -65,7 +69,7 @@ public class ServerConnection implements TestEntityStore {
                 WebTarget sessionTarget = target.path("session");
                 String response = sessionTarget.queryParam("login", login).queryParam("password", password).request(MediaType.TEXT_PLAIN).get(String.class);
                 clientSemaphore.acquire();
-                if (response == "Authentication Error") {
+                if ("Authentication Error".equals(response)) {
                     return false;
                 } else {
                     long receivedID = Long.valueOf(response);
@@ -77,9 +81,7 @@ public class ServerConnection implements TestEntityStore {
     }
 
     public void logout() {
-        if (!this.logged) {
-            throw new IllegalStateException("User must be logged in");
-        }
+        this.checkIfLogged();
         this.threadPool.submit(new Callable<Boolean>() {
 
             @Override
@@ -95,9 +97,7 @@ public class ServerConnection implements TestEntityStore {
 
     @Override
     public Future<Boolean> storeTest(final TestEntity testEntity) {
-        if (!this.logged) {
-            throw new IllegalStateException("User is not logged in.");
-        }
+        this.checkIfLogged();
         return this.threadPool.submit(new Callable<Boolean>() {
 
             @Override
@@ -119,9 +119,7 @@ public class ServerConnection implements TestEntityStore {
 
     @Override
     public Future<TestEntity> getTest(final long testID) {
-        if (!this.logged) {
-            throw new IllegalStateException("User is not logged in.");
-        }
+        this.checkIfLogged();
         return this.threadPool.submit(new Callable<TestEntity>() {
 
             @Override
@@ -136,9 +134,7 @@ public class ServerConnection implements TestEntityStore {
     }
 
     public Future<Date> getTestModificationDate(final long testID) {
-        if (!this.logged) {
-            throw new IllegalStateException("User is not logged in.");
-        }
+        this.checkIfLogged();
         return this.threadPool.submit(new Callable<Date>() {
 
             @Override
@@ -157,17 +153,15 @@ public class ServerConnection implements TestEntityStore {
     }
 
     public Future<TestEntity> createTest(final String name, final String groupName) {
-        if (!this.logged) {
-            throw new IllegalStateException("User is not logged in.");
-        }
+        this.checkIfLogged();
         return this.threadPool.submit(new Callable<TestEntity>() {
 
             @Override
             public TestEntity call() throws Exception {
                 clientSemaphore.acquire();
                 WebTarget testEntityTarget = target.path("test").path(String.valueOf(sessionID));
-                testEntityTarget.queryParam("name", name).queryParam("groupName", groupName);
-                InputStream inputStream = (InputStream) testEntityTarget.request(MediaType.APPLICATION_OCTET_STREAM).get().getEntity();
+                testEntityTarget.queryParam("groupName", groupName);
+                InputStream inputStream = (InputStream) testEntityTarget.request(MediaType.APPLICATION_OCTET_STREAM).put(Entity.text(name)).getEntity();
                 clientSemaphore.release();
                 return (TestEntity) Serializer.deserializeFromStream(inputStream);
             }
@@ -175,9 +169,7 @@ public class ServerConnection implements TestEntityStore {
     }
 
     public Future<Boolean> postSolution(final TestSolution solution) {
-        if (!this.logged) {
-            throw new IllegalStateException("User is not logged in.");
-        }
+        this.checkIfLogged();
         return this.threadPool.submit(new Callable<Boolean>() {
 
             @Override
@@ -193,9 +185,7 @@ public class ServerConnection implements TestEntityStore {
     }
 
     public Future<Boolean> postComment(final String content, int rating, final long testID) {
-        if (!this.logged) {
-            throw new IllegalStateException("User must be logged in.");
-        }
+        this.checkIfLogged();
         return this.threadPool.submit(new Callable<Boolean>() {
 
             @Override
@@ -211,9 +201,7 @@ public class ServerConnection implements TestEntityStore {
     }
 
     public Future<List<Comment>> getComments(final long testID) {
-        if (!this.logged) {
-            throw new IllegalStateException("User must be logged in.");
-        }
+        this.checkIfLogged();
         return this.threadPool.submit(new Callable<List<Comment>>() {
 
             @Override
@@ -228,9 +216,7 @@ public class ServerConnection implements TestEntityStore {
     }
 
     public Future<Boolean> postQuestionProposition(final long testID, final QuestionProposition questionProposition) {
-        if (!this.logged) {
-            throw new IllegalStateException("User must be logged in.");
-        }
+        this.checkIfLogged();
         return this.threadPool.submit(new Callable<Boolean>() {
 
             @Override
@@ -246,9 +232,7 @@ public class ServerConnection implements TestEntityStore {
     }
 
     public Future<List<QuestionProposition>> getQuestionPropositions(final long testID) {
-        if (!this.logged) {
-            throw new IllegalStateException("User must be logged in.");
-        }
+        this.checkIfLogged();
         return this.threadPool.submit(new Callable<List<QuestionProposition>>() {
 
             @Override
@@ -263,9 +247,7 @@ public class ServerConnection implements TestEntityStore {
     }
 
     public Future<Boolean> postQuestionError(final long testID, final int questionIndex, final String problemDescription, final String possibleSolution) {
-        if (!this.logged) {
-            throw new IllegalStateException("User must be logged in.");
-        }
+        this.checkIfLogged();
         return this.threadPool.submit(new Callable<Boolean>() {
 
             @Override
@@ -281,9 +263,7 @@ public class ServerConnection implements TestEntityStore {
     }
 
     public Future<List<QuestionError>> getQuestionErrors(final long testID) {
-        if (!this.logged) {
-            throw new IllegalStateException("User must be logged in.");
-        }
+        this.checkIfLogged();
         return this.threadPool.submit(new Callable<List<QuestionError>>() {
 
             @Override
@@ -295,6 +275,140 @@ public class ServerConnection implements TestEntityStore {
                 return (List<QuestionError>) Serializer.deserializeFromStream(inputStream);
             }
         });
+    }
+
+    public Future<GroupEntity> getGroupEntity(final String groupName) {
+        this.checkIfLogged();
+        return this.threadPool.submit(new Callable<GroupEntity>() {
+
+            @Override
+            public GroupEntity call() throws Exception {
+                clientSemaphore.acquire();
+                WebTarget groupTarget = getGroupTarget(groupName);
+                InputStream inputStream = (InputStream) groupTarget.request(MediaType.APPLICATION_OCTET_STREAM).get().getEntity();
+                clientSemaphore.release();
+                return (GroupEntity) Serializer.deserializeFromStream(inputStream);
+            }
+
+        });
+    }
+
+    public Future<GroupEntity> createGroup(final String groupName) {
+        this.checkIfLogged();
+        return this.threadPool.submit(new Callable<GroupEntity>() {
+
+            @Override
+            public GroupEntity call() throws Exception {
+                clientSemaphore.acquire();
+                WebTarget groupTarget = target.path("group").path(String.valueOf(sessionID));
+                InputStream inputStream = (InputStream) groupTarget.request(MediaType.APPLICATION_OCTET_STREAM).put(Entity.text(groupName)).getEntity();
+                clientSemaphore.release();
+                return (GroupEntity) Serializer.deserializeFromStream(inputStream);
+            }
+        });
+    }
+
+    public Future<Boolean> postGroupEntity(final GroupEntity groupEntity) {
+        this.checkIfLogged();
+        return this.threadPool.submit(new Callable<Boolean>() {
+
+            @Override
+            public Boolean call() throws Exception {
+                byte[] byteArray = Serializer.serializeObject(groupEntity);
+                clientSemaphore.acquire();
+                WebTarget groupTarget = target.path("group").path(String.valueOf(sessionID));
+                groupTarget.request().post(Entity.entity(new ByteArrayInputStream(byteArray), MediaType.APPLICATION_OCTET_STREAM));
+                clientSemaphore.release();
+                return true;
+            }
+        });
+    }
+
+    public Future<List<UserEntity>> getGroupMembers(final String groupName) {
+        this.checkIfLogged();
+        return this.threadPool.submit(new Callable<List<UserEntity>>() {
+
+            @Override
+            public List<UserEntity> call() throws Exception {
+                clientSemaphore.acquire();
+                WebTarget groupTarget = getGroupTarget(groupName).path("members");
+                InputStream inputStream = (InputStream) groupTarget.request(MediaType.APPLICATION_OCTET_STREAM).get().getEntity();
+                clientSemaphore.release();
+                return (List<UserEntity>) Serializer.deserializeFromStream(inputStream);
+            }
+        });
+    }
+
+    public Future<List<TestDescription>> getGroupTests(final String groupName) {
+        this.checkIfLogged();
+        return this.threadPool.submit(new Callable<List<TestDescription>>() {
+
+            @Override
+            public List<TestDescription> call() throws Exception {
+                clientSemaphore.acquire();
+                WebTarget groupTarget = getGroupTarget(groupName).path("tests");
+                InputStream inputStream = (InputStream) groupTarget.request(MediaType.APPLICATION_OCTET_STREAM).get().getEntity();
+                clientSemaphore.release();
+                return (List<TestDescription>) Serializer.deserializeFromStream(inputStream);
+            }
+        });
+    }
+
+    public Future<List<Notification>> getNotifications() {
+        this.checkIfLogged();
+        return this.threadPool.submit(new Callable<List<Notification>>() {
+
+            @Override
+            public List<Notification> call() throws Exception {
+                clientSemaphore.acquire();
+                WebTarget notificationTarget = target.path("notification").path(String.valueOf(sessionID));
+                InputStream inputStream = (InputStream) notificationTarget.request(MediaType.APPLICATION_OCTET_STREAM).get().getEntity();
+                clientSemaphore.release();
+                return (List<Notification>) Serializer.deserializeFromStream(inputStream);
+            }
+        });
+    }
+
+    public Future<UserEntity> registerUser(final String login, final String password, final String firstName, final String lastName, final String emailAddress) {
+        this.checkIfLogged();
+        return this.threadPool.submit(new Callable<UserEntity>() {
+
+            @Override
+            public UserEntity call() throws Exception {
+                clientSemaphore.acquire();
+                WebTarget accountTarget = target.path("account");
+                accountTarget = accountTarget.queryParam("firstName", firstName).queryParam("lastName", lastName).queryParam("emailAddress", emailAddress).queryParam("password", password);
+                InputStream inputStream = (InputStream) accountTarget.request(MediaType.APPLICATION_OCTET_STREAM).put(Entity.text(login)).getEntity();
+                clientSemaphore.release();
+                return (UserEntity) Serializer.deserializeFromStream(inputStream);
+            }
+        });
+    }
+
+    public Future<Boolean> updateAccount(final UserEntity userEntity) {
+        this.checkIfLogged();
+        return this.threadPool.submit(new Callable<Boolean>() {
+
+            @Override
+            public Boolean call() throws Exception {
+                byte[] byteArray = Serializer.serializeObject(userEntity);
+                clientSemaphore.acquire();
+                WebTarget accountTarget = target.path("account").path(String.valueOf(sessionID));
+                accountTarget.request(MediaType.APPLICATION_OCTET_STREAM).post(Entity.entity(new ByteArrayInputStream(byteArray), MediaType.APPLICATION_OCTET_STREAM));
+                clientSemaphore.release();
+                return true;
+            }
+        });
+    }
+
+    private WebTarget getGroupTarget(String groupName) {
+        return this.target.path("group").path(String.valueOf(this.sessionID)).path(groupName);
+    }
+
+    private void checkIfLogged() throws IllegalStateException {
+        if (!this.logged) {
+            throw new IllegalStateException("User must be logged in.");
+        }
     }
 
     public static ServerConnection getInstance() {
