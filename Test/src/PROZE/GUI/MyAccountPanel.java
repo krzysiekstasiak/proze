@@ -66,6 +66,9 @@ public class MyAccountPanel extends javax.swing.JPanel {
         jPanel7 = new javax.swing.JPanel();
         editButton = new javax.swing.JButton();
 
+        jPanel9.setMaximumSize(new java.awt.Dimension(400, 233));
+        jPanel9.setMinimumSize(new java.awt.Dimension(400, 233));
+
         jTextArea2.setEditable(false);
         jTextArea2.setColumns(20);
         jTextArea2.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
@@ -105,7 +108,7 @@ public class MyAccountPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonWarning)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         warningMessage.getContentPane().add(jPanel9, java.awt.BorderLayout.CENTER);
