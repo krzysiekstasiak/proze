@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package PROZE.GUI;
 
 import PROZE.GUI.EventListeners.RegisterUserListener;
@@ -21,11 +20,11 @@ public class RegisterUser extends javax.swing.JPanel {
      * Creates new form UserRegister
      */
     private final Set<RegisterUserListener> registerUserListeners = new HashSet<>();
-    
+
     public RegisterUser() {
         initComponents();
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -437,18 +436,15 @@ public class RegisterUser extends javax.swing.JPanel {
         String email2 = secondMailTextField.getText();
         char[] secondPassword = secondPasswordField.getPassword();
         char[] firstPassword = firstPasswordField.getPassword();
-        if( (email.equals(email2)) && (Arrays.equals(firstPassword, secondPassword)) ){
+        if ((email.equals(email2)) && (Arrays.equals(firstPassword, secondPassword))) {
             for (RegisterUserListener listener : this.registerUserListeners) {
-                listener.registerConfirmed(name, secondName, login, email, firstPassword);
+                listener.userRegistered(name, secondName, login, email, String.valueOf(firstPassword));
             }
-        }
-        else if( !(email.equals(email2)) && (Arrays.equals(firstPassword, secondPassword)) ){
+        } else if (!(email.equals(email2)) && (Arrays.equals(firstPassword, secondPassword))) {
             this.warningMessageE.setVisible(true);
-        }
-        else if( (email.equals(email2)) && !(Arrays.equals(firstPassword, secondPassword)) ){
+        } else if ((email.equals(email2)) && !(Arrays.equals(firstPassword, secondPassword))) {
             this.warningMessageP.setVisible(true);
-        }
-        else if( !(email.equals(email2)) && !(Arrays.equals(firstPassword, secondPassword)) ){
+        } else if (!(email.equals(email2)) && !(Arrays.equals(firstPassword, secondPassword))) {
             this.warningMessageEP.setVisible(true);
         }
     }//GEN-LAST:event_okButtonActionPerformed
@@ -482,7 +478,6 @@ public class RegisterUser extends javax.swing.JPanel {
         this.secondPasswordField.setText(null);
         this.warningMessageEP.setVisible(false);
     }//GEN-LAST:event_buttonWarningEPActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton buttonWarningE;
