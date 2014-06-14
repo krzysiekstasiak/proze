@@ -17,6 +17,7 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import static java.lang.Thread.sleep;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
@@ -45,17 +46,21 @@ public class TestManagerPanel extends javax.swing.JPanel {
 
     private enum EditorState {
 
-        NO_TEST_LOADED, TEST_CREATED, TEST_EDITED
+        NO_TEST_LOADED, TEST_CREATED, TEST_EDITED, WAITING
 
     }
 
-    private EditorState editorState;
+    private EditorState managerState;
     private TestEntity testEntity;
 
     private final DefaultListModel<QuestionEntity> questionsListModel = new DefaultListModel<>();
     private final DefaultComboBoxModel<String> categoriesComboBoxModel = new DefaultComboBoxModel<>();
     private final DefaultListModel<QuestionProposition> questionPropositionsListModel = new DefaultListModel<>();
-    private final Set<TestManagerListener> testEditorListeners = new HashSet<>();
+    private final Set<TestManagerListener> testManagerListeners = new HashSet<>();
+
+    private WaitingThread waitingThread = new WaitingThread();
+    private String groupName;
+    private String temporaryDescription;
 
     private void initTestContent() {
         TestEntity test1 = new TestEntity(1, "Nazwa testu", "Nazwa grupy", new Date(), "Ja", true);
@@ -81,14 +86,23 @@ public class TestManagerPanel extends javax.swing.JPanel {
         addProposedQuestionPopupMenu();
         this.setEditorState(EditorState.NO_TEST_LOADED);
         this.initTestContent();
+
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 
     public void addTestEditorListener(TestManagerListener listener) {
-        this.testEditorListeners.add(listener);
+        this.testManagerListeners.add(listener);
     }
 
     public void removeTestEditorListener(TestManagerListener listener) {
-        this.testEditorListeners.remove(listener);
+        this.testManagerListeners.remove(listener);
     }
 
     private void addQuestionPopupMenu() {
@@ -130,17 +144,26 @@ public class TestManagerPanel extends javax.swing.JPanel {
         switch (state) {
             case NO_TEST_LOADED:
                 setContainerEnabled(this, false);
+                this.waitingThread.deactivate();
                 this.nameField.setText("");
                 break;
             case TEST_CREATED:
                 setContainerEnabled(this, false);
+                this.waitingThread.deactivate();
                 this.nameField.setEditable(true);
                 this.nameField.setText("<Nazwa testu>");
                 this.nameField.setEnabled(true);
                 break;
             case TEST_EDITED:
                 setContainerEnabled(this, true);
+                this.waitingThread.deactivate();
                 this.nameField.setEditable(false);
+                break;
+            case WAITING:
+                setContainerEnabled(this, false);
+                this.waitingThread = new WaitingThread();
+                this.waitingThread.start();
+                break;
         }
     }
 
@@ -221,13 +244,15 @@ public class TestManagerPanel extends javax.swing.JPanel {
 
     private void restoreComponentsState() {
         this.nameField.setText("");
+        this.descriptionField.setText("");
         this.questionsListModel.removeAllElements();
-        throw new UnsupportedOperationException("Not implemented yet");
-        //TODO: Pytania proponowane - trzeba zrobić klasę i model
+        this.questionPropositionsListModel.removeAllElements();
     }
 
     private void initComponentsWithTestEntity(TestEntity testEntity) {
         this.nameField.setText(testEntity.getName());
+        this.temporaryDescription = testEntity.getDescription();
+        this.descriptionField.setText(testEntity.getDescription());
         selectCategoryFromTest(testEntity);
         this.questionsListModel.removeAllElements();
         for (QuestionEntity question : testEntity.getQuestions()) {
@@ -257,14 +282,13 @@ public class TestManagerPanel extends javax.swing.JPanel {
 
     private void saveComponentsStateToTest() throws IllegalAccessException {
         this.testEntity.setCategory((String) this.categoriesComboBoxModel.getSelectedItem());
-        this.testEntity.setDescription(this.descriptionField.getText());
+        this.testEntity.setDescription(this.temporaryDescription);
         for (int i = 0; i < this.testEntity.getQuestions().size(); ++i) {
             this.testEntity.removeQuestion(this.testEntity.getQuestions().get(i));
         }
         for (QuestionEntity question : Collections.list(this.questionsListModel.elements())) {
             this.testEntity.addQuestion(question);
         }
-
     }
 
     /**
@@ -300,29 +324,18 @@ public class TestManagerPanel extends javax.swing.JPanel {
         jScrollPane6 = new javax.swing.JScrollPane();
         descriptionField = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        editOpenQuestionDialog = new javax.swing.JDialog();
+        cancelDescriptionButton = new javax.swing.JButton();
+        saveDescriptionButton = new javax.swing.JButton();
+        editExistQuestionDialog = new javax.swing.JDialog();
         jPanel6 = new javax.swing.JPanel();
-        jPanel17 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
-        jLabel8 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
-        editClosedQuestion = new javax.swing.JDialog();
-        jPanel15 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        jTextArea4 = new javax.swing.JTextArea();
-        jLabel10 = new javax.swing.JLabel();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        quwstionArea = new javax.swing.JTextArea();
+        jPanel8 = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         nameField = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
@@ -339,6 +352,7 @@ public class TestManagerPanel extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         proposedQuestionsList = new javax.swing.JList();
+        progressBar = new javax.swing.JProgressBar();
 
         editQuestionDialog.getContentPane().setLayout(new javax.swing.BoxLayout(editQuestionDialog.getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
@@ -519,9 +533,19 @@ public class TestManagerPanel extends javax.swing.JPanel {
 
         jLabel6.setText("Opis:");
 
-        jButton8.setText("Anuluj");
+        cancelDescriptionButton.setText("Anuluj");
+        cancelDescriptionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelDescriptionButtonActionPerformed(evt);
+            }
+        });
 
-        jButton9.setText("Zapisz");
+        saveDescriptionButton.setText("Zapisz");
+        saveDescriptionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveDescriptionButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout editDescriptionDialogLayout = new javax.swing.GroupLayout(editDescriptionDialog.getContentPane());
         editDescriptionDialog.getContentPane().setLayout(editDescriptionDialogLayout);
@@ -536,9 +560,9 @@ public class TestManagerPanel extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editDescriptionDialogLayout.createSequentialGroup()
                         .addGap(0, 248, Short.MAX_VALUE)
-                        .addComponent(jButton9)
+                        .addComponent(saveDescriptionButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton8)))
+                        .addComponent(cancelDescriptionButton)))
                 .addContainerGap())
         );
         editDescriptionDialogLayout.setVerticalGroup(
@@ -550,8 +574,8 @@ public class TestManagerPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(editDescriptionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8)
-                    .addComponent(jButton9))
+                    .addComponent(cancelDescriptionButton)
+                    .addComponent(saveDescriptionButton))
                 .addContainerGap())
         );
 
@@ -560,207 +584,63 @@ public class TestManagerPanel extends javax.swing.JPanel {
         jPanel6.setPreferredSize(new java.awt.Dimension(501, 341));
         jPanel6.setLayout(new javax.swing.BoxLayout(jPanel6, javax.swing.BoxLayout.Y_AXIS));
 
-        jPanel17.setBackground(new java.awt.Color(0, 204, 51));
-        jPanel17.setForeground(new java.awt.Color(0, 204, 51));
+        jPanel7.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel7.setLayout(new javax.swing.BoxLayout(jPanel7, javax.swing.BoxLayout.Y_AXIS));
 
         jLabel7.setText("Treść pytania:");
+        jPanel7.add(jLabel7);
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane7.setViewportView(jTextArea3);
+        quwstionArea.setColumns(20);
+        quwstionArea.setRows(5);
+        jScrollPane7.setViewportView(quwstionArea);
 
-        jLabel8.setText("Odpowiedź:");
+        jPanel7.add(jScrollPane7);
 
-        jButton7.setText("Zapisz");
+        jPanel6.add(jPanel7);
 
-        jButton10.setText("Anuluj");
+        jPanel8.setBackground(new java.awt.Color(0, 204, 51));
 
-        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
-        jPanel17.setLayout(jPanel17Layout);
-        jPanel17Layout.setHorizontalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel17Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2)
-                    .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(417, 417, 417))
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton10))
-                    .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel17Layout.setVerticalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel17Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7)
-                    .addComponent(jButton10))
-                .addContainerGap())
-        );
-
-        jPanel6.add(jPanel17);
-
-        javax.swing.GroupLayout editOpenQuestionDialogLayout = new javax.swing.GroupLayout(editOpenQuestionDialog.getContentPane());
-        editOpenQuestionDialog.getContentPane().setLayout(editOpenQuestionDialogLayout);
-        editOpenQuestionDialogLayout.setHorizontalGroup(
-            editOpenQuestionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 501, Short.MAX_VALUE)
-            .addGroup(editOpenQuestionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(editOpenQuestionDialogLayout.createSequentialGroup()
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 236, Short.MAX_VALUE)
+        );
+
+        jPanel6.add(jPanel8);
+
+        jPanel9.setLayout(new javax.swing.BoxLayout(jPanel9, javax.swing.BoxLayout.LINE_AXIS));
+
+        jButton1.setText("jButton1");
+        jPanel9.add(jButton1);
+
+        jButton2.setText("jButton2");
+        jPanel9.add(jButton2);
+
+        jPanel6.add(jPanel9);
+
+        javax.swing.GroupLayout editExistQuestionDialogLayout = new javax.swing.GroupLayout(editExistQuestionDialog.getContentPane());
+        editExistQuestionDialog.getContentPane().setLayout(editExistQuestionDialogLayout);
+        editExistQuestionDialogLayout.setHorizontalGroup(
+            editExistQuestionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 501, Short.MAX_VALUE)
+            .addGroup(editExistQuestionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(editExistQuestionDialogLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
-        editOpenQuestionDialogLayout.setVerticalGroup(
-            editOpenQuestionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        editExistQuestionDialogLayout.setVerticalGroup(
+            editExistQuestionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 341, Short.MAX_VALUE)
-            .addGroup(editOpenQuestionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(editOpenQuestionDialogLayout.createSequentialGroup()
+            .addGroup(editExistQuestionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(editExistQuestionDialogLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        jPanel15.setBackground(new java.awt.Color(0, 204, 51));
-        jPanel15.setForeground(new java.awt.Color(0, 204, 51));
-
-        jLabel9.setText("Treść pytania:");
-
-        jTextArea4.setColumns(20);
-        jTextArea4.setRows(5);
-        jScrollPane8.setViewportView(jTextArea4);
-
-        jLabel10.setText("Odpowiedzi:");
-
-        jCheckBox2.setText("Wielkrotny wybór");
-
-        jButton11.setText("Zapisz");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
-            }
-        });
-
-        jButton12.setText("Anuluj");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
-            }
-        });
-
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {" ",  new Boolean(false)}
-            },
-            new String [] {
-                "Odpowiedź", "Poprawna"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Boolean.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jTable3.getTableHeader().setReorderingAllowed(false);
-        jTable3.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jTable3PropertyChange(evt);
-            }
-        });
-        jTable3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTable3KeyPressed(evt);
-            }
-        });
-        jScrollPane9.setViewportView(jTable3);
-        jTable3.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (jTable3.getColumnModel().getColumnCount() > 0) {
-            jTable3.getColumnModel().getColumn(1).setMinWidth(80);
-            jTable3.getColumnModel().getColumn(1).setPreferredWidth(80);
-            jTable3.getColumnModel().getColumn(1).setMaxWidth(80);
-        }
-
-        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jCheckBox2))
-                    .addComponent(jScrollPane8)
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton12))
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jCheckBox2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton11)
-                    .addComponent(jButton12))
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout editClosedQuestionLayout = new javax.swing.GroupLayout(editClosedQuestion.getContentPane());
-        editClosedQuestion.getContentPane().setLayout(editClosedQuestionLayout);
-        editClosedQuestionLayout.setHorizontalGroup(
-            editClosedQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(editClosedQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(editClosedQuestionLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        editClosedQuestionLayout.setVerticalGroup(
-            editClosedQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(editClosedQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(editClosedQuestionLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
@@ -815,7 +695,7 @@ public class TestManagerPanel extends javax.swing.JPanel {
         add(jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(0, 204, 51));
-        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
+        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.Y_AXIS));
 
         jTabbedPane1.setDoubleBuffered(true);
         jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -844,6 +724,7 @@ public class TestManagerPanel extends javax.swing.JPanel {
         jTabbedPane1.addTab("Pytania proponowane", jPanel4);
 
         jPanel2.add(jTabbedPane1);
+        jPanel2.add(progressBar);
 
         add(jPanel2);
     }// </editor-fold>//GEN-END:initComponents
@@ -878,8 +759,17 @@ public class TestManagerPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        this.nameField.setEditable(false);
 
+        if (this.managerState == EditorState.TEST_CREATED) {
+            for (TestManagerListener listener : this.testManagerListeners) {
+                listener.testCreated(this.nameField.getText(), this.groupName);
+            }
+        } else if (this.managerState == EditorState.TEST_EDITED) {
+            for (TestManagerListener listener : this.testManagerListeners) {
+                listener.testSaved(this.testEntity);
+            }
+        }
+        this.setEditorState(EditorState.WAITING);
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void editDescriptionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editDescriptionButtonActionPerformed
@@ -894,63 +784,50 @@ public class TestManagerPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton11ActionPerformed
+    private void cancelDescriptionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelDescriptionButtonActionPerformed
+        this.editDescriptionDialog.setVisible(false);
+        this.descriptionField.setText(this.temporaryDescription);
+    }//GEN-LAST:event_cancelDescriptionButtonActionPerformed
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
-
-    private void jTable3PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTable3PropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTable3PropertyChange
-
-    private void jTable3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable3KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTable3KeyPressed
+    private void saveDescriptionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveDescriptionButtonActionPerformed
+        this.editDescriptionDialog.setVisible(false);
+        this.temporaryDescription = this.descriptionField.getText();
+    }//GEN-LAST:event_saveDescriptionButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addQuestionButton;
+    private javax.swing.JButton cancelDescriptionButton;
     private javax.swing.JComboBox categoryBox;
     private javax.swing.JTextArea descriptionField;
-    private javax.swing.JDialog editClosedQuestion;
     private javax.swing.JButton editDescriptionButton;
     private javax.swing.JDialog editDescriptionDialog;
-    private javax.swing.JDialog editOpenQuestionDialog;
+    private javax.swing.JDialog editExistQuestionDialog;
     private javax.swing.JDialog editQuestionDialog;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -958,22 +835,19 @@ public class TestManagerPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextArea jTextArea4;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField nameField;
+    private javax.swing.JProgressBar progressBar;
     private javax.swing.JList proposedQuestionsList;
     private javax.swing.JList questionsList;
+    private javax.swing.JTextArea quwstionArea;
     private javax.swing.JButton saveButton;
+    private javax.swing.JButton saveDescriptionButton;
     // End of variables declaration//GEN-END:variables
 
     class QuestionCellRenderer extends JLabel implements ListCellRenderer {
@@ -1001,19 +875,19 @@ public class TestManagerPanel extends javax.swing.JPanel {
         }
     }
 
-    class ProposeQuestionCellRenderer extends JLabel implements ListCellRenderer {
+    class ProposedQuestionCellRenderer extends JLabel implements ListCellRenderer {
 
         private final Color HIGHLIGHT_COLOR = new Color(0, 0, 128);
 
-        public ProposeQuestionCellRenderer() {
+        public ProposedQuestionCellRenderer() {
             setOpaque(true);
         }
 
         @Override
         public Component getListCellRendererComponent(JList list, Object value,
                 int index, boolean isSelected, boolean cellHasFocus) {
-            QuestionProposition proposeQuestion = (QuestionProposition) value;
-            setText((proposeQuestion.getProposedQuestion()).getContent() + ", Autor: " + proposeQuestion.getUserLogin());
+            QuestionProposition proposedQuestion = (QuestionProposition) value;
+            setText((proposedQuestion.getProposedQuestion()).getContent() + ", Autor: " + proposedQuestion.getUserLogin());
             if (isSelected) {
                 setBackground(HIGHLIGHT_COLOR);
                 setForeground(Color.white);
@@ -1026,4 +900,30 @@ public class TestManagerPanel extends javax.swing.JPanel {
         }
     }
 
+    class WaitingThread extends Thread {
+
+        boolean active;
+
+        @Override
+        public void run() {
+            this.active = true;
+            int value = 0;
+            while (active) {
+                if (value == 100) {
+                    value = 0;
+                }
+                progressBar.setValue(value);
+                value += 4;
+                progressBar.repaint();
+                try {
+                    sleep(20);
+                } catch (InterruptedException ex) {
+                }
+            }
+        }
+
+        public void deactivate() {
+            this.active = false;
+        }
+    }
 }
