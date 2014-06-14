@@ -6,6 +6,11 @@
 
 package PROZE.GUI;
 
+import PROZE.GUI.EventListeners.RegisterUserListener;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  *
  * @author Krzysztof
@@ -15,6 +20,8 @@ public class RegisterUser extends javax.swing.JPanel {
     /**
      * Creates new form UserRegister
      */
+    private final Set<RegisterUserListener> registerUserListeners = new HashSet<>();
+    
     public RegisterUser() {
         initComponents();
     }
@@ -28,6 +35,24 @@ public class RegisterUser extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        warningMessageP = new javax.swing.JDialog();
+        jPanel10 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jLabel9 = new javax.swing.JLabel();
+        buttonWarningP = new javax.swing.JToggleButton();
+        warningMessageE = new javax.swing.JDialog();
+        jPanel11 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea3 = new javax.swing.JTextArea();
+        jLabel10 = new javax.swing.JLabel();
+        buttonWarningE = new javax.swing.JToggleButton();
+        warningMessageEP = new javax.swing.JDialog();
+        jPanel12 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextArea4 = new javax.swing.JTextArea();
+        jLabel11 = new javax.swing.JLabel();
+        buttonWarningEP = new javax.swing.JToggleButton();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
@@ -59,6 +84,163 @@ public class RegisterUser extends javax.swing.JPanel {
         okButton = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         cancelButton = new javax.swing.JButton();
+
+        warningMessageP.setMaximumSize(new java.awt.Dimension(400, 300));
+        warningMessageP.setMinimumSize(new java.awt.Dimension(400, 300));
+        warningMessageP.setPreferredSize(new java.awt.Dimension(400, 300));
+
+        jPanel10.setMaximumSize(new java.awt.Dimension(400, 300));
+        jPanel10.setMinimumSize(new java.awt.Dimension(400, 300));
+
+        jTextArea2.setEditable(false);
+        jTextArea2.setColumns(20);
+        jTextArea2.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        jTextArea2.setRows(5);
+        jTextArea2.setText("Pole \"Hasło\" i \"Powtórz hasło\" \nsą  różne uzupełnij je \njeszcze raz");
+        jScrollPane2.setViewportView(jTextArea2);
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel9.setText("Uwaga");
+
+        buttonWarningP.setText("Ok");
+        buttonWarningP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonWarningPActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(buttonWarningP)
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonWarningP)
+                .addContainerGap(89, Short.MAX_VALUE))
+        );
+
+        warningMessageP.getContentPane().add(jPanel10, java.awt.BorderLayout.CENTER);
+
+        warningMessageE.setMaximumSize(new java.awt.Dimension(400, 300));
+        warningMessageE.setMinimumSize(new java.awt.Dimension(400, 300));
+        warningMessageE.setPreferredSize(new java.awt.Dimension(400, 300));
+
+        jPanel11.setMaximumSize(new java.awt.Dimension(400, 300));
+        jPanel11.setMinimumSize(new java.awt.Dimension(400, 300));
+
+        jTextArea3.setEditable(false);
+        jTextArea3.setColumns(20);
+        jTextArea3.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        jTextArea3.setRows(5);
+        jTextArea3.setText("Pole \"E-mail\" i \"Powtórz e-mail\" \nsą  różne uzupełnij je \njeszcze raz");
+        jScrollPane3.setViewportView(jTextArea3);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel10.setText("Uwaga");
+
+        buttonWarningE.setText("Ok");
+        buttonWarningE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonWarningEActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(buttonWarningE)
+                        .addGroup(jPanel11Layout.createSequentialGroup()
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(256, 256, 256)))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(buttonWarningE)
+                .addContainerGap(72, Short.MAX_VALUE))
+        );
+
+        warningMessageE.getContentPane().add(jPanel11, java.awt.BorderLayout.CENTER);
+
+        warningMessageEP.setMaximumSize(new java.awt.Dimension(400, 300));
+        warningMessageEP.setPreferredSize(new java.awt.Dimension(400, 300));
+
+        jPanel12.setMaximumSize(new java.awt.Dimension(400, 300));
+        jPanel12.setMinimumSize(new java.awt.Dimension(400, 300));
+        jPanel12.setPreferredSize(new java.awt.Dimension(400, 300));
+
+        jTextArea4.setEditable(false);
+        jTextArea4.setColumns(20);
+        jTextArea4.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        jTextArea4.setRows(5);
+        jTextArea4.setText("Pole \"E-mail\" i \"Powtórz e-mail\" \nsą różne oraz pola\n\"Hasło\" i \"Powtórz hasło\" \nsą różne uzupełnij je ponownie");
+        jScrollPane4.setViewportView(jTextArea4);
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel11.setText("Uwaga");
+
+        buttonWarningEP.setText("Ok");
+        buttonWarningEP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonWarningEPActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(buttonWarningEP)
+                        .addGroup(jPanel12Layout.createSequentialGroup()
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(256, 256, 256)))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(buttonWarningEP)
+                .addContainerGap(72, Short.MAX_VALUE))
+        );
+
+        warningMessageEP.getContentPane().add(jPanel12, java.awt.BorderLayout.CENTER);
 
         setBackground(new java.awt.Color(0, 204, 51));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(15, 15, 15, 15));
@@ -220,6 +402,11 @@ public class RegisterUser extends javax.swing.JPanel {
         okButton.setMaximumSize(new java.awt.Dimension(259, 25));
         okButton.setMinimumSize(new java.awt.Dimension(6, 25));
         okButton.setPreferredSize(new java.awt.Dimension(150, 25));
+        okButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okButtonActionPerformed(evt);
+            }
+        });
         jPanel8.add(okButton);
 
         add(jPanel8);
@@ -232,16 +419,80 @@ public class RegisterUser extends javax.swing.JPanel {
         cancelButton.setMaximumSize(new java.awt.Dimension(259, 25));
         cancelButton.setMinimumSize(new java.awt.Dimension(6, 25));
         cancelButton.setPreferredSize(new java.awt.Dimension(150, 25));
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
         jPanel9.add(cancelButton);
 
         add(jPanel9);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+        String name = nameTextField.getText();
+        String secondName = secondNameTextField.getText();
+        String login = loginTextField.getText();
+        String email = firstMailTextField.getText();
+        String email2 = secondMailTextField.getText();
+        char[] secondPassword = secondPasswordField.getPassword();
+        char[] firstPassword = firstPasswordField.getPassword();
+        if( (email.equals(email2)) && (Arrays.equals(firstPassword, secondPassword)) ){
+            for (RegisterUserListener listener : this.registerUserListeners) {
+                listener.registerConfirmed(name, secondName, login, email, firstPassword);
+            }
+        }
+        else if( !(email.equals(email2)) && (Arrays.equals(firstPassword, secondPassword)) ){
+            this.warningMessageE.setVisible(true);
+        }
+        else if( (email.equals(email2)) && !(Arrays.equals(firstPassword, secondPassword)) ){
+            this.warningMessageP.setVisible(true);
+        }
+        else if( !(email.equals(email2)) && !(Arrays.equals(firstPassword, secondPassword)) ){
+            this.warningMessageEP.setVisible(true);
+        }
+    }//GEN-LAST:event_okButtonActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        this.nameTextField.setText(null);
+        this.secondNameTextField.setText(null);
+        this.loginTextField.setText(null);
+        this.firstMailTextField.setText(null);
+        this.secondMailTextField.setText(null);
+        this.firstPasswordField.setText(null);
+        this.secondPasswordField.setText(null);
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void buttonWarningPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonWarningPActionPerformed
+        this.firstMailTextField.setText(null);
+        this.secondMailTextField.setText(null);
+        this.warningMessageE.setVisible(false);
+    }//GEN-LAST:event_buttonWarningPActionPerformed
+
+    private void buttonWarningEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonWarningEActionPerformed
+        this.firstPasswordField.setText(null);
+        this.secondPasswordField.setText(null);
+        this.warningMessageP.setVisible(false);
+    }//GEN-LAST:event_buttonWarningEActionPerformed
+
+    private void buttonWarningEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonWarningEPActionPerformed
+        this.firstMailTextField.setText(null);
+        this.secondMailTextField.setText(null);
+        this.firstPasswordField.setText(null);
+        this.secondPasswordField.setText(null);
+        this.warningMessageEP.setVisible(false);
+    }//GEN-LAST:event_buttonWarningEPActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton buttonWarningE;
+    private javax.swing.JToggleButton buttonWarningEP;
+    private javax.swing.JToggleButton buttonWarningP;
     private javax.swing.JButton cancelButton;
     private javax.swing.JTextField firstMailTextField;
     private javax.swing.JPasswordField firstPasswordField;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -249,7 +500,11 @@ public class RegisterUser extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -258,17 +513,26 @@ public class RegisterUser extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextArea3;
+    private javax.swing.JTextArea jTextArea4;
     private javax.swing.JTextField loginTextField;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JButton okButton;
     private javax.swing.JTextField secondMailTextField;
     private javax.swing.JTextField secondNameTextField;
     private javax.swing.JPasswordField secondPasswordField;
+    private javax.swing.JDialog warningMessageE;
+    private javax.swing.JDialog warningMessageEP;
+    private javax.swing.JDialog warningMessageP;
     // End of variables declaration//GEN-END:variables
 }
