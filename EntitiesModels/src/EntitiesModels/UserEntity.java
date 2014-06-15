@@ -36,8 +36,6 @@ public class UserEntity implements Serializable {
      * Konstruktor utworzony w celu testowania GUI. Nie należy tworzyć obiektów
      * tej klasy w kodzie klienta.
      *
-     * @deprecated Do ustawiania jako chroniony wraz z uruchomieniem serwera z
-     * bazą danych.
      * @param login Login, który zarazem identyfikuje użytkownika.
      * @param editPermitted Jeśli ustawione jest jako false, próba edycji
      * któregokolwiek pola spowoduje zgłoszenie wyjątku.
@@ -78,16 +76,11 @@ public class UserEntity implements Serializable {
      * Modyfikuje imię użytkownika.
      *
      * @param firstName Nowe imię.
-     * @throws IllegalAccessException W przypadku próby modyfikacji obiektu
-     * tylko oo odczytu. Należy wywołać metodę
-     * {@link #isEditPermitted() isEditPermitted} w celu uniknięcia wyjątku.
      */
-    public void setFirstName(String firstName) throws IllegalAccessException {
+    public void setFirstName(String firstName) {
         if (this.editPermitted) {
             this.firstName = firstName;
-        } else {
-            throw new IllegalAccessException("No edit permissions.");
-        }
+        } 
     }
 
     /**
@@ -103,16 +96,11 @@ public class UserEntity implements Serializable {
      * Modyfikuje nazwisko użytkownika.
      *
      * @param secondName Nowe nazwisko.
-     * @throws IllegalAccessException W przypadku próby modyfikacji obiektu
-     * tylko oo odczytu. Należy wywołać metodę
-     * {@link #isEditPermitted() isEditPermitted} w celu uniknięcia wyjątku.
      */
-    public void setSecondName(String secondName) throws IllegalAccessException {
+    public void setSecondName(String secondName) {
         if (this.editPermitted) {
             this.secondName = secondName;
-        } else {
-            throw new IllegalAccessException("No edit permissions.");
-        }
+        } 
     }
 
     /**
@@ -128,15 +116,10 @@ public class UserEntity implements Serializable {
      * Modyfikuje adres e-mail użytkownika.
      *
      * @param mailAddress Nowy adres e-mail.
-     * @throws IllegalAccessException W przypadku próby modyfikacji obiektu
-     * tylko oo odczytu. Należy wywołać metodę
-     * {@link #isEditPermitted() isEditPermitted} w celu uniknięcia wyjątku.
      */
-    public void setMailAddress(String mailAddress) throws IllegalAccessException {
+    public void setMailAddress(String mailAddress) {
         if (this.editPermitted) {
             this.mailAddress = mailAddress;
-        } else {
-            throw new IllegalAccessException("No edit permissions.");
-        }
+        } 
     }
 }

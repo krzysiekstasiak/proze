@@ -26,8 +26,6 @@ public class GroupEntity implements Serializable {
      * Konstruktor utworzony w celu testowania GUI. Nie należy tworzyć obiektów
      * tej klasy w kodzie klienta.
      *
-     * @deprecated Do ustawiania jako chroniony wraz z uruchomieniem serwera z
-     * bazą danych.
      * @param name Nazwa grupy.
      * @param editPermitted Jeśli ustawione jest jako false, próba edycji
      * któregokolwiek pola spowoduje zgłoszenie wyjątku.
@@ -68,15 +66,10 @@ public class GroupEntity implements Serializable {
      * Modyfikuje opis grupy.
      *
      * @param description Nowy opis grupy.
-     * @throws IllegalAccessException W przypadku próby modyfikacji obiektu
-     * tylko oo odczytu. Należy wywołać metodę
-     * {@link #isEditPermitted() isEditPermitted} w celu uniknięcia wyjątku.
      */
-    public void setDescription(String description) throws IllegalAccessException {
+    public void setDescription(String description) {
         if (this.editPermitted) {
             this.description = description;
-        } else {
-            throw new IllegalAccessException("No edit permissions.");
-        }
+        } 
     }
 }

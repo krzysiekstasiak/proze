@@ -41,7 +41,6 @@ public class TestEntity implements Serializable {
      * Konstruktor utworzony w celu testowania GUI. Nie należy tworzyć obiektów
      * tej klasy w kodzie klienta.
      *
-     * @deprecated Do ustawiania jako chroniony wraz z uruchomieniem serwera z
      * bazą danych.
      * @param ID Identyfikator testu.
      * @param name Nazwa testu.
@@ -119,16 +118,11 @@ public class TestEntity implements Serializable {
      * Modyfikuje opis testu.
      *
      * @param description Nowy opis testu.
-     * @throws IllegalAccessException W przypadku próby modyfikacji obiektu
-     * tylko oo odczytu. Należy wywołać metodę
-     * {@link #isEditPermitted() isEditPermitted} w celu uniknięcia wyjątku.
      */
-    public void setDescription(String description) throws IllegalAccessException {
+    public void setDescription(String description)  {
         if (this.editPermitted) {
             this.description = description;
-        } else {
-            throw new IllegalAccessException("No edit permissions.");
-        }
+        } 
     }
 
     /**
@@ -153,16 +147,13 @@ public class TestEntity implements Serializable {
      * Modyfikuje kategorię, do której należy test.
      *
      * @param category Nowa kategoria, do której należeć ma test.
-     * @throws IllegalAccessException W przypadku próby modyfikacji obiektu
-     * tylko oo odczytu. Należy wywołać metodę
+     * 
      * {@link #isEditPermitted() isEditPermitted} w celu uniknięcia wyjątku.
      */
-    public void setCategory(String category) throws IllegalAccessException {
+    public void setCategory(String category){
         if (this.editPermitted) {
             this.category = category;
-        } else {
-            throw new IllegalAccessException("No edit permissions.");
-        }
+        } 
     }
 
     /**
@@ -178,16 +169,12 @@ public class TestEntity implements Serializable {
      * Dodaje pytanie do testu.
      *
      * @param question Nowe pytanie.
-     * @throws IllegalAccessException W przypadku próby modyfikacji obiektu
-     * tylko oo odczytu. Należy wywołać metodę
-     * {@link #isEditPermitted() isEditPermitted} w celu uniknięcia wyjątku.
+     * 
      */
-    public void addQuestion(QuestionEntity question) throws IllegalAccessException {
+    public void addQuestion(QuestionEntity question){
         if (this.editPermitted) {
             this.questions.add(question);
-        } else {
-            throw new IllegalAccessException("No edit permissions.");
-        }
+        } 
     }
 
     /**
@@ -200,9 +187,6 @@ public class TestEntity implements Serializable {
      * {@link #isEditPermitted() isEditPermitted} w celu uniknięcia wyjątku.
      */
     public void replaceQuestion(QuestionEntity oldQuestion, QuestionEntity newQuestion) throws IllegalAccessException {
-        if (!this.editPermitted) {
-            throw new IllegalAccessException("No edit permissions.");
-        }
         if (this.questions.contains(oldQuestion)) {
             this.questions.set(this.questions.indexOf(oldQuestion), newQuestion);
         } else {
@@ -214,14 +198,8 @@ public class TestEntity implements Serializable {
      * Usuwa pytanie z testu.
      *
      * @param question Pytanie do usunięcia.
-     * @throws IllegalAccessException W przypadku próby modyfikacji obiektu
-     * tylko oo odczytu. Należy wywołać metodę
-     * {@link #isEditPermitted() isEditPermitted} w celu uniknięcia wyjątku.
      */
-    public void removeQuestion(QuestionEntity question) throws IllegalAccessException {
-        if (!this.editPermitted) {
-            throw new IllegalAccessException("No edit permissions.");
-        }
+    public void removeQuestion(QuestionEntity question)  {
         if (this.questions.contains(question)) {
             this.questions.remove(question);
         } else {

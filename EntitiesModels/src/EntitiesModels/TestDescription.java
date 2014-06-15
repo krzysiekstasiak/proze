@@ -30,8 +30,6 @@ public class TestDescription implements Serializable {
      * Konstruktor utworzony w celu testowania GUI. Nie należy tworzyć obiektów
      * tej klasy w kodzie klienta.
      *
-     * @deprecated Do ustawiania jako chroniony wraz z uruchomieniem serwera z
-     * bazą danych.
      * @param ID Identyfikator testu.
      * @param name Nazwa testu.
      * @param lastModification Data ostatniej modyfikacji.
