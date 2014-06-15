@@ -30,9 +30,9 @@ public interface TestManagerListener {
     public void testSaved(TestEntity testEntity);
 
     /**
+     * Zgłoszenie potrzeby pobrania proponowanych pytań
      * 
-     * 
-     * @param testEntity 
+     * @param testEntity test krórego propozycje pytań trzeba pobrać
      */
     public void questionPropositionsNeeded(TestEntity testEntity);
 
