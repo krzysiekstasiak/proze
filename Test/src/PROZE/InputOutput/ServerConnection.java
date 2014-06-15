@@ -24,11 +24,14 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -51,6 +54,14 @@ public class ServerConnection implements TestEntityStore {
 
     public void setServerURL(String serverURL) {
         this.target = client.target(serverURL).path("WebService/webresources/");
+
+    }
+
+    public void reset() {
+        this.threadPool.shutdownNow();
+        this.clientSemaphore.release();
+        this.logged = false;
+        this.sessionID = -1;
     }
 
     public boolean isLogged() {
@@ -68,12 +79,13 @@ public class ServerConnection implements TestEntityStore {
                 clientSemaphore.acquire();
                 WebTarget sessionTarget = target.path("session");
                 String response = sessionTarget.queryParam("login", login).queryParam("password", password).request(MediaType.TEXT_PLAIN).get(String.class);
-                clientSemaphore.acquire();
+                clientSemaphore.release();
                 if ("Authentication Error".equals(response)) {
                     return false;
                 } else {
                     long receivedID = Long.valueOf(response);
                     sessionID = receivedID;
+                    logged = true;
                     return true;
                 }
             }
@@ -401,6 +413,24 @@ public class ServerConnection implements TestEntityStore {
         });
     }
 
+    public Future<Boolean> testConnection() {
+        return this.threadPool.submit(new Callable<Boolean>() {
+
+            @Override
+            public Boolean call() throws Exception {
+                clientSemaphore.acquire();
+                WebTarget accountTarget = target.path("testConnection");
+                Future<Response> response = accountTarget.request(MediaType.TEXT_PLAIN).async().get();
+                clientSemaphore.release();
+                try {
+                    return response.get(5, TimeUnit.SECONDS).getStatus() == 200;
+                } catch (TimeoutException ex) {
+                    return false;
+                }
+            }
+        });
+    }
+
     private WebTarget getGroupTarget(String groupName) {
         return this.target.path("group").path(String.valueOf(this.sessionID)).path(groupName);
     }
@@ -409,6 +439,12 @@ public class ServerConnection implements TestEntityStore {
         if (!this.logged) {
             throw new IllegalStateException("User must be logged in.");
         }
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        this.client.close();
+        super.finalize();
     }
 
     public static ServerConnection getInstance() {

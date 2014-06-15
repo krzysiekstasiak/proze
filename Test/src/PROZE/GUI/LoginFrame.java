@@ -5,17 +5,31 @@
  */
 package PROZE.GUI;
 
+import PROZE.GUI.EventListeners.LoginFrameListener;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  *
  * @author Maciek
  */
 public class LoginFrame extends javax.swing.JFrame {
 
+    private final Set<LoginFrameListener> loginFrameListeners = new HashSet<>();
+
     /**
      * Creates new form NewJFrame
      */
     public LoginFrame() {
         initComponents();
+    }
+
+    public void addLoginFrameListener(LoginFrameListener listner) {
+        this.loginFrameListeners.add(listner);
+    }
+
+    public void removeLoginFrameListener(LoginFrameListener listener) {
+        this.loginFrameListeners.remove(listener);
     }
 
     /**
@@ -50,6 +64,11 @@ public class LoginFrame extends javax.swing.JFrame {
 
         registerButton.setText("Zarejestruj");
         registerButton.setDoubleBuffered(true);
+        registerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerButtonActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Hasło:");
 
@@ -57,11 +76,21 @@ public class LoginFrame extends javax.swing.JFrame {
 
         offlineButton.setText("Tryb offline");
         offlineButton.setDoubleBuffered(true);
+        offlineButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                offlineButtonActionPerformed(evt);
+            }
+        });
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         jButton1.setText("Zaloguj");
         jButton1.setDoubleBuffered(true);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,6 +145,24 @@ public class LoginFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        for (LoginFrameListener listener : this.loginFrameListeners) {
+            listener.loggedIn(this.loginField.getText(), String.valueOf(this.passwordField.getPassword()));
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        for (LoginFrameListener listener : this.loginFrameListeners) {
+            listener.registerOptionChosen();
+        }
+    }//GEN-LAST:event_registerButtonActionPerformed
+
+    private void offlineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_offlineButtonActionPerformed
+        for (LoginFrameListener listener : this.loginFrameListeners) {
+            listener.offlineOptionChosen();
+        }
+    }//GEN-LAST:event_offlineButtonActionPerformed
 
     /**
      * @param args the command line arguments
