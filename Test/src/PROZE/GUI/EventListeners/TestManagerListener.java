@@ -14,11 +14,32 @@ import EntitiesModels.TestEntity;
  */
 public interface TestManagerListener {
 
+    /**
+     * Tworzy nowy test
+     * 
+     * @param testName nawa tworzonego testu
+     * @param groupName nazwa grupy w której test ma zostac utworzony
+     */
     public void testCreated(String testName, String groupName);
 
+    /**
+     * Zapisuje zmiany w teście
+     * 
+     * @param testEntity test w którym zapisywane są zmiany
+     */
     public void testSaved(TestEntity testEntity);
 
+    /**
+     * 
+     * 
+     * @param testEntity 
+     */
     public void questionPropositionsNeeded(TestEntity testEntity);
 
+    /**
+     * Usuwa proponowane pytanie z listy proponowanych pytań
+     * 
+     * @param questionProposition pytanie które jest usuwane
+     */
     public void questionPropositionRemoved(QuestionProposition questionProposition);
 }
