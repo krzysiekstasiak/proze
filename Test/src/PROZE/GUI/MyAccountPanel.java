@@ -10,6 +10,8 @@ import PROZE.GUI.EventListeners.MyAccountListener;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +24,7 @@ public class MyAccountPanel extends javax.swing.JPanel {
      */
     private UserEntity currentUser;
     private final Set<MyAccountListener> myAccountListeners = new HashSet<>();
+    private JFrame frame;
 
     public MyAccountPanel() {
         initComponents();
@@ -41,12 +44,6 @@ public class MyAccountPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        warningMessage = new javax.swing.JDialog();
-        jPanel9 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jLabel6 = new javax.swing.JLabel();
-        buttonWarning = new javax.swing.JToggleButton();
         jLabel7 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         firstNameTextField = new javax.swing.JTextField();
@@ -66,71 +63,6 @@ public class MyAccountPanel extends javax.swing.JPanel {
         cancelButton = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         editButton = new javax.swing.JButton();
-
-        jPanel9.setMaximumSize(new java.awt.Dimension(400, 233));
-        jPanel9.setMinimumSize(new java.awt.Dimension(400, 233));
-
-        jPanel9.setMaximumSize(new java.awt.Dimension(400, 233));
-        jPanel9.setMinimumSize(new java.awt.Dimension(400, 233));
-
-        jPanel9.setMaximumSize(new java.awt.Dimension(400, 233));
-        jPanel9.setMinimumSize(new java.awt.Dimension(400, 233));
-
-        jPanel9.setMaximumSize(new java.awt.Dimension(400, 233));
-        jPanel9.setMinimumSize(new java.awt.Dimension(400, 233));
-
-        jPanel9.setMaximumSize(new java.awt.Dimension(400, 233));
-        jPanel9.setMinimumSize(new java.awt.Dimension(400, 233));
-
-        jPanel9.setMaximumSize(new java.awt.Dimension(400, 233));
-        jPanel9.setMinimumSize(new java.awt.Dimension(400, 233));
-
-        jPanel9.setMaximumSize(new java.awt.Dimension(400, 233));
-        jPanel9.setMinimumSize(new java.awt.Dimension(400, 233));
-
-        jTextArea2.setEditable(false);
-        jTextArea2.setColumns(20);
-        jTextArea2.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        jTextArea2.setRows(5);
-        jTextArea2.setText("Pole \"Hasło\" i \"Powtórz hasło\" \nsą  różne uzupełnij je \njeszcze raz");
-        jScrollPane2.setViewportView(jTextArea2);
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel6.setText("Uwaga");
-
-        buttonWarning.setText("Ok");
-        buttonWarning.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonWarningActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(buttonWarning)
-                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonWarning)
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
-
-        warningMessage.getContentPane().add(jPanel9, java.awt.BorderLayout.CENTER);
 
         setBackground(new java.awt.Color(0, 204, 51));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(15, 15, 15, 15));
@@ -264,19 +196,15 @@ public class MyAccountPanel extends javax.swing.JPanel {
                 listener.accountUpdated(this.currentUser);
             }
         } else {
-            this.warningMessage.setVisible(true);
+            this.secondPasswordField.setText(null);
+            this.firstPasswordField.setText(null); 
+            JOptionPane.showMessageDialog(frame, "Pole \"Hasło\" i \"Powtórz hasło\" są  różne uzupełnij je jeszcze raz");
+            
         }
 
     }//GEN-LAST:event_editButtonActionPerformed
 
-    private void buttonWarningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonWarningActionPerformed
-        this.firstPasswordField.setText(null);
-        this.secondPasswordField.setText(null);
-        this.warningMessage.setVisible(false);
-    }//GEN-LAST:event_buttonWarningActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton buttonWarning;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton editButton;
     private javax.swing.JTextField emailTextField;
@@ -286,7 +214,6 @@ public class MyAccountPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -295,11 +222,7 @@ public class MyAccountPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField secondNameTextField;
     private javax.swing.JPasswordField secondPasswordField;
-    private javax.swing.JDialog warningMessage;
     // End of variables declaration//GEN-END:variables
 }
