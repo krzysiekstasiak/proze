@@ -779,8 +779,9 @@ public class TestManagerPanel extends javax.swing.JPanel {
 
     private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
         if (this.jTabbedPane1.getSelectedIndex() == 1) {
-            //TODO: Pobrać z bazy propozycje pytań (zajmę się tym) i usunąć kolejną linijkę ;)
-            System.out.println("Wybrano propozycje pytań");
+            for (TestManagerListener listener : this.testManagerListeners) {
+                listener.questionPropositionsNeeded(this.testEntity);
+            }
         }
     }//GEN-LAST:event_jTabbedPane1StateChanged
 

@@ -28,11 +28,11 @@ public class TestForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        groupManagerPanel1 = new PROZE.GUI.GroupManagerPanel();
+        testManagerPanel1 = new PROZE.GUI.TestManagerPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
-        getContentPane().add(groupManagerPanel1);
+        getContentPane().add(testManagerPanel1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -73,6 +73,6 @@ public class TestForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private PROZE.GUI.GroupManagerPanel groupManagerPanel1;
+    private PROZE.GUI.TestManagerPanel testManagerPanel1;
     // End of variables declaration//GEN-END:variables
 }

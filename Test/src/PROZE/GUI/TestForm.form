@@ -23,7 +23,7 @@
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
   <SubComponents>
-    <Component class="PROZE.GUI.GroupManagerPanel" name="groupManagerPanel1">
+    <Component class="PROZE.GUI.TestManagerPanel" name="testManagerPanel1">
     </Component>
   </SubComponents>
 </Form>
