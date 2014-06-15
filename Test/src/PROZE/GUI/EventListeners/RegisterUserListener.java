@@ -11,5 +11,14 @@ package PROZE.GUI.EventListeners;
  */
 public interface RegisterUserListener {
 
+    /**
+     * Rejestruje nowego użytkownika
+     * 
+     * @param firstName imie użytkownika
+     * @param lastName nazwisko użytkownika
+     * @param login login użytkownika
+     * @param mail mail użytkownika
+     * @param password hasło użytkownika
+     */
     public void userRegistered(String firstName, String lastName, String login, String mail, String password);
 }
