@@ -129,7 +129,7 @@ public class Application {
 
             @Override
             public void navigatedToViewProfile() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                onlineFrame.navigateToMyAccount();
             }
 
             @Override
@@ -144,7 +144,7 @@ public class Application {
 
             @Override
             public void navigatedToSearch() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                onlineFrame.navigateToSearch();
             }
 
             @Override
@@ -159,7 +159,12 @@ public class Application {
 
             @Override
             public void navigatedToGroupManager(GroupEntity group, boolean createNewGroup) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                if (createNewGroup) {
+                    onlineFrame.getManageGroupPanel().createNewGroup();
+                } else {
+                    onlineFrame.getManageGroupPanel().loadGroupEntity(group);
+                }
+                onlineFrame.navigateToGroupManager();
             }
 
             @Override
