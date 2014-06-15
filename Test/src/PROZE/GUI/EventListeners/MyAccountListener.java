@@ -13,5 +13,10 @@ import EntitiesModels.UserEntity;
  */
 public interface MyAccountListener {
 
+    /**
+     * Uaktualnia konto użytkowniak
+     * 
+     * @param userEntity użytkownik którego konto jest uaktualniane
+     */
     public void accountUpdated(UserEntity userEntity);
 }
