@@ -14,8 +14,10 @@ import EntitiesModels.UserEntity;
  */
 public class RegisterUserAdapter implements RegisterUserListener {
 
+ 
     @Override
-    public void registerConfirmed(String name, String secondName, String login, String email, char[] password ) {
+    public void userRegistered(String firstName, String lastName, String login, String mail, String password) {
+       
     }
 
    
