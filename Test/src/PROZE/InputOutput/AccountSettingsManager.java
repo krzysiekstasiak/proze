@@ -64,17 +64,17 @@ public class AccountSettingsManager {
     }
 
     /**
-     * Odczytuje hasz hasła z pliku XML. W przypadku braku pliku, lub jeśli jest
-     * on pusty, albo wartość nie została zapisana zwraca pusty łańcuch.
+     * Odczytuje hasło z pliku XML. W przypadku braku pliku, lub jeśli jest on
+     * pusty, albo wartość nie została zapisana zwraca pusty łańcuch.
      *
-     * @return Odczytany hasz hasła.
+     * @return Odczytane hasło.
      * @throws java.io.IOException W przypadku błędu odczytu pliku. Jeśli
      * powodem jest wyjątek SecurityException, jest on oznaczony jako przyczyna
      * rzuconego wyjątku.
      */
-    public String getPasswordHash() throws IOException {
+    public String getPassword() throws IOException {
         this.updateProperties();
-        return this.properties.getProperty("passwordHash", "");
+        return this.properties.getProperty("password", "");
     }
 
     /**
@@ -106,14 +106,14 @@ public class AccountSettingsManager {
     }
 
     /**
-     * Zapisuje hasz hasła do pliku XML.
+     * Zapisuje hasło do pliku XML.
      *
-     * @param value Zapisywany hasz hasła.
+     * @param value Zapisywane hasło.
      * @throws java.io.IOException W przypadku niepowodzenia zapisu. Jesli
      * przyczyną jest wyjątek SecurityException, jest on dołączany jako
      * przyczyna rzuconego wyjatku.
      */
-    public void setPasswordHash(String value) throws IOException {
+    public void setPassword(String value) throws IOException {
         this.updateProperties();
         this.properties.setProperty("passwordHash", value);
         this.updateXML();

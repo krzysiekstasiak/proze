@@ -37,11 +37,11 @@ public class AccountSettingsManagerTest {
         String password = "password";
         String server = "server";
         this.testedObject.setLogin(login);
-        this.testedObject.setPasswordHash(password);
+        this.testedObject.setPassword(password);
         this.testedObject.setServerURL(server);
         this.testedObject = new AccountSettingsManager("test.xml");
         assert login.equals(this.testedObject.getLogin());
-        assert password.equals(this.testedObject.getPasswordHash());
+        assert password.equals(this.testedObject.getPassword());
         assert server.equals(this.testedObject.getServerURL());
     }
 }
