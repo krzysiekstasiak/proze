@@ -787,16 +787,16 @@ public class GroupManagerPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_editDescriptionButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        try {
-            this.groupEntity.setDescription(this.temporaryDescription);
-        } catch (IllegalAccessException ex) {
-            throw new UnsupportedOperationException(ex);
-        }
         if (this.managerState == ManagerState.GROUP_CREATED) {
             for (GroupManagerListener listener : this.groupManagerListeners) {
                 listener.groupCreated(this.nameField.getText());
             }
         } else if (this.managerState == ManagerState.GROUP_MANAGED) {
+            try {
+                this.groupEntity.setDescription(this.temporaryDescription);
+            } catch (IllegalAccessException ex) {
+                throw new UnsupportedOperationException(ex);
+            }
             for (GroupManagerListener listener : this.groupManagerListeners) {
                 listener.groupUpdated(this.groupEntity);
             }
