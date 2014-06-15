@@ -11,9 +11,23 @@ package PROZE.GUI.EventListeners;
  */
 public interface LoginFrameListener {
 
+    /**
+     * Loguje do systemu
+     * 
+     * @param login login użytkownika
+     * @param password hasło użutkownika
+     */
     public void loggedIn(String login, String password);
 
+    /**
+     * Rozpoczyna rejestrację
+     * 
+     */
     public void registerOptionChosen();
 
+    /**
+     * Włącza tryb offline
+     * 
+     */
     public void offlineOptionChosen();
 }
