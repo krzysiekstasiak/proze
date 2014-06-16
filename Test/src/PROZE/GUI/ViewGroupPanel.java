@@ -5,12 +5,15 @@
  */
 package PROZE.GUI;
 
+import EntitiesModels.GroupEntity;
 import EntitiesModels.TestDescription;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -26,6 +29,7 @@ public class ViewGroupPanel extends javax.swing.JPanel {
 
     private final DefaultListModel<TestDescription> testsListModel = new DefaultListModel<>();
     private JMenuItem editTestPopupOption;
+    private GroupEntity group;
 
     /**
      * Creates new form GrupView
@@ -104,7 +108,7 @@ public class ViewGroupPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        groupName = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -144,10 +148,10 @@ public class ViewGroupPanel extends javax.swing.JPanel {
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
 
-        jLabel2.setBackground(new java.awt.Color(0, 204, 51));
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("<Nazwa grupy>");
-        jPanel3.add(jLabel2);
+        groupName.setBackground(new java.awt.Color(0, 204, 51));
+        groupName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        groupName.setText("<Nazwa grupy>");
+        jPanel3.add(groupName);
 
         jPanel1.add(jPanel3);
 
@@ -250,8 +254,8 @@ public class ViewGroupPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addTestButton;
+    private javax.swing.JLabel groupName;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -293,4 +297,14 @@ public class ViewGroupPanel extends javax.swing.JPanel {
         }
     }
 
+    public void loadGroup(){
+        this.groupName.setText(group.getName());
+    }
+    
+    public void loadTests(List<TestDescription> tests) {
+        this.testsListModel.removeAllElements();
+        for(TestDescription test:tests) {
+            this.testsListModel.addElement(test);
+        }
+    }
 }
