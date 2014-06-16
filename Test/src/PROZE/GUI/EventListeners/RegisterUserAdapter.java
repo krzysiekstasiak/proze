@@ -15,6 +15,15 @@ import EntitiesModels.UserEntity;
 public class RegisterUserAdapter implements RegisterUserListener {
 
  
+    /**
+     * Metoda zaślepka która nic nie robi.
+     * 
+     * @param firstName nie istotny
+     * @param lastName nie istotny
+     * @param login nie istotny
+     * @param mail nie istotny
+     * @param password nie istotny
+     */
     @Override
     public void userRegistered(String firstName, String lastName, String login, String mail, String password) {
        

@@ -11,14 +11,28 @@ package PROZE.GUI.EventListeners;
  */
 public class LoginFrameAdapter implements LoginFrameListener {
 
+    /**
+     * Metoda zaślepka która nic nie robi.
+     * 
+     * @param login nie istotny
+     * @param password nie istotny
+     */
     @Override
     public void loggedIn(String login, String password) {
     }
 
+    /**
+     * Metoda zaślepka która nic nie robi.
+     * 
+     */
     @Override
     public void registerOptionChosen() {
     }
 
+    /**
+     * Metoda zaślepka która nic nie robi.
+     * 
+     */
     @Override
     public void offlineOptionChosen() {
     }

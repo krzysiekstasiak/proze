@@ -13,6 +13,11 @@ import EntitiesModels.UserEntity;
  */
 public class MyAccountAdapter implements MyAccountListener {
 
+    /**
+     * Metoda zaślepka która nic nie robi.
+     * 
+     * @param userEntity nie istotny
+     */
     @Override
     public void accountUpdated(UserEntity userEntity) {
 
