@@ -68,8 +68,8 @@ public class GroupEntity implements Serializable {
      * @param description Nowy opis grupy.
      */
     public void setDescription(String description) {
-        if (this.editPermitted) {
+
             this.description = description;
-        } 
+        
     }
 }

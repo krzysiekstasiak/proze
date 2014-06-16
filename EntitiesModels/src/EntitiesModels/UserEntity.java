@@ -78,9 +78,9 @@ public class UserEntity implements Serializable {
      * @param firstName Nowe imię.
      */
     public void setFirstName(String firstName) {
-        if (this.editPermitted) {
+        
             this.firstName = firstName;
-        } 
+         
     }
 
     /**
@@ -98,9 +98,9 @@ public class UserEntity implements Serializable {
      * @param secondName Nowe nazwisko.
      */
     public void setSecondName(String secondName) {
-        if (this.editPermitted) {
+      
             this.secondName = secondName;
-        } 
+        
     }
 
     /**
@@ -118,8 +118,8 @@ public class UserEntity implements Serializable {
      * @param mailAddress Nowy adres e-mail.
      */
     public void setMailAddress(String mailAddress) {
-        if (this.editPermitted) {
+  
             this.mailAddress = mailAddress;
-        } 
+        
     }
 }

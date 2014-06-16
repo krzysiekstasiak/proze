@@ -120,9 +120,9 @@ public class TestEntity implements Serializable {
      * @param description Nowy opis testu.
      */
     public void setDescription(String description)  {
-        if (this.editPermitted) {
+
             this.description = description;
-        } 
+        
     }
 
     /**
@@ -148,12 +148,11 @@ public class TestEntity implements Serializable {
      *
      * @param category Nowa kategoria, do której należeć ma test.
      * 
-     * {@link #isEditPermitted() isEditPermitted} w celu uniknięcia wyjątku.
      */
     public void setCategory(String category){
-        if (this.editPermitted) {
+
             this.category = category;
-        } 
+        
     }
 
     /**
@@ -172,9 +171,9 @@ public class TestEntity implements Serializable {
      * 
      */
     public void addQuestion(QuestionEntity question){
-        if (this.editPermitted) {
+
             this.questions.add(question);
-        } 
+        
     }
 
     /**
@@ -182,11 +181,9 @@ public class TestEntity implements Serializable {
      *
      * @param oldQuestion Stare pytanie.
      * @param newQuestion Nowe pytanie.
-     * @throws IllegalAccessException W przypadku próby modyfikacji obiektu
-     * tylko oo odczytu. Należy wywołać metodę
-     * {@link #isEditPermitted() isEditPermitted} w celu uniknięcia wyjątku.
+
      */
-    public void replaceQuestion(QuestionEntity oldQuestion, QuestionEntity newQuestion) throws IllegalAccessException {
+    public void replaceQuestion(QuestionEntity oldQuestion, QuestionEntity newQuestion) {
         if (this.questions.contains(oldQuestion)) {
             this.questions.set(this.questions.indexOf(oldQuestion), newQuestion);
         } else {
